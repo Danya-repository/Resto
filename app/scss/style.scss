@@ -4,4 +4,132 @@
 @import 'libs';
 @import 'global';
 
+.header {
+    padding: 24px 0;
+    &__wrapper-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    &__wrapper-bottom {
+        padding: 10px 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 1px solid $dark-grey;
+    }
+    &__search-form {
+        position: relative;
+        display: flex;
+        max-width: 320px;
+        width: 100%;
+    }
+    &__search-submit {
+        height: 20px;
+        width: 20px;
+        position: absolute;
+        top: 12px;
+        left: 14px;
+        border: none;
+        background: transparent;
+    }
+    &__search-icon {
+        position: absolute;
+        left: -1px;
+        top: -1px;
+    }
+}
 
+.input-text {
+    height: 40px;
+    padding: 15px 14px 14px 42px;
+    border-radius: 8px;
+    border: 1px solid $dark-main;
+    max-width: 320px;
+    width: 100%;
+    @include MonNorm;
+    color: $dark-main;
+    font-size: 15px;
+    &::placeholder {
+        @include MonNorm;
+        color: rgba($dark-main, .5);
+    }
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    &__icon-container {
+        margin-right: 20px;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 8px;
+        border: 1px solid $dark-main;
+    }
+}
+
+
+.header-section {
+    @include MonNorm;
+    font-size: 28px;
+    line-height: 25px;
+}
+
+.menu {
+    &__wrapper{
+        height: 38px;
+        display: flex;
+        align-items: flex-end;
+    }
+    &__list {
+        display: flex;
+        max-width: 680px;
+        justify-content: space-between;
+    }
+    &__list-item {
+        position: relative;
+        &+.menu__list-item {
+            margin-left: 20px;
+        }
+    &:hover {
+        .menu__list-item-animation-block::after {
+            background-color: $orange;
+            transition: all .5s;
+            width: 100%;
+            left: 0;
+            right: auto;
+        }
+    }
+
+    &-animation-block {
+        position: absolute;
+        width: 40%;
+        top: -15px;
+        height: 1px;
+        &::after {
+            content: '';
+            position: absolute;
+            height: 3px;
+            width: 100%;
+            background-color: $orange;
+            width: 0;
+            left: auto;
+            right: 0;
+            transition: all .5s;
+            }
+        }
+    }
+    &__list-link, .menu__list-link:visited {
+        @include MonMedium;
+        font-style: normal;
+        font-size: 16px;
+        text-transform: uppercase;
+        &:hover {
+            color: $orange;
+            }
+        }
+}

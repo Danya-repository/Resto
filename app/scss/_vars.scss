@@ -1,0 +1,26 @@
+$dark-main: #252836;
+$orange: #EA9769;
+$dark-grey: #393C49;
+
+
+
+
+@mixin MonNorm {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+}
+
+@mixin MonMedium {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+}
+
+@mixin MonSemibold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+}
+
+@mixin MonBold {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+}
