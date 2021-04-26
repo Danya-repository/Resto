@@ -48,6 +48,10 @@ select {
   font: inherit;
 }
 
+button {
+  cursor: pointer;
+}
+
 a, a:visited{
   text-decoration: none;
   display: inline-block;

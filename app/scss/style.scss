@@ -3,6 +3,7 @@
 @import 'reset';
 @import 'libs';
 @import 'global';
+@import 'animation';
 
 .header {
     padding: 24px 0;
@@ -14,15 +15,35 @@
     &__wrapper-bottom {
         padding: 10px 0;
         display: flex;
-        align-items: center;
+        align-items: flex-end;
         justify-content: space-between;
         border-bottom: 1px solid $dark-grey;
+    }
+    &__search-open-btn {
+        background: transparent;
+        border: none;
+        height: 21px;
     }
     &__search-form {
         position: relative;
         display: flex;
         max-width: 320px;
         width: 100%;
+        transition: all 3s;
+        &.header__search-form-disable {
+            width: 40px;
+            transition: all 1.3s;
+
+            .header__search-form-input {
+                padding: 0;
+                &::placeholder {
+                    font-size: 0;
+                }
+            }
+            .header__search-submit {
+                left: 11px;
+            }
+        }
     }
     &__search-submit {
         height: 20px;
@@ -37,6 +58,19 @@
         position: absolute;
         left: -1px;
         top: -1px;
+    }
+}
+
+.header__search-open-btn {
+    svg {
+        transition: all 3s;
+        fill: $dark-main;
+    }
+    &--active {
+        svg {
+            transition: 1.3s;
+            fill: $orange;
+        }
     }
 }
 
@@ -72,6 +106,10 @@
     }
 }
 
+.header-logo {
+    margin-left: 0;
+    margin-right: auto;
+}
 
 .header-section {
     @include MonNorm;
@@ -126,10 +164,36 @@
     &__list-link, .menu__list-link:visited {
         @include MonMedium;
         font-style: normal;
-        font-size: 16px;
+        font-size: 14px;
         text-transform: uppercase;
         &:hover {
             color: $orange;
             }
         }
 }
+
+
+.header__user-panel {
+    width: 90px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-panel__btn {
+    border: none;
+    background: transparent;
+    height: 20px;
+    width: 20px;
+    position: relative;
+    svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+}
+
+// .header__search-open-btn {
+//     svg {
+//         fill: $orange;
+//     }
+// }
