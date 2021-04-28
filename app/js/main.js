@@ -20,7 +20,30 @@ $(function () {
         });
     }();
     
+
+    headerBasketOrderToggle = function () {
+        
+        let basketBtn = document.querySelector('.user-panel__btn.user-panel__basket');
+        let cancelBtn = document.querySelector('.order-panel__close-btn');
+        let orderPanel = document.querySelector('.order-panel');
         
 
+        return function () {
+            
+            basketBtn.addEventListener('click', function (event) {
+                console.log('hello')
+                event.preventDefault;
+                orderPanel.classList.add('order-panel--active');
+            });
+
+            cancelBtn.addEventListener('click', function (event) {
+                console.log('hello')
+                event.preventDefault;
+                orderPanel.classList.remove('order-panel--active');
+            });
+
+
+        }();
+    }();
     
-})
+});

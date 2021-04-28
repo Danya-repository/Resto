@@ -29,10 +29,10 @@
         display: flex;
         max-width: 320px;
         width: 100%;
-        transition: all 3s;
+        transition: all 2.5s;
         &.header__search-form-disable {
             width: 40px;
-            transition: all 1.3s;
+            transition: all .8s;
 
             .header__search-form-input {
                 padding: 0;
@@ -203,9 +203,10 @@
 }
 
 .order-panel {
-    position: absolute;
-    right: 0;
+    position: fixed;
+    right: -200%;
     top: 0;
+    bottom: 0;
     max-width: 700px;
     width: 100%;
     height: 100vh;
@@ -214,6 +215,12 @@
     border-left: 1px solid $dark-main;
     background-color: #fff;
     text-align: left;
+    transition: all 1.7s;
+    &--active {
+        right: 0;
+        transition: all .7s;
+
+    }
     &__title {
         margin-bottom: 40px;
     }
@@ -253,7 +260,7 @@
         border: 1px solid $dark-main;
         border-left: none;
         border-right: none;
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
     &__item {
         margin: 24px 0;
@@ -366,8 +373,44 @@
         padding: 14px 0;
     }
 
+    &__close-btn {
+        position: absolute;
+        top: 20px;
+        right: 25px;
+        height: 40px;
+        width: 40px;
+        background: transparent;
+        border: none;
+    }
+
 }
 
+.collage {
+    &__inner {
+        display: grid;
+        grid-template-columns: repeat(3, 230px);
+        grid-template-rows: repeat(3, 230px);
+    }
+    &__item {
+        margin-bottom: 15px;
+        margin-right: 15px;
+        border: 1px solid $dark-grey;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    &__img {
+        object-fit: cover;
+        width: 95%;
+        height: 95%;
+    }
+    &__item--active {
+        grid-column: span 2;
+        grid-row: span 2;
+        border-color: $orange;
+    }
+}
 
 
 
