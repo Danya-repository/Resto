@@ -46,4 +46,69 @@ $(function () {
         }();
     }();
     
+    carousel = function () {
+
+
+        let getCarouselSlides = function() {
+
+            let itemList = document.querySelector('.collage__carousel');
+            let carouselSlides = Array.from(itemList.children)
+                                    .filter(item =>  item.className.includes('collage__carousel-item'));
+
+            return carouselSlides;
+        }();
+
+        let slideChanger = function (slides = getCarouselSlides) {
+
+            let mainSliderWindow = document.querySelector('.collage__carousel-window');
+        
+
+            for (let i = 0; i < slides.length; i++) {
+
+                if (slides[i].className.includes('collage__carousel-item--active')) {
+
+
+
+                    slides[i].classList.remove('collage__carousel-item--active');
+
+                    if (i+1 <= slides.length-1) {
+                        return slides[i+1].classList.add('collage__carousel-item--active');
+                    
+                    }
+                    else {
+                        return slides[0].classList.add('collage__carousel-item--active');
+
+                    }
+
+                }
+
+            }
+        
+        }
+ 
+
+        let mainSlideInserter = function (slides = getCarouselSlides) {
+            slideChanger();
+            let mainSliderWindow = document.querySelector('.collage__carousel-window');
+        
+            for (let i = 0; i < slides.length; i++) {
+
+                if (slides[i].className.includes('collage__carousel-item--active')) {
+
+                    // console.log(slides[i].nextSibling);
+
+                }
+
+            }
+
+
+        }
+
+        return setInterval(mainSlideInserter, 7000);
+
+
+
+        
+        
+    }();
 });
