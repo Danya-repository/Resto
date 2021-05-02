@@ -45,38 +45,76 @@ $(function () {
 
         }();
     }();
+
+    userbarToggle = function () {
+        
+        userBar = document.querySelector('.user-bar');
+        dropDown = document.querySelector('.user-bar__info-drop-down');
+
+         return userBar.addEventListener('click', function(event) {
+            
+            // console.log(event)
+
+            dropDown.classList.toggle('user-bar__info-drop-down--active')
+
+
+        });
+
+    }();
     
     carousel = function () {
+
+        
 
 
         let getCarouselSlides = function() {
 
             let itemList = document.querySelector('.collage__carousel');
             let carouselSlides = Array.from(itemList.children)
-                                    .filter(item =>  item.className.includes('collage__carousel-item'));
+                                    .filter(item =>  item.className.includes('collage__carousel-slide'));
 
             return carouselSlides;
         }();
+        let getInfoSlides = function () {
+            let itemList = document.querySelector('.collage__info');
+            let infoSlides = Array.from(itemList.children);
+
+            return infoSlides;
+        }();
+
+        let userChangeSlide = function () {
+            
+            let clickSlideArea = document.querySelector('.collage__carousel');
+            
+            clickSlideArea.addEventListener('click', function (event) {
+                if (event.target.parentNode.classList.contains('collage__carousel-slide')) {
+                    getActiveSlide().classList.remove('collage__carousel-slide--active');
+                    event.target.parentNode.classList.add('collage__carousel-slide--active');
+                    mainSlideWindowInserter();
+                    mainSlideInfoInserter();
+                }
+                
+            })
+
+        }();
 
         let slideChanger = function (slides = getCarouselSlides) {
-
-            let mainSliderWindow = document.querySelector('.collage__carousel-window');
         
 
             for (let i = 0; i < slides.length; i++) {
 
-                if (slides[i].className.includes('collage__carousel-item--active')) {
+                if (slides[i].className.includes('collage__carousel-slide--active')) {
 
 
 
-                    slides[i].classList.remove('collage__carousel-item--active');
+                    slides[i].classList.remove('collage__carousel-slide--active');
 
                     if (i+1 <= slides.length-1) {
-                        return slides[i+1].classList.add('collage__carousel-item--active');
+                        return slides[i+1].classList.add('collage__carousel-slide--active');
                     
                     }
                     else {
-                        return slides[0].classList.add('collage__carousel-item--active');
+                        return slides[0].classList.add('collage__carousel-slide--active');
 
                     }
 
@@ -87,27 +125,63 @@ $(function () {
         }
  
 
-        let mainSlideInserter = function (slides = getCarouselSlides) {
-            slideChanger();
+        let mainSlideWindowInserter = function (slides = getCarouselSlides) {
+            
             let mainSliderWindow = document.querySelector('.collage__carousel-window');
-        
-            for (let i = 0; i < slides.length; i++) {
+            
+            
+                    
+                    let activeSlideImg = getActiveSlide().querySelector('img').cloneNode()
 
-                if (slides[i].className.includes('collage__carousel-item--active')) {
+                    mainSliderWindow.innerHTML = "";
+                    mainSliderWindow.appendChild(activeSlideImg);
 
-                    // console.log(slides[i].nextSibling);
 
-                }
-
-            }
 
 
         }
 
-        return setInterval(mainSlideInserter, 7000);
+        let getActiveSlide = function (slides = getCarouselSlides) {
+            for (let i = 0; i < slides.length; i++) {
+                if (slides[i].className.includes('collage__carousel-slide--active')) {
+                    return slides[i];
+                }
+            }
+        }
 
 
+        let mainSlideInfoInserter = function () {
 
+                    
+            let numberSlideActive  = getActiveSlide()
+                                        .classList
+                                        .item(1)
+                                        .slice(-1);
+                                        
+            for (let i of getInfoSlides) {
+                if (i.classList.contains('collage__info-slide--active')) {
+                    i.classList.remove('collage__info-slide--active');
+                    return getInfoSlides[numberSlideActive - 1].classList.add('collage__info-slide--active');
+
+                }
+                    
+            }
+
+
+                                    
+            console.log(numberSlideActive)
+
+        }
+
+        mainSlideWindowInserter(); // init first img in window-carousel
+
+        let sliderMove = function () {
+            slideChanger();
+            mainSlideWindowInserter();
+            mainSlideInfoInserter();
+        }
+        
+        return setInterval(sliderMove, 7000);
         
         
     }();

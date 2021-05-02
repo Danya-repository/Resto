@@ -176,7 +176,7 @@
 
 
 .header__user-panel {
-    width: 90px;
+    width: 130px;
     display: flex;
     justify-content: space-between;
 }
@@ -191,6 +191,61 @@
         position: absolute;
         left: 0;
         top: 0;
+    }
+}
+
+.user-panel__log-in-btn,
+.user-panel__log-out-btn {
+    top: 1px;
+}
+
+.user-bar {
+    position: relative;
+    &__info-drop-down {
+        position: absolute;
+        right: -4px;
+        top: 32px;
+        background: #fff;
+        width: 200px;
+        overflow: hidden;
+        padding: 0 15px!important;
+        border: 1px solid $dark-grey;
+        border-top: 0;
+
+        height: 0;
+        transition: all .5s;
+
+        &--active {
+            height: 1000px;
+            transition: all .5s;
+            
+        }
+
+    }
+    &__link {
+        border-bottom: 1px solid transparent;
+        padding-bottom: 10px;
+        // padding-top: 10px;
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        margin-bottom: 10px;
+    }
+    &__item {
+        display: block;
+        position: relative;
+        border: none;
+        
+        &+.user-bar__item {
+            margin-top: 20px;
+        }
+        &:hover {
+            .user-bar__link {
+                color: black;
+                border-bottom: 1px solid $orange;
+            }
+            
+        }
     }
 }
 
@@ -396,7 +451,7 @@
         grid-template-rows: repeat(3, 220px);
         grid-gap: 15px
     }
-    &__carousel-item {
+    &__carousel-slide {
         border: 1px solid $dark-grey;
         padding: 10px;
         display: flex;
@@ -469,7 +524,7 @@
         grid-row: span 2;
         border-color: $orange;
     }
-    &__carousel-item--active {
+    &__carousel-slide--active {
         border-color: $orange;
     }
 
@@ -480,6 +535,15 @@
         flex-direction: column;
         text-align: center;
         border: none;
+        align-items: center;
+    }
+    &__info-slide {
+        display: none;
+        text-align: center;
+    }
+    &__info-slide--active {
+        display: flex;
+        flex-direction: column;
         align-items: center;
     }
     &__info-title {
