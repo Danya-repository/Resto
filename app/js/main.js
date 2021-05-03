@@ -51,15 +51,12 @@ $(function () {
         userBar = document.querySelector('.user-bar');
         dropDown = document.querySelector('.user-bar__info-drop-down');
 
-         return userBar.addEventListener('click', function(event) {
-            
-            // console.log(event)
-
-            dropDown.classList.toggle('user-bar__info-drop-down--active')
-
+        $('.user-bar').on('click', function () {
+           
+            $('.user-bar__info-drop-down').slideToggle();
+            $('.user-icon').toggleClass('user-icon--active');
 
         });
-
     }();
     
     carousel = function () {
@@ -185,4 +182,46 @@ $(function () {
         
         
     }();
+
+    animationAllItemAfterScroll = function () {
+        
+        animItems = document.querySelectorAll('.animated-item');
+
+        if (animItems.length > 0) {
+            window.addEventListener('scroll', anim)
+            function anim() {
+                for (let i = 0; i < animItems.length; i++) {
+                    const animItem = animItems[i];
+                    const animItemHeight = animItem.offsetHeight;
+                    const animItemOffset = offset(animItem).top;
+                    const animStart = 6;
+
+                    let animItemPoint = window.innerHeight - animItemHeight / animStart;
+
+                    if(animItemHeight > window.innerHeight) {
+                        animItemPoint = window.innerHeight - window.innerHeight / animStart;
+                    }
+
+                    if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+                        animItem.classList.add('animated-item--active');
+                    }
+                    else {
+                        if (!animItem.classList.contains('animated-no-hide')) {
+
+                            animItem.classList.remove('animated-item--active');
+                        }
+                    }
+                }
+            }
+            function offset(el) {
+                const rect = el.getBoundingClientRect(),
+                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+            }
+        }
+        setTimeout(anim, 500);
+
+    }();
+
 });
