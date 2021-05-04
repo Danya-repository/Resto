@@ -22,6 +22,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        background-color: #fff;
     }
     &__wrapper-bottom {
         padding: 10px 0;
@@ -29,6 +30,16 @@
         align-items: flex-end;
         justify-content: space-between;
         border-bottom: 1px solid $dark-grey;
+        transition: all .5s;
+        &--animation-fix-to-top {
+            position: fixed;
+            top: 0;
+            background: #fff; 
+            transition: all .5s;
+            z-index: 5;
+            max-width: 1170px;
+            width: 100%;
+        }
     }
     &__search-open-btn {
         background: transparent;
@@ -637,7 +648,8 @@
 
 
 .benefits {
-    overflow: hidden;
+    // overflow: hidden;
+    margin-bottom: 50px;
     &__inner {
         display: flex;
         justify-content: space-between;
@@ -713,6 +725,65 @@
 }
 
 
+.quote {
+    &__text {
+        height: 400px;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        flex-direction: column;
+        font-size: 35px;
+        line-height: 35px;
+        span {
+            display: block;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        &-quote {
+            margin-bottom: 30px;
+            &.animated-item {
+                transform: translate(0, 120%);
+                opacity: 0;
+                &--active {
+                    transform: translate(0, 0);
+                    opacity: 1;
+                }
+            }
+        }
+        &-author {
+            font-size: 23px;
+            position: relative;
+            &::before {
+                content: '';
+                position: absolute;
+                width: 270px;
+                height: 1px;
+                background-color: transparent;
 
+                left: 0;
+                right: 0;
+                margin: 0 auto;
+                top: -20px;
+            }
+            &.animated-item {
+                transform: translate(0, -200%);
+                opacity: 0;
+                &--active {
+                    transform: translate(0, 50%);
+                    opacity: 1;
+                    transition: all .5s ease .8s;
+                    &::before {
+                        content: '';
+                        position: absolute;
+                        background-color: rgba($orange, 1);
+
+                        opacity: 1;
+                        transition: all 1.5s ease 1s;
+                    }
+                }
+            }
+        };
+    }
+}
 
 

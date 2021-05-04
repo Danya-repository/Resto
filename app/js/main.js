@@ -224,4 +224,29 @@ $(function () {
 
     }();
 
+    animationHeaderFixed = function () {
+        
+        headerWrapperTop = document.querySelector('.header__wrapper-top')
+        headerWrapperBottom = document.querySelector('.header__wrapper-bottom')
+
+
+        window.addEventListener('scroll', function () {
+
+            // console.log(headerWrapperTop.getBoundingClientRect().top + headerWrapperTop.offsetHeight)
+
+            if (headerWrapperTop.getBoundingClientRect().top + headerWrapperTop.offsetHeight <= 0) {
+
+                headerWrapperBottom.classList.add('header__wrapper-bottom--animation-fix-to-top')
+                headerWrapperTop.style.marginBottom = `${headerWrapperTop.offsetHeight}px`
+            }
+            else {
+                headerWrapperBottom.classList.remove('header__wrapper-bottom--animation-fix-to-top')
+                headerWrapperTop.style.marginBottom = `0`
+            }
+            
+        })
+
+
+    }();
+
 });
