@@ -249,4 +249,34 @@ $(function () {
 
     }();
 
+    tabs = function () {
+        
+        allTabBtns = document.querySelectorAll('.tab-btn');
+        allTabs = document.querySelectorAll('.tab')
+
+        document.body.addEventListener('click', function (event) {
+            if (event.target.classList.contains('tab-btn')) {
+                // console.log(event.target.classList[2].slice(-1))
+                for (let i of allTabBtns) {
+                    i.classList.remove('tab-btn--active')
+                }
+                event.target.classList.add('tab-btn--active')
+                for (let i of allTabs) {
+                    i.classList.remove('tab--active')
+                    if (i.classList[2].slice(-1) == event.target.classList[2].slice(-1)) {
+                        i.classList.add('tab--active')
+                    }
+                }
+                
+                // event.target.classList.add('tab-btn--active');
+                // console.log(event.target.classList[2].slice(-1))
+
+            }
+        })
+
+
+
+
+    }();
+
 });
