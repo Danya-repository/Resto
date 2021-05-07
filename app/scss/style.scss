@@ -931,10 +931,6 @@
 
 .products {
 
-    .hot-dishes__list {
-        display: flex;
-        flex-wrap: wrap;
-    }
 
     &__item {
         position: relative;
@@ -1003,3 +999,9 @@
         z-index: -1;
     }
 }
+
+.hot-dishes__list {
+    display: flex;
+    flex-wrap: wrap;
+}
+

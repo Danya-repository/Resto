@@ -279,4 +279,86 @@ $(function () {
 
     }();
 
+        
+    
+
+
+
 });
+
+class ProductItem {
+
+    type = ''
+    name = ''
+    price = ''
+    imgUrl = ''
+
+
+    constructor(typeOfProduct, nameOfProduct, priceOfProduct, imgUrlOfProduct) {
+
+        this.type = typeOfProduct
+        this.name = nameOfProduct;
+        this.price = priceOfProduct;
+        this.imgUrl = imgUrlOfProduct;
+
+
+    }
+
+    getTemplate () {
+        const templateForRendering = document.querySelector(`.${this.type}`);
+        return templateForRendering;
+    }
+
+
+
+
+
+
+    renderItem() {
+        let template = this.getTemplate();
+
+        const itemImg = document.createElement('img')
+        itemImg.setAttribute('src', this.imgUrl);
+
+        const itemText = document.createElement('p');
+        itemText.classList.add('products__item-name');
+        itemText.innerHTML = this.name;
+
+        const itemPrice = document.createElement('span');
+        itemPrice.classList.add('products__item-price')
+        itemPrice.innerHTML = this.price;
+
+        const decorativeLayer = document.createElement('div');
+        decorativeLayer.classList.add('products__decorative-layer');
+
+        const btn = document.createElement('button')
+        btn.classList.add('products__order-by');
+        btn.innerHTML = 'Заказать';
+
+
+        const productItem = document.createElement('li');
+        productItem.classList.add('products__item');
+        
+        
+        
+        
+        
+        productItem.appendChild(itemImg);
+        productItem.appendChild(itemText);
+        productItem.appendChild(itemPrice);
+        productItem.appendChild(decorativeLayer);
+        productItem.appendChild(btn);
+
+
+        template.appendChild(productItem);
+        
+
+    }
+
+
+
+
+
+
+
+}
