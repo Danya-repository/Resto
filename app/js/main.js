@@ -288,13 +288,13 @@ $(function () {
 
 class ProductItem {
 
-    type = ''
+    type = 'hot-dishes'
     name = ''
     price = ''
-    imgUrl = ''
+    imgUrl = 'images/content/hot-dishes-img.png'
 
 
-    constructor(typeOfProduct, nameOfProduct, priceOfProduct, imgUrlOfProduct) {
+    constructor(nameOfProduct, priceOfProduct, typeOfProduct, imgUrlOfProduct) {
 
         this.type = typeOfProduct
         this.name = nameOfProduct;
@@ -305,49 +305,71 @@ class ProductItem {
     }
 
     getTemplate () {
-        const templateForRendering = document.querySelector(`.${this.type}`);
+        const templateForRendering = document.querySelector(`.${this.type}__list`);
         return templateForRendering;
     }
 
+    insertImgItem () {
+        const img = document.createElement('img');
+        img.setAttribute('src', this.imgUrl);
+        img.classList.add('products__img');
 
+        return img
+    }
 
+    insertNameItem () {
+        const name = document.createElement('p');
+        name.classList.add('products__item-name');
+        name.innerHTML = this.name;
 
+        return name
+    }
+
+    insertItemPrice () {
+        const price = document.createElement('span');
+        price.classList.add('products__item-price')
+        price.innerHTML = this.price;
+
+        return price
+    } 
+
+    renderDecorativeLayer () {
+        const decorativeLayer = document.createElement('div');
+        decorativeLayer.classList.add('products__decorative-layer');
+
+        return decorativeLayer
+    }
+
+    inserItemBtn () {
+        const btn = document.createElement('button')
+        btn.classList.add('products__order-by');
+        btn.innerHTML = 'Заказать';
+
+        return btn    
+    }
 
 
     renderItem() {
         let template = this.getTemplate();
 
-        const itemImg = document.createElement('img')
-        itemImg.setAttribute('src', this.imgUrl);
-
-        const itemText = document.createElement('p');
-        itemText.classList.add('products__item-name');
-        itemText.innerHTML = this.name;
-
-        const itemPrice = document.createElement('span');
-        itemPrice.classList.add('products__item-price')
-        itemPrice.innerHTML = this.price;
-
-        const decorativeLayer = document.createElement('div');
-        decorativeLayer.classList.add('products__decorative-layer');
-
-        const btn = document.createElement('button')
-        btn.classList.add('products__order-by');
-        btn.innerHTML = 'Заказать';
-
 
         const productItem = document.createElement('li');
         productItem.classList.add('products__item');
         
+        const [image, name, price, layer, button] = [
+                                                    this.insertImgItem(),
+                                                    this.insertNameItem(),
+                                                    this.insertItemPrice(),
+                                                    this.renderDecorativeLayer(),
+                                                    this.inserItemBtn()
+                                                ]
         
         
-        
-        
-        productItem.appendChild(itemImg);
-        productItem.appendChild(itemText);
-        productItem.appendChild(itemPrice);
-        productItem.appendChild(decorativeLayer);
-        productItem.appendChild(btn);
+        productItem.appendChild(image);
+        productItem.appendChild(name);
+        productItem.appendChild(price);
+        productItem.appendChild(layer);
+        productItem.appendChild(button);
 
 
         template.appendChild(productItem);
