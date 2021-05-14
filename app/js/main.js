@@ -313,6 +313,16 @@ class ProductInTabs extends Product {
     }
 
     getParamObj () {
+        console.log(
+            {
+                id: this.id,
+                type: this.type,
+                name: this.name,
+                price: this.price,
+                weight: this.weight,
+                imgUrl: this.imgUrl
+            }
+        )
         return {
                 id: this.id,
                 type: this.type,
@@ -328,6 +338,7 @@ class ProductInTabs extends Product {
         const btn = document.createElement('button');
         btn.classList.add('products__order-by');
         btn.innerHTML = 'Заказать';
+        btn.addEventListener('click', this.getParams.bind(this))
 
         return btn;
     }
@@ -496,10 +507,10 @@ let productsList = {
 }
 
         
-// for (let i in productsList) {
-//     let productItem = new ProductInTabs(productsList[i]);
-//     productItem.renderInTab();
-// }
+for (let i in productsList) {
+    let productItem = new ProductInTabs(productsList[i]);
+    productItem.renderInTab();
+}
 
 
 
