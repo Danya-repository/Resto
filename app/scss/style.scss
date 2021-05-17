@@ -942,7 +942,8 @@
         justify-content: space-between;
         align-items: center;
         text-align: center;
-        margin: 0 5px 20px 0
+        margin: 0 20px 45px 0;
+
     }
 
     &__img {
@@ -953,7 +954,7 @@
     }
 
     &__item-name {
-        max-width: 133px;
+        max-width: 155px;
         padding: 5px;
         font-size: 15px;
         line-height: 17px;
@@ -1003,5 +1004,56 @@
 .hot-dishes__list {
     display: flex;
     flex-wrap: wrap;
+    max-width: 850px;
 }
 
+.main-page.tab-2,
+.main-page.tab-3,
+.main-page.tab-4,
+.main-page.tab-5,
+.main-page.tab-6,
+.main-page.tab-7 {
+    display: flex;
+}
+
+.filters {
+    max-width: 320px;
+    width: 100%;
+    margin-bottom: 20px;
+    overflow: hidden;
+    
+    &__tab-buttons {
+        position: relative;
+        display: flex;
+        z-index: 1;
+    }
+    &__tab-button {
+        width: 50%;
+        padding: 10px 5px;
+        background-color: transparent;
+        border: 1px solid transparent;
+        &--active {
+            border-color: $orange;
+            border-bottom: 1px solid #fff;
+        }
+    }
+    &__tab {
+        display: flex;
+        position: relative;
+        max-height: 500px;
+        height: 100%;
+    }
+    &__tab-category, &__tab-name {
+        position: absolute;
+        border: 1px solid $orange;
+        width: 100%;
+        height: 100%;
+        top: -1px;
+    }
+    .filter__tab {
+        opacity: 0;
+        &--active {
+            opacity: 1;
+        }
+    }
+} 

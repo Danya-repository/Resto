@@ -251,12 +251,12 @@ $(function () {
 
     tabs = function () {
         
-        allTabBtns = document.querySelectorAll('.tab-btn');
-        allTabs = document.querySelectorAll('.tab')
+        let allTabBtns = document.querySelectorAll('.tab-btn');
+        let allTabs = document.querySelectorAll('.tab')
 
         document.body.addEventListener('click', function (event) {
             if (event.target.classList.contains('tab-btn')) {
-                // console.log(event.target.classList[2].slice(-1))
+
                 for (let i of allTabBtns) {
                     i.classList.remove('tab-btn--active')
                 }
@@ -267,9 +267,6 @@ $(function () {
                         i.classList.add('tab--active')
                     }
                 }
-                
-                // event.target.classList.add('tab-btn--active');
-                // console.log(event.target.classList[2].slice(-1))
 
             }
         })
@@ -279,7 +276,34 @@ $(function () {
 
     }();
 
+    filterTabs = function () {
+        let filterTabsBtns = document.querySelectorAll('.filters__tab-button')
+        let filterTabs = document.querySelectorAll('.filter__tab')
         
+        document.body.addEventListener('click', function(event) {
+            
+            if (event.target.classList.contains('filters__tab-button')) {
+                for (let i of filterTabsBtns) {
+                    i.classList.remove('filters__tab-button--active')
+                }
+
+                event.target.classList.add('filters__tab-button--active')
+                filterTabs.forEach(item => item.classList.remove('filter__tab--active'))
+
+                if (event.target.classList[1] == 'filter__tab-button-category') {
+                    filterTabs[0].classList.add('filter__tab--active')
+                }
+                else {
+                    filterTabs[1].classList.add('filter__tab--active')
+                }
+
+
+
+                
+            }
+
+        });
+    }();
     
 
 
@@ -296,12 +320,12 @@ class Product {
         this.weight = paramsObj.weight;
         this.imgUrl = paramsObj.imgUrl;
 
-        this.method = this.methodParam.bind(this)
+        // this.method = this.methodParam.bind(this)
     }
 
-    methodParam() {
-        return this.name
-    }
+    // methodParam() {
+    //     return this.name
+    // }
 }
 
 class ProductInTabs extends Product {
@@ -456,7 +480,7 @@ let productsList = {
         "price": 113.23,
         "name": 'Суп гороховый',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
         },
     
     1 : {   
@@ -464,29 +488,29 @@ let productsList = {
         "price": 143.50,
         "name": 'Суп с морским горохом',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
         },
     2 : {
         "type": 'hot-dishes',
         "price": 213.50,
         "name": 'Гороховый суп по-итальянски',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
     },
 
     3 : {
         "type": 'hot-dishes',
         "price": 444.50,
-        "name": 'Суп с тонкими моллюсками(гороховые моллюски)',
+        "name": 'Гороховые моллюски',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
     },
     4 : {
         "type": 'hot-dishes',
         "price": 233.50,
         "name": 'Суп с гороховым кремом',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
     },
 
     5 : {
@@ -494,7 +518,7 @@ let productsList = {
         "price": 111.10,
         "name": 'Кипяток',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
     },
 
     6 : {
@@ -502,7 +526,7 @@ let productsList = {
         "price": 228.1488,
         "name": 'Самса',
         "weight": 270,
-        "urlImg": 'images/content/hot-dishes-img.png',
+        "imgUrl": 'images/content/hot-dishes-img.png',
     },
 }
 
