@@ -91,7 +91,7 @@
     }
     &--active {
         svg {
-            transition: 1.3s;
+            transition: all 1.3s;
             fill: $orange;
         }
     }
@@ -1032,9 +1032,11 @@
         padding: 10px 5px;
         background-color: transparent;
         border: 1px solid transparent;
+        transition: all .5s;
         &--active {
             border-color: $orange;
             border-bottom: 1px solid #fff;
+            transition: all .5s;
         }
     }
     &__tab {
@@ -1052,8 +1054,49 @@
     }
     .filter__tab {
         opacity: 0;
+        transition: all .5s;
+        padding: 15px 20px;
         &--active {
             opacity: 1;
+            transition: all .5s;
         }
     }
 } 
+
+.category__slide-item-title {
+    padding: 3px 10px 3px 25px;
+    position: relative;
+    cursor: pointer;
+    &::after {
+        content: '';
+        position: absolute;
+        background-image: url('../images/icons/arrow-down.svg');
+        left: 0;
+        top: 5px;
+        width: 13px;
+        height: 10px;
+        background-repeat: no-repeat;
+    }
+    &--active::after {
+        content: '';
+        position: absolute;
+        background-image: url('../images/icons/arrow-down.svg');
+        left: 0;
+        top: 4px;
+        width: 13px;
+        height: 10px;
+        background-repeat: no-repeat;
+        transform: rotate(180deg);
+    }
+}
+
+.category__slide-item-content {
+    display: none;
+    padding: 15px 5px;
+}
+
+.category-tab__item {
+    position: relative;
+    z-index: 1;
+    margin-bottom: 30px;
+}

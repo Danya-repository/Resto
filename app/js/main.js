@@ -305,6 +305,23 @@ $(function () {
         });
     }();
     
+    filterSlideItems = function () {
+
+        let elem = document.querySelector('.filter__tab');
+        console.log(elem)
+
+        elem.addEventListener('click', function(event) {
+            if (event.target.classList.contains('category__slide-item-title')) {
+               $(event.target).next().slideToggle()
+               $(event.target).toggleClass('category__slide-item-title--active')
+            }
+        })
+
+
+
+
+
+    }();
 
 
 
