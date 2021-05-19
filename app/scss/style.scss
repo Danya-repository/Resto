@@ -342,6 +342,7 @@
     }
     &__item-list {
         max-height: 60vh;
+        height: 100%;
         overflow-y: scroll;
         border: 1px solid $dark-main;
         border-left: none;
@@ -1019,7 +1020,7 @@
 .filters {
     max-width: 320px;
     width: 100%;
-    margin-bottom: 20px;
+    margin: 0 0 20px auto;
     overflow: hidden;
     
     &__tab-buttons {
@@ -1100,3 +1101,7 @@
     z-index: 1;
     margin-bottom: 30px;
 }
+
+
+
+
