@@ -203,6 +203,27 @@
     width: 130px;
     display: flex;
     justify-content: space-between;
+    .user-panel__basket {
+        position: relative;
+
+        .user-panel__basket-count-wrapper {
+            width: 20px;
+            height: 19px;
+            position: relative;
+            left: -6px;
+        }
+        .user-panel__basket-count {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: $orange;
+            border-radius: 50%;
+            font-size: 10px;
+            top: 14px;
+            left: 10px;
+            font-size: 11px;
+        }
+    }
 }
 
 .user-panel__btn {
@@ -253,12 +274,11 @@
     &__link {
         border-bottom: 1px solid transparent;
         padding-bottom: 10px;
-        // padding-top: 10px;
         display: flex;
         justify-content: space-between;
         position: relative;
         margin-bottom: 10px;
-        transition: all .5s
+        transition: all .5s;
     }
     &__item {
         display: block;
@@ -334,7 +354,7 @@
         font-size: 18px;
         color: $dark-main;
         line-height: 16px;
-        margin-left: 30px;
+        margin-left: 45px;
         &.title-pos {
             margin-left: 0;
             margin-right: auto;
@@ -378,12 +398,26 @@
         display: flex;
         justify-content: space-between;
     }
-    &__item-product-count,
+
+    .product-count-block {
+        display: flex;
+        justify-content: space-between;
+        flex-basis: 125px;
+        margin-right: 14px;
+            &__minus-button,
+            &__plus-button {
+                width: 30px;
+                border: none;
+                background: transparent;
+            }
+    }
+
+    .product-count-block,
     &__item-product-total-price,
     &__item-product-info-price {
         font-size: 16px;
     }
-    &__item-product-count,
+    .product-count-block__value,
     &__item-remove-btn {
         display: flex;
         align-items: center;
@@ -392,7 +426,6 @@
         width: 46px;
         border-radius: 8px;
         border: 1px solid #252836;
-        margin-right: 55px;
     }
     &__item-remove-btn {
         width: 50px;
@@ -498,16 +531,6 @@
             }
         }
         
-        
-
-        // transform: translate(0, 120%);
-        // opacity: 0;
-        // transition: all .8s ease 0s;
-
-        // &.collage__carousel--active {
-        //     transform: translate(0,0);
-        //     opacity: 1;
-        // }
     }
     &__carousel-slide {
         border: 1px solid $dark-grey;
@@ -987,6 +1010,11 @@
             background-color: $orange;
             color: #fff;
             transition: all .5s;
+        }
+        &--active {
+            border-color: $orange;
+            background-color: $orange;
+            color: #fff;
         }
     }
 
