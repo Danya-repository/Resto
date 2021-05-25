@@ -359,10 +359,10 @@
         }
     }
     .item-list-title__count {
-        margin-right: 30px;
+        margin-right: 40px;
     }
     .item-list-title__price {
-        margin-right: 45px;
+        margin-right: 25px;
     }
     &__item-list {
         max-height: 60vh;
@@ -720,7 +720,7 @@
             transition: all .5s;
         }
         &-1.animated-item {
-            transform: translate(0,80%);
+            transform: translate(0,60%);
             opacity: 0;
             &--active {
                 transform: translate(0,0);
@@ -729,7 +729,7 @@
             }
         }
         &-2.animated-item {
-            transform: translate(0,60%);
+            transform: translate(0,40%);
             opacity: 0;
             &--active {
                 transform: translate(0,0);

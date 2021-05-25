@@ -53,8 +53,8 @@ function scripts() {
 
 function styles() {
   return src([
+          'app/scss/style.scss',
           'node_modules/simplebar/dist/simplebar.css',
-          'app/scss/style.scss'
         ])
       .pipe(scss({outputStyle: 'compressed'}))
       .pipe(concat('style.min.css'))

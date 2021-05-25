@@ -545,15 +545,16 @@ $(function () {
     animationAllItemAfterScroll = function () {
         
         animItems = document.querySelectorAll('.animated-item');
+        const simpleBar = new SimpleBar(document.querySelector('body'));
 
         if (animItems.length > 0) {
-            window.addEventListener('scroll', anim)
+          simpleBar.getScrollElement().addEventListener('scroll', anim);
             function anim() {
                 for (let i = 0; i < animItems.length; i++) {
                     const animItem = animItems[i];
                     const animItemHeight = animItem.offsetHeight;
                     const animItemOffset = offset(animItem).top;
-                    const animStart = 6;
+                    const animStart = 7;
 
                     let animItemPoint = window.innerHeight - animItemHeight / animStart;
 
