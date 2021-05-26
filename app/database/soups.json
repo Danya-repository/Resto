@@ -1,0 +1,69 @@
+{"goods":
+    [{
+          "id": 15,   
+          "type" : "soups",
+          "price": 123.43,
+          "name": "Суп с мазиком",
+          "weight": 220,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+          },
+      
+    {
+          "id": 16,      
+          "type" : "soups",
+          "price": 115.50,
+          "name": "Суп с морским огурцом",
+          "weight": 230,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+          },
+    {
+          "id": 17,   
+          "type": "soups",
+          "price": 153.50,
+          "name": "Самый вкусный суп",
+          "weight": 200,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+      },
+    
+    {
+          "id": 18,   
+          "type": "soups",
+          "price": 220.00,
+          "name": "Шаурма на труда",
+          "weight": 550,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+      } ,
+    {
+          "id": 19,   
+          "type": "soups",
+          "price": 551.50,
+          "name": "Шаурма с гордона",
+          "weight": 210,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+      },
+    
+    {
+          "id": 20,   
+          "type": "soups",
+          "price": 333.00,
+          "name": "Дёнер",
+          "weight": 219,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+      },
+    
+    {
+          "id": 21,   
+          "type": "soups",
+          "price": 323.23,
+          "name": "Бурум",
+          "weight": 370,
+          "imgUrl": "images/content/soup-2.png",
+          "count": 1
+    }]
+}

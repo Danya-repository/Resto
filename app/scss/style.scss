@@ -960,6 +960,7 @@
         display: block;
         opacity: 1;
         transition: all 2s;
+        min-height: 610px;
 
     }
 }
@@ -1047,11 +1048,12 @@
     }
 }
 
-.hot-dishes__list {
+.catalog-area {
     display: flex;
     flex-wrap: wrap;
     max-width: 850px;
 }
+
 
 .main-page.tab-2,
 .main-page.tab-3,

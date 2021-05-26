@@ -1,0 +1,69 @@
+{"goods":
+    [{
+          "id": 22,   
+          "type" : "grill",
+          "price": 123.43,
+          "name": "Суп с мазиком",
+          "weight": 220,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+          },
+      
+    {
+          "id": 23,      
+          "type" : "grill",
+          "price": 115.50,
+          "name": "Суп с морским огурцом",
+          "weight": 230,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+          },
+    {
+          "id": 24,   
+          "type": "grill",
+          "price": 153.50,
+          "name": "Самый вкусный суп",
+          "weight": 200,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+      },
+    
+    {
+          "id": 25,   
+          "type": "grill",
+          "price": 220.00,
+          "name": "Шаурма на труда",
+          "weight": 550,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+      } ,
+    {
+          "id": 26,   
+          "type": "grill",
+          "price": 551.50,
+          "name": "Шаурма с гордона",
+          "weight": 210,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+      },
+    
+    {
+          "id": 27,   
+          "type": "grill",
+          "price": 333.00,
+          "name": "Дёнер",
+          "weight": 219,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+      },
+    
+    {
+          "id": 28,   
+          "type": "grill",
+          "price": 323.23,
+          "name": "Бурум",
+          "weight": 370,
+          "imgUrl": "images/content/soup-4.png",
+          "count": 1
+    }]
+}
