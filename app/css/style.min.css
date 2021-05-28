@@ -1909,7 +1909,7 @@ body {
 .category__slide-item-title::after {
   content: '';
   position: absolute;
-  background-image: url("../images/icons/arrow-down.svg");
+  background-image: url("/images/icons/arrow-down.svg");
   left: 0;
   top: 5px;
   width: 13px;
@@ -1920,7 +1920,7 @@ body {
 .category__slide-item-title--active::after {
   content: '';
   position: absolute;
-  background-image: url("../images/icons/arrow-down.svg");
+  background-image: url("/images/icons/arrow-down.svg");
   left: 0;
   top: 4px;
   width: 13px;
