@@ -42,10 +42,14 @@ function scripts() {
   return src([
     'node_modules/jquery/dist/jquery.js',
     'node_modules/simplebar/dist/simplebar.js',
+    'app/js/utilitLocalStorage.js',
+    'app/js/productsCatalog.js',
+    'app/js/productsBasket.js',
+    'app/js/basketButton.js',
     'app/js/main.js'
   ])
     .pipe(concat('main.min.js'))
-    .pipe(uglify())
+    // .pipe(uglify())
     .pipe(dest('app/js'))
     .pipe(browserSync.stream())
 }
