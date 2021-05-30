@@ -10,37 +10,42 @@ class Products {
 
       this.productsOfThisCategory = {};
       this.place = document.querySelector(`.${this.type}__catalog`)
-    //   this.template = `<div class="filters">
-    //                     <div class="filters__tab-buttons">
-    //                       <button class="filters__tab-button filter__tab-button-category filters__tab-button--active" onclick="${this.classInstanceName}.filterTabSwitcher(this)">Категория</button>
-    //                       <button class="filters__tab-button filter__tab-button-name" onclick="${this.classInstanceName}.filterTabSwitcher(this)">Название</button>
-    //                     </div>
-    //                     <div class="filters__tab">
-    //                       <div class="filter__tab filters__tab-category filter__tab--active">
-    //                         <ul class="category-tab__list">
-    //                           <li class="category-tab__item">
-    //                             <p class="category__slide-item-title">Тип супа</p>
-    //                             <div class="category__slide-item-content">
-    //                               здесь конь-тент
-    //                             </div>
-    //                           </li>
-    //                           <li class="category-tab__item">
-    //                             <p class="category__slide-item-title">Тип супа</p>
-    //                             <div class="category__slide-item-content">
-    //                               здесь конь-тент
-    //                             </div>
-    //                           </li>
-    //                           <li class="category-tab__item">
-    //                             <p class="category__slide-item-title">Тип супа</p>
-    //                             <div class="category__slide-item-content">
-    //                               здесь конь-тент
-    //                             </div>
-    //                           </li>
-    //                         </ul>
-    //                       </div>
-    //                       <div class="filter__tab filters__tab-name">второй таб</div>
-    //                     </div>
-    //                   </div>`
+      this.template = `<div class="filters">
+                        <div class="filters__tab-buttons">
+                          <button class="filters__tab-button filter__tab-button-category filters__tab-button--active" onclick="${this.classInstanceName}.filterTabSwitcher(this)">Категория</button>
+                          <button class="filters__tab-button filter__tab-button-name" onclick="${this.classInstanceName}.filterTabSwitcher(this)">Название</button>
+                        </div>
+                        <div class="filters__tab">
+                          <form class="filter__tab filters__tab-category filter__tab--active">
+                            <ul class="category-tab__list">
+                              <li class="category-tab__item">
+                                <p class="category__slide-item-title" onclick="${this.classInstanceName}.filterCategoryToggle(this)">Кухня</p>
+                                <div class="category__slide-item-content">
+                                  <label class="filters__radio-label"><input type = "checkbox">Японская</label>
+                                  <label class="filters__radio-label"><input type = "checkbox">Русская</label>
+                                  <label class="filters__radio-label"><input type = "checkbox">Грузинская</label>
+                                  <label class="filters__radio-label"><input type = "checkbox">Голландская</label>
+                                  <label class="filters__radio-label"><input type = "checkbox">Индонезийская</label>
+                                </div>
+                              </li>
+                              <li class="category-tab__item">
+                                <p class="category__slide-item-title" onclick="${this.classInstanceName}.filterCategoryToggle(this)">Тип супа</p>
+                                <div class="category__slide-item-content">
+                                  здесь конь-тент
+                                </div>
+                              </li>
+                              <li class="category-tab__item">
+                                <p class="category__slide-item-title" onclick="${this.classInstanceName}.filterCategoryToggle(this)">Тип супа</p>
+                                <div class="category__slide-item-content">
+                                  здесь конь-тент
+                                </div>
+                              </li>
+                            </ul>
+                            <button class="filters__activate-button" onclick="console.log('hello')">Применить</button>
+                          </form>
+                          <div class="filter__tab filters__tab-name">второй таб</div>
+                        </div>
+                      </div>`
     }
   
     handleSetLocationStorage(element, id) {
@@ -66,6 +71,13 @@ class Products {
   
     }
   
+    removeProductFromOrdered(id) {
+      const item = document.querySelector(`[data-product-in-catalog="${id}"]`)
+      const itemButton = item.querySelector('button');
+      itemButton.classList.remove(this.classNameActive)
+      itemButton.innerText = this.toOrderLabel;
+    }
+  
     filterTabSwitcher(element) {
 
       const categoryBtn = this.place.querySelector('.filter__tab-button-category')
@@ -89,6 +101,13 @@ class Products {
       }
 
     
+
+    }
+
+    filterCategoryToggle(element) {
+
+        $(element).next().slideToggle()
+        $(element).toggleClass('category__slide-item-title--active')
 
     }
 
@@ -135,7 +154,7 @@ class Products {
 
             catalogList = `<ul class = "catalog-area hot-dishes__list hot-dishes">
                                   ${catalogItems}
-                              </ul>`
+                              </ul>` + this.template
 
             this.place.innerHTML = catalogList;
         })

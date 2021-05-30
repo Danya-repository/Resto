@@ -20,6 +20,7 @@
     "jquery": "^3.5.1"
   },
   "dependencies": {
+    "jquery-form-styler": "^2.0.2",
     "simplebar": "^5.3.3"
   }
 }

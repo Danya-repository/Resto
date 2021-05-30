@@ -42,6 +42,7 @@ function scripts() {
   return src([
     'node_modules/jquery/dist/jquery.js',
     'node_modules/simplebar/dist/simplebar.js',
+    'node_modules/jquery-form-styler/dist/jquery.formstyler.js',
     'app/js/utilitLocalStorage.js',
     'app/js/productsCatalog.js',
     'app/js/productsBasket.js',
@@ -58,6 +59,7 @@ function scripts() {
 function styles() {
   return src([
           'node_modules/simplebar/dist/simplebar.css',
+          'node_modules/jquery-form-styler/dist/jquery.formstyler.css',
           'app/scss/style.scss',
         ])
       .pipe(scss({outputStyle: 'expanded'}))

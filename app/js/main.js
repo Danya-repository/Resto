@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 $(function () {
 
     headerSearchToggle = function () {
