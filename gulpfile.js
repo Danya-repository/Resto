@@ -43,7 +43,9 @@ function scripts() {
     'node_modules/jquery/dist/jquery.js',
     'node_modules/simplebar/dist/simplebar.js',
     'node_modules/jquery-form-styler/dist/jquery.formstyler.js',
+    'node_modules/ion-rangeslider/js/ion.rangeSlider.js',
     'app/js/utilitLocalStorage.js',
+    'app/js/filters.js',
     'app/js/productsCatalog.js',
     'app/js/productsBasket.js',
     'app/js/basketButton.js',
@@ -60,6 +62,8 @@ function styles() {
   return src([
           'node_modules/simplebar/dist/simplebar.css',
           'node_modules/jquery-form-styler/dist/jquery.formstyler.css',
+          'node_modules/jquery-form-styler/dist/jquery.formstyler.theme.css',
+          'node_modules/ion-rangeslider/css/ion.rangeSlider.css',
           'app/scss/style.scss',
         ])
       .pipe(scss({outputStyle: 'expanded'}))
