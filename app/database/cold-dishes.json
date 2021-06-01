@@ -6,6 +6,8 @@
           "name": "Суп с мазиком",
           "weight": 220,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "indonesian",
+          "protein" : "fish",
           "count": 1
           },
       
@@ -16,6 +18,8 @@
           "name": "Суп с морским огурцом",
           "weight": 230,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "meat",
           "count": 1
           },
     {
@@ -25,6 +29,8 @@
           "name": "Самый вкусный суп",
           "weight": 200,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "indonesian",
+          "protein" : "meat",
           "count": 1
       },
     
@@ -35,6 +41,8 @@
           "name": "Шаурма на труда",
           "weight": 550,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "vegetarian",
           "count": 1
       } ,
     {
@@ -44,6 +52,8 @@
           "name": "Шаурма с гордона",
           "weight": 210,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "meat",
           "count": 1
       },
     
@@ -54,6 +64,8 @@
           "name": "Дёнер",
           "weight": 219,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "meat",
           "count": 1
       },
     
@@ -64,6 +76,8 @@
           "name": "Бурум",
           "weight": 370,
           "imgUrl": "images/content/soup-1.png",
+          "cousine" : "dutch",
+          "protein" : "meat",
           "count": 1
     }]
 }

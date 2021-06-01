@@ -1,69 +1,81 @@
-{"goods":
-    [{
-          "id": 36,   
-          "type" : "deserts",
-          "price": 123.43,
-          "name": "Суп с мазиком",
-          "weight": 220,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-          },
-      
-    {
-          "id": 37,      
-          "type" : "deserts",
-          "price": 115.50,
-          "name": "Суп с морским огурцом",
-          "weight": 230,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-          },
-    {
-          "id": 38,   
-          "type": "deserts",
-          "price": 153.50,
-          "name": "Самый вкусный суп",
-          "weight": 200,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-      },
-    
-    {
-          "id": 39,   
-          "type": "deserts",
-          "price": 220.00,
-          "name": "Шаурма на труда",
-          "weight": 550,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-      } ,
-    {
-          "id": 40,   
-          "type": "deserts",
-          "price": 551.50,
-          "name": "Шаурма с гордона",
-          "weight": 210,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-      },
-    
-    {
-          "id": 41,   
-          "type": "deserts",
-          "price": 333.00,
-          "name": "Дёнер",
-          "weight": 219,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-      },
-    
-    {
-          "id": 42,   
-          "type": "deserts",
-          "price": 323.23,
-          "name": "Бурум",
-          "weight": 370,
-          "imgUrl": "images/content/soup-7.png",
-          "count": 1
-    }]
+{
+      "goods": [
+            {
+                  "id": 36,
+                  "type": "deserts",
+                  "price": 123.43,
+                  "name": "Суп с мазиком",
+                  "weight": 220,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "indonesian",
+                  "protein": "fish",
+                  "count": 1
+            },
+            {
+                  "id": 37,
+                  "type": "deserts",
+                  "price": 115.50,
+                  "name": "Суп с морским огурцом",
+                  "weight": 230,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "russian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 38,
+                  "type": "deserts",
+                  "price": 153.50,
+                  "name": "Самый вкусный суп",
+                  "weight": 200,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "indonesian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 39,
+                  "type": "deserts",
+                  "price": 220.00,
+                  "name": "Шаурма на труда",
+                  "weight": 550,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "russian",
+                  "protein": "vegetarian",
+                  "count": 1
+            },
+            {
+                  "id": 40,
+                  "type": "deserts",
+                  "price": 551.50,
+                  "name": "Шаурма с гордона",
+                  "weight": 210,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "russian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 41,
+                  "type": "deserts",
+                  "price": 333.00,
+                  "name": "Дёнер",
+                  "weight": 219,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "russian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 42,
+                  "type": "deserts",
+                  "price": 323.23,
+                  "name": "Бурум",
+                  "weight": 370,
+                  "imgUrl": "images/content/soup-7.png",
+                  "cousine": "dutch",
+                  "protein": "meat",
+                  "count": 1
+            }
+      ]
 }

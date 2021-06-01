@@ -1,69 +1,81 @@
-{"goods":
-    [{
-          "id": 1,   
-          "type" : "hot-dishes",
-          "price": 113.23,
-          "name": "Суп гороховый",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-          },
-      
-    {
-          "id": 2,      
-          "type" : "hot-dishes",
-          "price": 143.50,
-          "name": "Суп с морским горохом",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-          },
-    {
-          "id": 3,   
-          "type": "hot-dishes",
-          "price": 213.50,
-          "name": "Гороховый суп по-итальянски",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-      },
-    
-    {
-          "id": 4,   
-          "type": "hot-dishes",
-          "price": 444.50,
-          "name": "Гороховые моллюски",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-      } ,
-    {
-          "id": 5,   
-          "type": "hot-dishes",
-          "price": 233.50,
-          "name": "Суп с гороховым кремом",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-      },
-    
-    {
-          "id": 6,   
-          "type": "hot-dishes",
-          "price": 111.10,
-          "name": "Кипяток",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-      },
-    
-    {
-          "id": 7,   
-          "type": "hot-dishes",
-          "price": 228.15,
-          "name": "Самса",
-          "weight": 270,
-          "imgUrl": "images/content/hot-dishes-img.png",
-          "count": 1
-    }]
+{
+      "goods": [
+            {
+                  "id": 1,
+                  "type": "hot-dishes",
+                  "price": 113.23,
+                  "name": "Суп гороховый",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "russian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 2,
+                  "type": "hot-dishes",
+                  "price": 143.50,
+                  "name": "Суп с морским горохом",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "russian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 3,
+                  "type": "hot-dishes",
+                  "price": 213.50,
+                  "name": "Гороховый суп по-итальянски",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "dutch",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 4,
+                  "type": "hot-dishes",
+                  "price": 444.50,
+                  "name": "Гороховые моллюски",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "indonesian",
+                  "protein": "fish",
+                  "count": 1
+            },
+            {
+                  "id": 5,
+                  "type": "hot-dishes",
+                  "price": 233.50,
+                  "name": "Суп с гороховым кремом",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "russian",
+                  "protein": "meat",
+                  "count": 1
+            },
+            {
+                  "id": 6,
+                  "type": "hot-dishes",
+                  "price": 111.10,
+                  "name": "Кипяток",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "russian",
+                  "protein": "vegetarian",
+                  "count": 1
+            },
+            {
+                  "id": 7,
+                  "type": "hot-dishes",
+                  "price": 228.15,
+                  "name": "Самса",
+                  "weight": 270,
+                  "imgUrl": "images/content/hot-dishes-img.png",
+                  "cousine": "indonesian",
+                  "protein": "meat",
+                  "count": 1
+            }
+      ]
 }
