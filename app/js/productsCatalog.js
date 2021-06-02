@@ -9,8 +9,21 @@ class Products {
       this.classInstanceName = classInstanceName;
 
       this.productsOfThisCategory = {};
-      this.place = document.querySelector(`.${this.type}__catalog`)
-      
+      this.place = document.querySelector(`.${this.type}`)
+      this.startFilterSettings = {"cousines": [
+                                                "japanese",
+                                                "russian",
+                                                "georgian",
+                                                "dutch",
+                                                "indonesian"
+                                              ],
+                                   "protein": "meat",
+                                   "price": {
+                                       "min": 0,
+                                       "max": 3000
+                                            },
+                                    "name": null,
+                                  }
     }
   
     handleSetLocationStorage(element, id) {
@@ -43,11 +56,18 @@ class Products {
       itemButton.innerText = this.toOrderLabel;
     }
 
+    resetCatalogAreas() {
+      let catalogSections =  document.querySelectorAll('[data-section-catalog]')
+      catalogSections.forEach(item => {
+        let productList = item.querySelector('ul');
 
+        productList.innerHTML = ``;
+      })
+    }
 
-    render() {
+    render(filterSettings = this.startFilterSettings) {
+      this.resetCatalogAreas()
       const listProductsFromLocalStorage = localStorageUtil.getProducts();
-      let catalogList = ``
       let catalogItems = ``;
 
       
@@ -63,7 +83,7 @@ class Products {
             let activeClass = ``;
             let activeText = ``;
             let availableInLocalStorage = id in listProductsFromLocalStorage;
-  
+
             if (availableInLocalStorage === true) {
                 activeClass = ` `+ this.classNameActive;
                 activeText = this.orderedLabel;
@@ -71,9 +91,30 @@ class Products {
             else if (availableInLocalStorage === false) {
                 activeText = this.toOrderLabel;
             }
+
+            if (
+                  filterSettings.price.max >= price && price >= filterSettings.price.min &&
+                  filterSettings.cousines.includes(cousine) &&
+                  filterSettings.protein === protein &&
+                  (filterSettings.name === null || filterSettings.name === '')
+                  
+                ) {
       
-      
-            catalogItems += `<li class="products__item" data-product-in-catalog="${id}" data-cousine="${cousine}" data-protein="${protein}">
+                      catalogItems += `<li class="products__item" data-product-in-catalog="${id}" data-cousine="${cousine}" data-protein="${protein}">
+                                        <img class="products__img" src="${imgUrl}" alt="soup">
+                                        <p class="products__item-name">${name}</p>
+                                        <span class="products__item-price" data-price="${price}">${price}</span>
+                                        <div class="products__decorative-layer"></div>
+                                        <button class="products__order-by${activeClass}" onclick="${this.classInstanceName}.handleSetLocationStorage(this, ${id}); basketButton.render()">
+                                          ${activeText}
+                                        </button>
+                                      </li>`
+            }
+            else if (filterSettings.name !== null && filterSettings.name !== '') {
+                         
+                      if (name.toLowerCase().includes(filterSettings.name)) {
+
+                        catalogItems += `<li class="products__item" data-product-in-catalog="${id}" data-cousine="${cousine}" data-protein="${protein}">
                               <img class="products__img" src="${imgUrl}" alt="soup">
                               <p class="products__item-name">${name}</p>
                               <span class="products__item-price" data-price="${price}">${price}</span>
@@ -82,16 +123,16 @@ class Products {
                                 ${activeText}
                               </button>
                             </li>`
-      
+                      }
+                      
+            }
+
+
+
             })
-
-            catalogList = `<ul class = "catalog-area hot-dishes__list hot-dishes">
-                                  ${catalogItems}
-                              </ul>`
-
-            this.place.innerHTML = catalogList;
-            // filters.render(this.place)
-        })
+            this.place.innerHTML = catalogItems;
+          })
+          
 
     }
 }

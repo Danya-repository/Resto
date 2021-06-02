@@ -60,37 +60,37 @@
           <nav class="menu">
             <ul class="menu__list">
               <li class="menu__list-item">
-                <a class="menu__list-link tab-btn tab-btn-2 hot-dishes__btn" href="#" onclick = "productsHotDishes.render()">
+                <a class="menu__list-link tab-btn tab-btn-2 hot-dishes__btn" href="#" onclick = "filters.render(productsHotDishes)">
                   Горячие блюда
                 </a>
                 <div class="menu__list-item-animation-block"></div>
               </li>
               <li class="menu__list-item">
-                <a class="menu__list-link tab-btn tab-btn-3" href="#" onclick = "productsColdDishes.render()">
+                <a class="menu__list-link tab-btn tab-btn-3" href="#" onclick = "filters.render(productsColdDishes)">
                   Холодные блюда
                 </a>
                 <div class="menu__list-item-animation-block"></div>
               </li>
               <li class="menu__list-item">
-                <a class="menu__list-link tab-btn tab-btn-4" href="#" onclick = "productsSoups.render()">
+                <a class="menu__list-link tab-btn tab-btn-4" href="#" onclick = "filters.render(productsSoups)">
                   Супы
                 </a>
                 <div class="menu__list-item-animation-block"></div>
               </li>
               <li class="menu__list-item">
-                <a class="menu__list-link tab-btn tab-btn-5" href="#" onclick = "productsGrill.render()">
+                <a class="menu__list-link tab-btn tab-btn-5" href="#" onclick = "filters.render(productsGrill)">
                   Гриль
                 </a>
                 <div class="menu__list-item-animation-block"></div>
               </li>
               <li class="menu__list-item">
-                <a class="menu__list-link tab-btn tab-btn-6" href="#" onclick = "productsSalads.render()">
+                <a class="menu__list-link tab-btn tab-btn-6" href="#" onclick = "filters.render(productsSalads)">
                   Салаты
                 </a>
                 <div class="menu__list-item-animation-block"></div>
               </li>
               <li class="menu__list-item">
-                <a class="menu__list-link tab-btn tab-btn-7" href="#" onclick = "productsHotDesserts.render()">
+                <a class="menu__list-link tab-btn tab-btn-7" href="#" onclick = "filters.render(productsHotDesserts)">
                   Десерты
                 </a>
                 <div class="menu__list-item-animation-block"></div>
@@ -355,17 +355,35 @@
               </div>
             </section>
         </div>
-        <div class="main-page tab tab-2 hot-dishes__catalog">
+        <div class="main-page tab tab-2 hot-dishes__catalog" data-section-catalog>
+          <ul class = "catalog-area hot-dishes__list hot-dishes">
+          </ul>
+          <div class="filters"></div>
         </div>
-        <div class="main-page tab tab-3 cold-dishes__catalog">
+        <div class="main-page tab tab-3 cold-dishes__catalog" data-section-catalog>
+          <ul class = "catalog-area cold-dishes__list cold-dishes">
+          </ul>
+          <div class="filters"></div>
         </div>
-        <div class="main-page tab tab-4 soups__catalog">
+        <div class="main-page tab tab-4 soups__catalog" data-section-catalog>
+          <ul class = "catalog-area soups__list soups">
+          </ul>
+          <div class="filters"></div>
         </div>
-        <div class="main-page tab tab-5 grill__catalog">
+        <div class="main-page tab tab-5 grill__catalog" data-section-catalog>
+          <ul class = "catalog-area grill__list grill">
+          </ul>
+          <div class="filters"></div>
         </div>
-        <div class="main-page tab tab-6 salads__catalog">
+        <div class="main-page tab tab-6 salads__catalog" data-section-catalog>
+          <ul class = "catalog-area salads__list salads">
+          </ul>
+          <div class="filters"></div>
         </div>
-        <div class="main-page tab tab-7 desserts__catalog">
+        <div class="main-page tab tab-7 desserts__catalog" data-section-catalog>
+          <ul class = "catalog-area desserts__list desserts">
+          </ul>
+          <div class="filters"></div>
         </div>
 
     </main>

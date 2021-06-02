@@ -1052,6 +1052,7 @@
     display: flex;
     flex-wrap: wrap;
     max-width: 850px;
+    width: 100%;
 }
 
 
@@ -1123,6 +1124,8 @@
         border-radius: 8px;
         border: 1px solid $dark-main;
         transition: all .5s;
+        display: block;
+        width: 100%;
         &:hover {
             border-color: $orange;
             background-color: $orange;
@@ -1137,6 +1140,8 @@
         border-radius: 8px;
         border: 1px solid $dark-main;
         transition: all .5s;
+        display: block;
+        width: 100%;
         &:hover {
             border-color: $orange;
             color: $orange;
@@ -1158,6 +1163,39 @@
     &__radio-label {
         font-size: 12px;
         margin: 0 26px 15px 0;
+    }
+    &__search-form {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        max-width: 320px;
+        width: 100%;
+
+        &::after {
+            content: '';
+            position: absolute;
+            top: 49px;
+            left: 12px;
+            width: 10px;
+            padding: 10px;
+            background-image: url('../images/icons/search-icon.svg');
+            background-position: center;
+            background-size: cover;
+
+        }
+
+        .filters__search-form-input {
+            display: block;
+            padding: 5px 10px 5px 40px;
+            margin-bottom: 30px;
+            &::placeholder {
+                @include MonNorm;
+                color: rgba($dark-main, .5);
+            }
+        }
+    }
+    &__search-form-title {
+        margin: 10px 0 15px;
     }
 } 
 

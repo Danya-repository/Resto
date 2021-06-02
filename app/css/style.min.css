@@ -3353,6 +3353,7 @@ body {
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   max-width: 850px;
+  width: 100%;
 }
 
 .main-page.tab-2,
@@ -3452,6 +3453,8 @@ body {
   -webkit-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
+  display: block;
+  width: 100%;
 }
 
 .filters__activate-button:hover {
@@ -3472,6 +3475,8 @@ body {
   -webkit-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
+  display: block;
+  width: 100%;
 }
 
 .filters__activate-reset:hover {
@@ -3501,6 +3506,71 @@ body {
 .filters__radio-label {
   font-size: 12px;
   margin: 0 26px 15px 0;
+}
+
+.filters__search-form {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  max-width: 320px;
+  width: 100%;
+}
+
+.filters__search-form::after {
+  content: '';
+  position: absolute;
+  top: 49px;
+  left: 12px;
+  width: 10px;
+  padding: 10px;
+  background-image: url("../images/icons/search-icon.svg");
+  background-position: center;
+  background-size: cover;
+}
+
+.filters__search-form .filters__search-form-input {
+  display: block;
+  padding: 5px 10px 5px 40px;
+  margin-bottom: 30px;
+}
+
+.filters__search-form .filters__search-form-input::-webkit-input-placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: rgba(37, 40, 54, 0.5);
+}
+
+.filters__search-form .filters__search-form-input::-moz-placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: rgba(37, 40, 54, 0.5);
+}
+
+.filters__search-form .filters__search-form-input:-ms-input-placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: rgba(37, 40, 54, 0.5);
+}
+
+.filters__search-form .filters__search-form-input::-ms-input-placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: rgba(37, 40, 54, 0.5);
+}
+
+.filters__search-form .filters__search-form-input::placeholder {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: rgba(37, 40, 54, 0.5);
+}
+
+.filters__search-form-title {
+  margin: 10px 0 15px;
 }
 
 .category__slide-item-title {
