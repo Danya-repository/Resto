@@ -1,4 +1,4 @@
-class Products {
+class ProductCatalog {
 
     constructor(classInstanceName, type) {
       this.classNameActive = `products__order-by--active`;
@@ -137,9 +137,9 @@ class Products {
     }
 }
 
-let productsHotDishes = new Products('productsHotDishes','hot-dishes')
-let productsColdDishes = new Products('productsColdDishes','cold-dishes')
-let productsSoups = new Products('productsSoups', 'soups')
-let productsGrill = new Products('productsGrill','grill')
-let productsSalads = new Products('productsSalads','salads')
-let productsHotDesserts = new Products('productsHotDesserts','desserts')
+let productsHotDishes = new ProductCatalog('productsHotDishes','hot-dishes')
+let productsColdDishes = new ProductCatalog('productsColdDishes','cold-dishes')
+let productsSoups = new ProductCatalog('productsSoups', 'soups')
+let productsGrill = new ProductCatalog('productsGrill','grill')
+let productsSalads = new ProductCatalog('productsSalads','salads')
+let productsHotDesserts = new ProductCatalog('productsHotDesserts','desserts')

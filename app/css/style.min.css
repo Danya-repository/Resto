@@ -2027,6 +2027,11 @@ body {
   top: -1px;
 }
 
+.header__search-open-btn {
+  position: relative;
+  top: -3px;
+}
+
 .header__search-open-btn svg {
   -webkit-transition: all 3s;
   -o-transition: all 3s;
@@ -2035,6 +2040,7 @@ body {
 }
 
 .header__search-open-btn--active svg {
+  position: relative;
   -webkit-transition: all 1.3s;
   -o-transition: all 1.3s;
   transition: all 1.3s;
@@ -2199,6 +2205,65 @@ body {
 
 .menu__list-link:hover {
   color: #EA9769;
+}
+
+.extra-menu__wrapper {
+  overflow: hidden;
+  width: 0;
+  -webkit-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s;
+}
+
+.extra-menu__wrapper--active {
+  width: 230px;
+  -webkit-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s;
+}
+
+.extra-menu__list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.extra-menu__item {
+  margin: 0 10px;
+  position: relative;
+  border: none;
+  border-bottom: 1px solid transparent;
+  padding-bottom: 5px;
+}
+
+.extra-menu__item:hover .extra-menu__decorate-block {
+  height: 1px;
+  background: #EA9769;
+  position: absolute;
+  width: 100%;
+  left: 0;
+  right: auto;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.extra-menu__decorate-block {
+  height: 1px;
+  background: #EA9769;
+  position: absolute;
+  left: auto;
+  right: 0;
+  top: 19px;
+  width: 0;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.extra-menu__link {
+  min-width: 100%;
+  white-space: nowrap;
 }
 
 .header__user-panel {

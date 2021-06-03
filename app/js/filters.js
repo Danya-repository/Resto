@@ -1,15 +1,15 @@
-class Filters {
+class ProductSection {
   constructor() {
     this.myRange;
     this.template = `<div class="filters__tab-buttons">
-                          <button class="filters__tab-button filter__tab-button-category filters__tab-button--active" onclick="filters.__tabSwitcher(this)">Категория</button>
-                          <button class="filters__tab-button filter__tab-button-name" onclick="filters.__tabSwitcher(this)">Название</button>
+                          <button class="filters__tab-button filter__tab-button-category filters__tab-button--active" onclick="productSection.__tabFilterSwitcher(this)">Категория</button>
+                          <button class="filters__tab-button filter__tab-button-name" onclick="productSection.__tabFilterSwitcher(this)">Название</button>
                         </div>
                         <div class="filters__tab">
                           <form class="filter__tab filters__tab-category filter__tab--active">
                             <ul class="category-tab__list">
                               <li class="category-tab__item">
-                                <p class="category__slide-item-title category__slide-item-title--active" onclick="filters.__toggle(this)">Кухня</p>
+                                <p class="category__slide-item-title category__slide-item-title--active" onclick="productSection.__toggleFilterSection(this)">Кухня</p>
                                 <div class="category__slide-item-content">
                                   <label class="filters__checkbox-label">
                                     <input type = "checkbox" checked = "checked" data-filters-checkbox-cuisine = "japanese">Японская
@@ -29,7 +29,7 @@ class Filters {
                                 </div>
                               </li>
                               <li class="category-tab__item">
-                                <p class="category__slide-item-title category__slide-item-title--active" onclick="filters.__toggle(this)">Тип супа</p>
+                                <p class="category__slide-item-title category__slide-item-title--active" onclick="productSection.__toggleFilterSection(this)">Тип супа</p>
                                 <div class="category__slide-item-content">
                                   <label class="filters__radio-label">
                                     <input type = "radio" checked = "checked" name = "type-soup" data-filters-radio-protein = "meat">Мясные супы
@@ -43,21 +43,21 @@ class Filters {
                                 </div>
                               </li>
                               <li class="category-tab__item">
-                                <p class="category__slide-item-title category__slide-item-title--active" onclick="filters.toggle(this)">Цена</p>
+                                <p class="category__slide-item-title category__slide-item-title--active" onclick="productSection.__toggleFilterSection(this)">Цена</p>
                                 <div class="category__slide-item-content">
                                   <input type="text" class="js-range-slider" name="my_range" value="" />
                                 </div>
                               </li>
                             </ul>
-                            <button type="button" class="filters__activate-button" onclick="filters.enableBtn()">Применить</button>
-                            <button type="button" class="filters__activate-reset" onclick="filters.resetBtn()">Сбросить</button>
+                            <button type="button" class="filters__activate-button" onclick="productSection.enableBtn()">Применить</button>
+                            <button type="button" class="filters__activate-reset" onclick="productSection.resetBtn()">Сбросить</button>
                           </form>
                           <div class="filter__tab filters__tab-name">
                             <form class = "filters__search-form">
                               <span class = "filters__search-form-title">Поиск</span>
                               <input class="filters__search-form-input input-text" type="text" placeholder="Введите название блюда...">
-                              <button type="button" class="filters__activate-button" onclick="filters.enableBtn()">Применить</button>
-                              <button type="button" class="filters__activate-reset" onclick="filters.resetBtn()">Сбросить</button>
+                              <button type="button" class="filters__activate-button" onclick="productSection.enableBtn()">Применить</button>
+                              <button type="button" class="filters__activate-reset" onclick="productSection.resetBtn()">Сбросить</button>
                             </form>
                           </div>
                         </div>`;
@@ -65,14 +65,14 @@ class Filters {
     this.instanceCatalog;
   }
 
-  __toggle(element) {
+  __toggleFilterSection(element) {
 
     $(element).next().slideToggle()
     $(element).toggleClass('category__slide-item-title--active')
 
   }
 
-  __tabSwitcher(element) {
+  __tabFilterSwitcher(element) {
 
     const categoryBtn = document.querySelector('.filter__tab-button-category')
     const nameBtn = document.querySelector('.filter__tab-button-name')
@@ -188,7 +188,7 @@ class Filters {
     this.place.querySelector('.filters__search-form-input').value = null;
 
 
-    this.render(this.instanceCatalog)
+    this.instanceCatalog.render()
   }
 
   enableBtn() {
@@ -196,4 +196,4 @@ class Filters {
   }
 }
 
-let filters = new Filters();
+let productSection = new ProductSection();

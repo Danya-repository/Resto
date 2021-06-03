@@ -181,10 +181,16 @@ $(function () {
         
     }();
 
+    //-----------------animation------------------//
+    const simpleBar = new SimpleBar(document.querySelector('body'));
+
+
+
+
+
     animationAllItemAfterScroll = function () {
         
         animItems = document.querySelectorAll('.animated-item');
-        const simpleBar = new SimpleBar(document.querySelector('body'));
 
         if (animItems.length > 0) {
           simpleBar.getScrollElement().addEventListener('scroll', anim);
@@ -194,6 +200,7 @@ $(function () {
                     const animItemHeight = animItem.offsetHeight;
                     const animItemOffset = offset(animItem).top;
                     const animStart = 7;
+
 
                     let animItemPoint = window.innerHeight - animItemHeight / animStart;
 
@@ -225,11 +232,14 @@ $(function () {
 
     animationHeaderFixed = function () {
         
-        headerWrapperTop = document.querySelector('.header__wrapper-top')
-        headerWrapperBottom = document.querySelector('.header__wrapper-bottom')
+        let headerWrapperTop = document.querySelector('.header__wrapper-top')
+        let headerWrapperBottom = document.querySelector('.header__wrapper-bottom')
 
+        let distanceBetweenBegginingPageAndHeaderWrapperBottom = headerWrapperBottom.getBoundingClientRect().top
 
-        window.addEventListener('scroll', function () {
+        // simpleBar.getScrollElement().scrollTop - проскролленное расстояние от начала страницы
+
+        simpleBar.getScrollElement().addEventListener('scroll', function () {
 
             if (headerWrapperTop.getBoundingClientRect().top + headerWrapperTop.offsetHeight <= 0) {
 
@@ -240,12 +250,27 @@ $(function () {
                 headerWrapperBottom.classList.remove('header__wrapper-bottom--animation-fix-to-top')
                 headerWrapperTop.style.marginBottom = `0`
             }
+
+
             
+        
+
+            
+        })
+        document.body.addEventListener('click', function(event) {
+
+            if (event.target.classList.contains('menu__list-link') &&
+                headerWrapperBottom.getBoundingClientRect().top === 0) {
+
+                simpleBar.getScrollElement().scrollTop = distanceBetweenBegginingPageAndHeaderWrapperBottom;
+            }
         })
 
 
-    }();
+        
 
+    }();
+    //-------------------------------------------//
     tabs = function () {
         
         let allTabBtns = document.querySelectorAll('.tab-btn');
