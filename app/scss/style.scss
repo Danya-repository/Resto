@@ -83,22 +83,6 @@
     }
 }
 
-.header__search-open-btn {
-    position: relative;
-    top: -3px;
-    svg {
-        transition: all 3s;
-        fill: $dark-main;
-    }
-    &--active {
-        svg {
-            position: relative;
-            transition: all 1.3s;
-            fill: $orange;
-        }
-    }
-}
-
 .input-text {
     height: 40px;
     padding: 15px 14px 14px 42px;
@@ -213,6 +197,9 @@
    
     &__list {
         display: flex;
+        position: relative;
+        top: 1px;
+        padding: 3px 0 !important;
     }
     &__item {
         
@@ -221,32 +208,88 @@
         border: none;
         border-bottom: 1px solid transparent;
         padding-bottom: 5px;
+        top: 3px;
+        &::after {
+            content: '';
+            height: 1px;
+            background: $orange;
+            position: absolute;
+            width: 0;
+            left: auto;
+            top: 18px;
+            right: 0;
+            transition: all .5s;
+            }
         &:hover{
-            .extra-menu__decorate-block {
+            &::after {
+                content: '';
                 height: 1px;
                 background: $orange;
                 position: absolute;
                 width: 100%;
                 left: 0;
+                top: 18px;
                 right: auto;
                 transition: all .5s;
 
             }
         }
     }
-    &__decorate-block {
-        height: 1px;
-        background: $orange;
-        position: absolute;
-        left: auto;
-        right: 0;
-        top: 19px;
-        width: 0;
-        transition: all .5s;
-    }
     &__link {
         min-width: 100%;
         white-space: nowrap;
+    }
+
+    &__btn {
+        height: 30px;
+        width: 30px;
+        background: transparent;
+        position: relative;
+        border: none;
+        outline: none;
+        &-decorate-block:nth-child(1) {
+            width: 22px;
+            height: 2px;
+            background-color: $dark-main;
+            position: absolute;
+            top: 10px;
+            left: 0;
+            transition: all 1s;
+        }
+        &-decorate-block:nth-child(2) {
+            width: 22px;
+            height: 2px;
+            background-color: $dark-main;;
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            transition: all 1s;
+        }
+        &--active {
+            .extra-menu__btn-decorate-block:nth-child(1) {
+                width: 18px;
+                height: 2px;
+                background-color: $orange;
+                position: absolute;
+                top: 8px;
+                left: 0;
+                transform: rotate(-45deg);
+                transition: all .8s ease;
+            }
+        
+            .extra-menu__btn-decorate-block:nth-child(2) {
+                width: 18px;
+                height: 2px;
+                background-color: $orange;
+                position: absolute;
+                bottom: 8px;
+                left: 0;
+                transform: rotate(45deg);
+                transition: all .8s ease;
+            }
+        }
+        
+
     }
 
 }
