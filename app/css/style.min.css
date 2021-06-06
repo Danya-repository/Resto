@@ -2705,6 +2705,7 @@ body {
 
 .user__inner {
   padding: 70px 0;
+  position: relative;
 }
 
 .user__form-login {
@@ -2862,6 +2863,17 @@ body {
   -webkit-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
+}
+
+.user__exit-btn {
+  height: 38px;
+  width: 38px;
+  background: transparent;
+  outline: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
 }
 
 .collage {

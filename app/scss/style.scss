@@ -617,6 +617,8 @@
 .user {
     &__inner {
         padding: 70px 0;
+        position: relative;
+        // display: none;
     }
     &__form-login {
         margin: 0 auto;
@@ -728,6 +730,17 @@
             color: $orange;
             transition: all .5s;
         }
+    }
+    &__exit-btn {
+        height: 38px;
+        width: 38px;
+        background: transparent;
+        outline: none;
+        position: absolute;
+        right: 0;
+        top: 0;
+        border: none;
+    
     }
 }
 

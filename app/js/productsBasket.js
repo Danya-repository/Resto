@@ -124,7 +124,6 @@ class Basket {
                               </g>
                             </g>
                             </svg>
-                        
                            </button>`
 
       this.place.innerHTML = basketHtml;
