@@ -1270,10 +1270,21 @@
     }
 }
 
+.catalog {
+    display: flex;
+    min-height: 850px;
+}
+
+.product-list {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
 .catalog-area {
     display: flex;
     flex-wrap: wrap;
-    max-width: 850px;
+    // max-width: 850px;
     width: 100%;
 }
 

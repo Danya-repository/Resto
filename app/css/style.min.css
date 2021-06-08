@@ -1896,6 +1896,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
+  width: 100%;
+}
+
+.simplebar-content {
+  height: 100%;
 }
 
 .animated-item {
@@ -3634,13 +3639,28 @@ body {
   z-index: -1;
 }
 
+.catalog {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 850px;
+}
+
+.product-list {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  width: 100%;
+}
+
 .catalog-area {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  max-width: 850px;
   width: 100%;
 }
 

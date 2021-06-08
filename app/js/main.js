@@ -1,4 +1,8 @@
 $(function () {
+    
+    indexPage.render();
+
+    let instanceSimpleBar = indexPage.getSimpleBarInstance();
 
     headerExtra = function () {
         
@@ -58,178 +62,6 @@ $(function () {
         });
     }();
     
-    carousel = function () {
-
-        
-
-
-        let getCarouselSlides = function() {
-
-            let itemList = document.querySelector('.collage__carousel');
-            let carouselSlides = Array.from(itemList.children)
-                                    .filter(item =>  item.className.includes('collage__carousel-slide'));
-
-            return carouselSlides;
-        }();
-        let getInfoSlides = function () {
-            let itemList = document.querySelector('.collage__info');
-            let infoSlides = Array.from(itemList.children);
-
-            return infoSlides;
-        }();
-
-        let userChangeSlide = function () {
-            
-            let clickSlideArea = document.querySelector('.collage__carousel');
-            
-            clickSlideArea.addEventListener('click', function (event) {
-                if (event.target.parentNode.classList.contains('collage__carousel-slide')) {
-                    getActiveSlide().classList.remove('collage__carousel-slide--active');
-                    event.target.parentNode.classList.add('collage__carousel-slide--active');
-                    mainSlideWindowInserter();
-                    mainSlideInfoInserter();
-                }
-                
-            })
-
-        }();
-
-        let slideChanger = function (slides = getCarouselSlides) {
-        
-
-            for (let i = 0; i < slides.length; i++) {
-
-                if (slides[i].className.includes('collage__carousel-slide--active')) {
-
-
-
-                    slides[i].classList.remove('collage__carousel-slide--active');
-
-                    if (i+1 <= slides.length-1) {
-                        return slides[i+1].classList.add('collage__carousel-slide--active');
-                    
-                    }
-                    else {
-                        return slides[0].classList.add('collage__carousel-slide--active');
-
-                    }
-
-                }
-
-            }
-        
-        }
- 
-
-        let mainSlideWindowInserter = function (slides = getCarouselSlides) {
-            
-            let mainSliderWindow = document.querySelector('.collage__carousel-window');
-            
-            
-                    
-                    let activeSlideImg = getActiveSlide().querySelector('img').cloneNode()
-
-                    mainSliderWindow.innerHTML = "";
-                    mainSliderWindow.appendChild(activeSlideImg);
-
-
-
-
-        }
-
-        let getActiveSlide = function (slides = getCarouselSlides) {
-            for (let i = 0; i < slides.length; i++) {
-                if (slides[i].className.includes('collage__carousel-slide--active')) {
-                    return slides[i];
-                }
-            }
-        }
-
-
-        let mainSlideInfoInserter = function () {
-
-                    
-            let numberSlideActive  = getActiveSlide()
-                                        .classList
-                                        .item(1)
-                                        .slice(-1);
-                                        
-            for (let i of getInfoSlides) {
-                if (i.classList.contains('collage__info-slide--active')) {
-                    i.classList.remove('collage__info-slide--active');
-                    return getInfoSlides[numberSlideActive - 1].classList.add('collage__info-slide--active');
-
-                }
-                    
-            }
-
-
-                    
-
-        }
-
-        mainSlideWindowInserter(); // init first img in window-carousel
-
-        let sliderMove = function () {
-            slideChanger();
-            mainSlideWindowInserter();
-            mainSlideInfoInserter();
-        }
-        
-        return setInterval(sliderMove, 7000);
-        
-        
-    }();
-
-    //-----------------animation------------------//
-    const simpleBar = new SimpleBar(document.querySelector('body'));
-
-
-
-
-
-    animationAllItemAfterScroll = function () {
-        
-        animItems = document.querySelectorAll('.animated-item');
-
-        if (animItems.length > 0) {
-          simpleBar.getScrollElement().addEventListener('scroll', anim);
-            function anim() {
-                for (let i = 0; i < animItems.length; i++) {
-                    const animItem = animItems[i];
-                    const animItemHeight = animItem.offsetHeight;
-                    const animItemOffset = offset(animItem).top;
-                    const animStart = 7;
-
-
-                    let animItemPoint = window.innerHeight - animItemHeight / animStart;
-
-                    if(animItemHeight > window.innerHeight) {
-                        animItemPoint = window.innerHeight - window.innerHeight / animStart;
-                    }
-
-                    if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
-                        animItem.classList.add('animated-item--active');
-                    }
-                    else {
-                        if (!animItem.classList.contains('animated-no-hide')) {
-
-                            animItem.classList.remove('animated-item--active');
-                        }
-                    }
-                }
-            }
-            function offset(el) {
-                const rect = el.getBoundingClientRect(),
-                    scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-                    scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
-            }
-        }
-        setTimeout(anim, 500);
-
-    }();
-
     animationHeaderFixed = function () {
         
         let headerWrapperTop = document.querySelector('.header__wrapper-top')
@@ -239,7 +71,7 @@ $(function () {
 
         // simpleBar.getScrollElement().scrollTop - проскролленное расстояние от начала страницы
 
-        simpleBar.getScrollElement().addEventListener('scroll', function () {
+        instanceSimpleBar.getScrollElement().addEventListener('scroll', function () {
 
             if (headerWrapperTop.getBoundingClientRect().top + headerWrapperTop.offsetHeight <= 0) {
 
@@ -265,40 +97,8 @@ $(function () {
                 simpleBar.getScrollElement().scrollTop = distanceBetweenBegginingPageAndHeaderWrapperBottom;
             }
         })
-
-
-        
-
     }();
-    //-------------------------------------------//
-    tabs = function () {
-        
-        let allTabBtns = document.querySelectorAll('.tab-btn');
-        let allTabs = document.querySelectorAll('.tab')
 
-        document.body.addEventListener('click', function (event) {
-            if (event.target.classList.contains('tab-btn')) {
-
-                for (let i of allTabBtns) {
-                    i.classList.remove('tab-btn--active')
-                }
-                event.target.classList.add('tab-btn--active')
-                for (let i of allTabs) {
-                    i.classList.remove('tab--active')
-                    if (i.classList[2].slice(-1) == event.target.classList[2].slice(-1)) {
-                        i.classList.add('tab--active')
-                    }
-                }
-
-            }
-        })
-
-
-
-
-    }();
 
     
-
-
 });
