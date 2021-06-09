@@ -46,6 +46,7 @@ function scripts() {
     'node_modules/ion-rangeslider/js/ion.rangeSlider.js',
     'app/js/indexPage.js',
     'app/js/catalogPage.js',
+    'app/js/aboutUsPage.js',
     'app/js/utilitLocalStorage.js',
     'app/js/productsCatalog.js',
     'app/js/productsBasket.js',

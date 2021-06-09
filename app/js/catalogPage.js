@@ -4,6 +4,7 @@ class CatalogPage {
     //global properties
 
     this.place = document.querySelector('main');
+    this.endPoint = '';
     this.parentTemplate = `<div class="container">
                             <div class="catalog">
                              <ul class="product-list"></ul>
@@ -76,6 +77,7 @@ class CatalogPage {
                            </div>
                             </div>
                            </div>`;
+    
 
     //product-list properties
 
@@ -277,7 +279,7 @@ class CatalogPage {
 
   getProducts() {
 
-    return fetch('./database/hot-dishes.json')
+    return fetch(`./database/${this.endPoint}.json`)
                                         .then(response => response.json())
                                         .then(products => products.goods)                              
   }
@@ -374,6 +376,11 @@ class CatalogPage {
 
   //global methods
 
+  init(endPoint) {
+    this.endPoint = endPoint;
+    this.productStorage = {};
+  }
+
   render() {
     basketButton.render();
     this.__prerender()
@@ -384,6 +391,7 @@ class CatalogPage {
 }
 
 let catalogPage = new CatalogPage();
+
 
 // class ProductCatalog {
 
