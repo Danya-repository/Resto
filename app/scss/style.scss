@@ -1290,13 +1290,14 @@
 
 .catalog {
     display: flex;
-    min-height: 850px;
+    min-height: 650px;
 }
 
 .product-list {
     display: flex;
     flex-wrap: wrap;
     width: 100%;
+    align-content: flex-start;
 }
 
 .catalog-area {
@@ -1607,6 +1608,91 @@
             opacity: 1;
             transition: all .5s;
             display: block;
+        }
+    }
+}
+
+.about-slider {
+    &__inner {
+        margin-right: -10px;
+        position: relative;
+        margin-bottom: 30px;
+    }
+    &__img {
+        max-width: 380px;
+        object-fit: cover;
+        object-position: center;
+    }
+    .slick-arrow {
+        position: absolute;
+        top: 50%;
+        font-size: 0;
+        height: 40px;
+        width: 40px;
+        transform: translateY(-50%);
+        border: none;
+        outline: none;
+        cursor: pointer;
+        background: transparent;
+        &.slick-prev {
+            left: -60px;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 22px;
+                height: 2px;
+                background-color: $dark-main;
+                left: 12px;
+                top: 12px;
+                transform: rotate(-45deg);               
+                transition: all .5s;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                width: 22px;
+                height: 2px;
+                background-color: $dark-main;
+                bottom: 11px;
+                transform: rotate(45deg);
+                left: 12px;
+                transition: all .5s;
+            }
+        }
+        &.slick-next {
+            right: -50px;
+            &::after {
+                content: '';
+                position: absolute;
+                width: 22px;
+                height: 2px;
+                background-color: #252836;
+                right: 12px;
+                top: 11px;
+                transform: rotate(45deg);               
+                transition: all .5s;
+            }
+            &::before {
+                content: '';
+                position: absolute;
+                width: 22px;
+                height: 2px;
+                background-color: #252836;
+                bottom: 12px;
+                transform: rotate(-45deg);
+                right: 12px;
+                transition: all .5s;
+            }
+        }
+        &:hover {    
+            &::after {
+                background-color: $orange;
+                transition: all .5s;
+            }
+            &::before {
+                background-color: $orange;
+                transition: all .5s;
+            }
         }
     }
 }

@@ -1,8 +1,8 @@
 class AboutUsPage {
-    constructor() {
-        this.place = document.querySelector('main');
-        this.template = `<div class="container">
-                          <section class="breadcrumps">
+  constructor() {
+    this.place = document.querySelector('main');
+    this.template = `<div class="container">
+                        <section class="breadcrumps">
                             <ul class="breadcrumps__list">
                               <li class="breadcrumps__item">
                                 <a href="" class="breadcrumps__link" hred="#">Главная</a>
@@ -116,29 +116,74 @@ class AboutUsPage {
                               </div>
                             </div>
                           </section>
-                          </div>`                    
-    }
+                          <section class="about-slider">
+                            <div class="about-slider__inner">
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
+                              </div>
+                              <div class="about-slider__item">
+                                <img class="about-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
+                              </div>
+                            </div>
+                          </section>
+                          </div>`
+  }
 
-    tabAboutUs(){
-        let tabBar    = document.querySelector('.about-us__menu');
-        let tabBtns   = document.querySelectorAll('.about-us__tab-btn');
-        let tabSlides = document.querySelectorAll('.about-us__tab')
+  tabAboutUs() {
+    let tabBar = document.querySelector('.about-us__menu');
+    let tabBtns = document.querySelectorAll('.about-us__tab-btn');
+    let tabSlides = document.querySelectorAll('.about-us__tab')
 
-        tabBar.addEventListener('click', function(event){
-            let activeSlide = document.querySelector(`[data-about-us-tab="${event.target.dataset.aboutUsTabBtn}"]`)
+    tabBar.addEventListener('click', function (event) {
+      let activeSlide = document.querySelector(`[data-about-us-tab="${event.target.dataset.aboutUsTabBtn}"]`)
 
-            tabBtns.forEach(item => item.classList.remove('about-us__tab-btn--active'))
-            tabSlides.forEach(item => item.classList.remove('about-us__tab--active'))
+      tabBtns.forEach(item => item.classList.remove('about-us__tab-btn--active'))
+      tabSlides.forEach(item => item.classList.remove('about-us__tab--active'))
 
-            event.target.classList.add('about-us__tab-btn--active')
-            activeSlide.classList.add('about-us__tab--active')
-        })
-    };
+      event.target.classList.add('about-us__tab-btn--active')
+      activeSlide.classList.add('about-us__tab--active')
+    })
+  };
 
-    render() {
-        this.place.innerHTML = this.template;
-        this.tabAboutUs();
-    }
+  carousel() {
+    let slider = document.querySelector('.slider__inner')
+    $('.about-slider__inner').slick({
+      // appendArrows:'.slider .container',
+      // asNavFor: '.slider__navbar-inner',
+      autoplay: true,
+      autoplaySpeed: 2000,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+    })
+  }
+
+  render() {
+    this.place.innerHTML = this.template;
+    this.tabAboutUs();
+    this.carousel();
+    
+  }
 }
 
 let aboutUsPage = new AboutUsPage();

@@ -1,8 +1,10 @@
 $(function () {
     
-    // indexPage.render();
+    indexPage.render();
 
     let instanceSimpleBar = indexPage.getSimpleBarInstance();
+
+    
 
     headerExtra = function () {
         
@@ -99,22 +101,5 @@ $(function () {
         })
     }();
 
-    //about us
-
-    tabAboutUs = function(){
-        let tabBar    = document.querySelector('.about-us__menu');
-        let tabBtns   = document.querySelectorAll('.about-us__tab-btn');
-        let tabSlides = document.querySelectorAll('.about-us__tab')
-
-        tabBar.addEventListener('click', function(event){
-            let activeSlide = document.querySelector(`[data-about-us-tab="${event.target.dataset.aboutUsTabBtn}"]`)
-
-            tabBtns.forEach(item => item.classList.remove('about-us__tab-btn--active'))
-            tabSlides.forEach(item => item.classList.remove('about-us__tab--active'))
-
-            event.target.classList.add('about-us__tab-btn--active')
-            activeSlide.classList.add('about-us__tab--active')
-        })
-    }();
     
 });
