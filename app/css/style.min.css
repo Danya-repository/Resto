@@ -2039,7 +2039,7 @@ body {
 }
 
 .header__wrapper-bottom {
-  opacity: .95;
+  opacity: 1 !important;
   width: 100%;
   padding: 10px 0;
   display: -webkit-box;
@@ -2058,6 +2058,7 @@ body {
 }
 
 .header__wrapper-bottom--animation-fix-to-top {
+  opacity: 0.89 !important;
   position: fixed;
   top: 0;
   background: #fff;
@@ -2483,6 +2484,16 @@ body {
   position: relative;
 }
 
+.user-bar__underlayer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  z-index: 5;
+}
+
 .user-bar__info-drop-down {
   position: absolute;
   right: -4px;
@@ -2494,6 +2505,7 @@ body {
   border: 1px solid #393C49;
   border-top: 0;
   display: none;
+  opacity: 1;
 }
 
 .user-bar .user-icon svg {
@@ -2530,6 +2542,7 @@ body {
   display: block;
   position: relative;
   border: none;
+  z-index: 10;
 }
 
 .user-bar__item + .user-bar__item {
