@@ -40,16 +40,22 @@ function images() {
 
 function scripts() {
   return src([
+
+    // libs and plugins
+
     'node_modules/jquery/dist/jquery.js',
     'node_modules/simplebar/dist/simplebar.js',
     'node_modules/jquery-form-styler/dist/jquery.formstyler.js',
     'node_modules/ion-rangeslider/js/ion.rangeSlider.js',
     'node_modules/slick-carousel/slick/slick.js',
+    'node_modules/mixitup/dist/mixitup.js',
+
+    // modules
+
     'app/js/indexPage.js',
     'app/js/catalogPage.js',
     'app/js/aboutUsPage.js',
     'app/js/utilitLocalStorage.js',
-    'app/js/productsCatalog.js',
     'app/js/productsBasket.js',
     'app/js/basketButton.js',
     'app/js/main.js'

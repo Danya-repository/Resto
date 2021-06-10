@@ -1336,32 +1336,31 @@
         padding: 10px 5px;
         background-color: transparent;
         border: 1px solid transparent;
-        transition: all .5s;
+        transition: all .3s;
         &--active {
             border-color: $orange;
             border-bottom: 1px solid #fff;
-            transition: all .5s;
+            transition: all .3s;
         }
     }
-    &__tab {
+    &__tabs {
         display: flex;
         position: relative;
-        max-height: 540px;
-        height: 100%;
+        flex-direction: column;
+        justify-content: flex-start;
     }
-    &__tab-category, &__tab-name {
+    &__tab {
         position: absolute;
         border: 1px solid $orange;
         width: 100%;
         height: 100%;
         top: -1px;
-    }
-    .filter__tab {
+        
         opacity: 0;
-        transition: all .5s;
         padding: 15px 20px;
         display: none;
         height: 100%;
+        transition: all .5s;
         &--active {
             width: 100%;
             height: auto;

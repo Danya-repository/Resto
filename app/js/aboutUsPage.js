@@ -169,10 +169,8 @@ class AboutUsPage {
   carousel() {
     let slider = document.querySelector('.slider__inner')
     $('.about-slider__inner').slick({
-      // appendArrows:'.slider .container',
-      // asNavFor: '.slider__navbar-inner',
       autoplay: true,
-      autoplaySpeed: 2000,
+      autoplaySpeed: 4000,
       slidesToShow: 3,
       slidesToScroll: 1,
     })
@@ -186,4 +184,3 @@ class AboutUsPage {
   }
 }
 
-let aboutUsPage = new AboutUsPage();

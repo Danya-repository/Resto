@@ -160,5 +160,4 @@ class Basket {
   }
 }
 
-const basket = new Basket({});
-basket.render()
+

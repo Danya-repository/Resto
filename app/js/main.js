@@ -1,10 +1,47 @@
 $(function () {
     
-    indexPage.render();
+    const simpleBar = new SimpleBar(document.querySelector('body'));
 
-    let instanceSimpleBar = indexPage.getSimpleBarInstance();
+    const indexPage = new IndexPage(simpleBar);
+    const catalogPage = new CatalogPage();
+    const aboutUsPage = new AboutUsPage();
+    const basket = new Basket({});
+
+    indexPage.render();
+    basket.render()
+
 
     
+    headerMenulinks = function() {
+        const menu = document.querySelector('.menu');
+        const extraMenu = document.querySelector('.extra-menu__list')
+
+        menu.addEventListener('click', function(event) {
+            
+            if (event.target.classList.contains('menu__list-link')) {
+                catalogPage.init(event.target.dataset.typeFood)
+                catalogPage.render()
+            }
+
+        })
+        extraMenu.addEventListener('click', function(event) {
+            
+            if(event.target.classList.contains('extra-menu__link')) {
+                switch(event.target.dataset.extraHref) {
+                    case('about-us'):
+                        aboutUsPage.render()
+                        break
+                }
+            }
+        })
+    }()
+
+
+
+
+
+
+
 
     headerExtra = function () {
         
@@ -73,7 +110,7 @@ $(function () {
 
         // simpleBar.getScrollElement().scrollTop - проскролленное расстояние от начала страницы
 
-        instanceSimpleBar.getScrollElement().addEventListener('scroll', function () {
+        simpleBar.getScrollElement().addEventListener('scroll', function () {
 
             if (headerWrapperTop.getBoundingClientRect().top + headerWrapperTop.offsetHeight <= 0) {
 

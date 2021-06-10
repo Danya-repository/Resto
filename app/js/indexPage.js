@@ -1,7 +1,7 @@
 class IndexPage {
-    constructor() {
+    constructor(simpleInstance) {
         this.placeToRender = document.querySelector('main');
-        this.simpleBar = new SimpleBar(document.querySelector('body'));
+        this.simpleBar = simpleInstance
         this.__anim = this.__anim.bind(this)
         this.__offset = this.__offset.bind(this)
     }
@@ -410,4 +410,3 @@ class IndexPage {
     }
 }
 
-const indexPage = new IndexPage();
