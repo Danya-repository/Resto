@@ -3,11 +3,14 @@ $(function () {
     const simpleBar = new SimpleBar(document.querySelector('body'));
 
     const indexPage = new IndexPage(simpleBar);
-    const catalogPage = new CatalogPage();
+    const basketButton = new BasketButton();
+// basketButton.render();
     const aboutUsPage = new AboutUsPage();
-    const basket = new Basket({});
+    const basket = new Basket(basketButton);
+    const catalogPage = new CatalogPage(basket, basketButton);
 
-    indexPage.render();
+    // indexPage.render();
+    catalogPage.render()
     basket.render()
 
 

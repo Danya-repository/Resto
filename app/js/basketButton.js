@@ -16,5 +16,3 @@ class BasketButton {
     }
   }
   
-const basketButton = new BasketButton();
-basketButton.render();

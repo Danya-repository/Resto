@@ -1,5 +1,5 @@
 class CatalogPage {
-  constructor() {
+  constructor(basketInstance = undefined, basketBtn) {
 
     //global properties
     this.place = document.querySelector('.main');
@@ -10,7 +10,7 @@ class CatalogPage {
                          <div class="filters"></div>
                        </div>
                      </div>`
-
+    this.basketBtn = basketBtn
 
 
     //filters properties
@@ -85,11 +85,14 @@ class CatalogPage {
     this.toOrderLabel = `Заказать`;
     this.orderedLabel = `Заказано`;
     this.productStorage = {};
+
+    //basket instance
+    this.basket = basketInstance;
   }
 
   //global methods
   init(url = this.url) {
-    this.url = url;
+    this.url    = url;
   }
 
   prerender() {
@@ -338,18 +341,6 @@ class CatalogPage {
     return decorativeBlock
   }
 
-  removeProductFromOrdered(id) {
-    const item = document.querySelector(`[data-product-in-catalog="${id}"]`)
-
-    if (item) {
-        const itemButton = item.querySelector('button');
-        itemButton.classList.remove(this.classNameOrdered)
-        itemButton.innerText = this.toOrderLabel;
-    }
-    basketButton.render();
-  }
-
-
   renderProducts() {
     let productList = [];
     let products = this.__getProductsRequest()
@@ -373,9 +364,16 @@ class CatalogPage {
           let btn = this.__getBtn(activeText, activeClass)
 
           btn.addEventListener('click', function (event) {
-            let { ordered, listProductsFromLocalStorage } = localStorageUtil.putProducts(id, { id, type, name, price, weight, imgUrl, cousine, protein })
+
+            let {ordered} = localStorageUtil.putProducts(id, { id, type, name, price, weight, imgUrl, cousine, protein})
             event.target.classList.toggle(this.classOrdered)
             event.target.innerText = (ordered ? this.orderedLabel : this.toOrderLabel)
+
+            ordered ? this.basket.addItem(id) : this.basket.removeItem(id) //basket API
+
+            this.basketBtn.render()
+
+
           }.bind(this))
 
           item.appendChild(img)
@@ -397,6 +395,7 @@ class CatalogPage {
     this.prerender()
     this.renderFilters()
     this.renderProducts()
+    this.basketBtn.render()
   }
 
 
