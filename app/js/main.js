@@ -4,13 +4,13 @@ $(function () {
 
     const indexPage = new IndexPage(simpleBar);
     const basketButton = new BasketButton();
-// basketButton.render();
+          basketButton.render();
+
     const aboutUsPage = new AboutUsPage();
     const basket = new Basket(basketButton);
     const catalogPage = new CatalogPage(basket, basketButton);
 
     // indexPage.render();
-    catalogPage.render()
     basket.render()
 
 
@@ -24,6 +24,7 @@ $(function () {
             if (event.target.classList.contains('menu__list-link')) {
                 catalogPage.init(event.target.dataset.typeFood)
                 catalogPage.render()
+            
             }
 
         })

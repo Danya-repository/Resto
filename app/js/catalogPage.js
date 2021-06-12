@@ -92,7 +92,7 @@ class CatalogPage {
 
   //global methods
   init(url = this.url) {
-    this.url    = url;
+    this.url = url;
   }
 
   prerender() {
@@ -391,7 +391,7 @@ class CatalogPage {
   }
 
   render() {
-    this.init('hot-dishes');
+    // this.init();
     this.prerender()
     this.renderFilters()
     this.renderProducts()

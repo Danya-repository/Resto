@@ -4330,3 +4330,39 @@ body {
   -o-transition: all .5s;
   transition: all .5s;
 }
+
+.vacancies .categories__list {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(100px, 1fr))[4];
+  grid-template-columns: repeat(4, minmax(100px, 1fr));
+  -ms-grid-rows: minmax(222px, 1fr);
+  grid-template-rows: minmax(222px, 1fr);
+  -webkit-column-gap: 15px;
+     -moz-column-gap: 15px;
+          column-gap: 15px;
+  -webkit-transition: all 2s;
+  -o-transition: all 2s;
+  transition: all 2s;
+}
+
+.vacancies .categories__item {
+  padding: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.vacancies .categories__title {
+  font-size: 19px;
+  margin-bottom: 50%;
+}
+
+.vacancies .categories__description {
+  margin-bottom: auto;
+  line-height: 19px;
+}

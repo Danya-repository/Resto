@@ -1,7 +1,7 @@
 class Basket {
   constructor(basketBtn) {
     this.productsInBasket = {}
-    this.place = document.querySelector('.order-panel')
+    this.place = document.querySelector('.header')
     this.template = `<h3 class="order-panel__title subtitle">Заказ #11</h3>
                            <ul class="order-panel__status-bar">
                              <li class="order-panel__status">Формируется</li>
@@ -25,9 +25,14 @@ class Basket {
                            </div>
                            <button class="order__submit" type="submit">
                              Завершить покупку
-                           </button>
-                           <button class="order-panel__close-btn" onclick="basket.hideOrShow()">
-                            <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                           </button>`
+    this.basketBtn = basketBtn
+  }
+
+  __createCloseBtn() {
+    let closeBtn = document.createElement('button')
+    closeBtn.classList.add('order-panel__close-btn')
+    closeBtn.innerHTML = `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                              viewBox="0 0 496.096 496.096" style="enable-background:new 0 0 496.096 496.096;" xml:space="preserve">
                             <g>
                               <g>
@@ -37,9 +42,8 @@ class Basket {
                                 l234.344,234.344c3.178,3.07,8.242,2.982,11.312-0.196c2.995-3.1,2.995-8.016,0-11.116L259.41,247.998z"/>
                               </g>
                             </g>
-                            </svg>
-                           </button>`
-    this.basketBtn = basketBtn
+                            </svg>`
+    return closeBtn
   }
 
   __createRemoveBtn() {
@@ -153,7 +157,19 @@ class Basket {
   }
 
   render() {
-    this.place.innerHTML = this.template;
+    let basketPanel = document.createElement('div');
+    basketPanel.classList.add('header__order-panel', 'order-panel')
+    basketPanel.innerHTML = this.template;
+
+    let closeBtn = this.__createCloseBtn();
+    closeBtn.addEventListener('click', () => {
+
+      document.querySelector('.order-panel').classList.toggle('order-panel--active')
+    })
+    basketPanel.appendChild(closeBtn)
+
+    this.place.appendChild(basketPanel)
+
     new SimpleBar(this.place.querySelector('.order-panel__item-list'))
 
     const listProductsFromLocalStorage = localStorageUtil.getProducts()
@@ -162,16 +178,16 @@ class Basket {
     }
   }
 
-  hideOrShow() {
-    const place = document.querySelector('.order-panel')
+  // hideOrShow() {
+  //   const place = document.querySelector('.order-panel')
 
-    if (place.classList.contains('order-panel--active')) {
-      place.classList.remove('order-panel--active')
-    }
-    else {
-      place.classList.add('order-panel--active')
-    }
-  }
+  //   if (place.classList.contains('order-panel--active')) {
+  //     place.classList.remove('order-panel--active')
+  //   }
+  //   else {
+  //     place.classList.add('order-panel--active')
+  //   }
+  // }
 
   updateCountAndDiscount() {
     let countPlace = document.querySelector('.total-count');
