@@ -142,5 +142,17 @@ $(function () {
         })
     }();
 
-    
+    document.querySelector('.categories__list').addEventListener('click', (event) => {
+        if (event.currentTarget.classList.contains('categories__item') && event.currentTarget.classList.contains('item-all') === false) {
+            console.log('hello')
+        }
+        // console.log(event.currentTarget)
+        // console.log(event.target, this.target)
+    })
+
+
+
+
+
+
 });

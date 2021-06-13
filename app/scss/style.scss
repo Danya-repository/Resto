@@ -1710,24 +1710,60 @@
 .vacancies {
     
     .categories__list {
-        display: grid;
-
-        grid-template-columns: repeat(4, minmax(100px, 1fr));
-        grid-template-rows: minmax(222px, 1fr);
-        column-gap: 15px;
-        transition: all 2s;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
     }
     .categories__item {
-        padding: 10px;
-        display: flex;
-        flex-direction: column;
+        border: 1px solid $dark-main;
+        max-width: 24%;
+        width: 100%;
+        overflow: hidden;
+        list-style: none;
+        margin: 0 auto;
+        transition: all .5s;
+
+            padding: 20px;
+            position: relative;
+            background: transparent;
+            flex-direction: column;
+            display: flex;
+            justify-content: space-between;
+        &:hover {
+            transition: all .5s;
+            box-shadow: 0px 0px 10px 2px rgba($dark-main, 0.5);
+            // .categories__title, .categories__description {
+            //     color: $orange;
+            // }
+        }
+    }
+    // .categories__item--not-active {
+    //         max-width: 14%;
+    //         // margin-left: 5px;
+    //     }
+    // .categories__item--active {
+    //         max-width: 55%;
+    //         // margin-left: auto;
+    //     }
+    .categories__item:nth-child(2) {
+        border-radius: 0 0 0 8px;
+        margin-left: 0;
+    }
+    .categories__item:nth-child(5) {
+        border-radius: 0 0 8px 0;
+        margin-right: 0;
+    }
+    .categories__item.item-all {
+        max-width: 100%;
+        width: 100%;
+        margin-bottom: 15px;
+        border-radius: 8px 8px 0 0;
     }
     .categories__title {
         font-size: 19px;
-        margin-bottom: 50%;
     }
     .categories__description {
-        margin-bottom: auto;
-        line-height: 19px;
+        font-size: 13px;
     }
+
 }
