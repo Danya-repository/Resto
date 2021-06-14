@@ -1737,14 +1737,18 @@
             // }
         }
     }
-    // .categories__item--not-active {
-    //         max-width: 14%;
-    //         // margin-left: 5px;
-    //     }
-    // .categories__item--active {
-    //         max-width: 55%;
-    //         // margin-left: auto;
-    //     }
+    .categories__item--not-active {
+            max-width: 14%;
+            // margin-left: 5px;
+        }
+    .categories__item--active {
+            max-width: 55%;
+            border: 1px solid $orange;
+            &:hover {
+                box-shadow: none;
+            }
+            // margin-left: auto;
+        }
     .categories__item:nth-child(2) {
         border-radius: 0 0 0 8px;
         margin-left: 0;
