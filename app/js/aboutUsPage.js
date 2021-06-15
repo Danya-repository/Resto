@@ -23,7 +23,7 @@ class AboutUsPage {
                               </ul>
                             </aside>
                             <div class="about-us__content">
-                              <div class="about-us__tab" data-about-us-tab="1">
+                              <div class="about-us__tab about-us__tab--active" data-about-us-tab="1">
                                 <h3 class="about-us__subtitle subtitle">Что такое Resto?</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">
@@ -93,7 +93,7 @@ class AboutUsPage {
                                   <div class="about-us__decorative-layer"></div>
                                 </div>
                               </div>
-                              <div class="about-us__tab about-us__tab--active" data-about-us-tab="5">
+                              <div class="about-us__tab" data-about-us-tab="5">
                                 <h3 class="about-us__subtitle subtitle">Помощь</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">

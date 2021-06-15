@@ -1,40 +1,44 @@
 $(function () {
-    
+
     const simpleBar = new SimpleBar(document.querySelector('body'));
 
     const indexPage = new IndexPage(simpleBar);
     const basketButton = new BasketButton();
-          basketButton.render();
+    basketButton.render();
 
     const aboutUsPage = new AboutUsPage();
     const basket = new Basket(basketButton);
     const catalogPage = new CatalogPage(basket, basketButton);
+    const vacanciesPage = new VacanciesPage()
 
     // indexPage.render();
+
     basket.render()
 
 
-    
-    headerMenulinks = function() {
+
+    headerMenulinks = function () {
         const menu = document.querySelector('.menu');
         const extraMenu = document.querySelector('.extra-menu__list')
 
-        menu.addEventListener('click', function(event) {
-            
+        menu.addEventListener('click', function (event) {
+
             if (event.target.classList.contains('menu__list-link')) {
                 catalogPage.init(event.target.dataset.typeFood)
                 catalogPage.render()
-            
+
             }
 
         })
-        extraMenu.addEventListener('click', function(event) {
-            
-            if(event.target.classList.contains('extra-menu__link')) {
-                switch(event.target.dataset.extraHref) {
-                    case('about-us'):
+        extraMenu.addEventListener('click', function (event) {
+
+            if (event.target.classList.contains('extra-menu__link')) {
+                switch (event.target.dataset.extraHref) {
+                    case ('about-us'):
                         aboutUsPage.render()
-                        break
+                        break;
+                    case ('vacancies'):
+                        vacanciesPage.render()
                 }
             }
         })
@@ -48,7 +52,7 @@ $(function () {
 
 
     headerExtra = function () {
-        
+
         let extraBtn = document.querySelector('.extra-menu__btn');
         let extraMenu = document.querySelector('.extra-menu__wrapper');
 
@@ -66,18 +70,18 @@ $(function () {
             }
         });
     }();
-    
-    
+
+
 
     headerBasketOrderToggle = function () {
-        
+
         let basketBtn = document.querySelector('.user-panel__btn.user-panel__basket');
         let cancelBtn = document.querySelector('.order-panel__close-btn');
         let orderPanel = document.querySelector('.order-panel');
-        
+
 
         return function () {
-            
+
             basketBtn.addEventListener('click', function (event) {
                 event.preventDefault;
                 orderPanel.classList.add('order-panel--active');
@@ -93,20 +97,20 @@ $(function () {
     }();
 
     userbarToggle = function () {
-        
+
         userBar = document.querySelector('.user-bar');
         dropDown = document.querySelector('.user-bar__info-drop-down');
 
         $('.user-bar').on('click', function () {
-           
+
             $('.user-bar__info-drop-down').slideToggle();
             $('.user-icon').toggleClass('user-icon--active');
 
         });
     }();
-    
+
     animationHeaderFixed = function () {
-        
+
         let headerWrapperTop = document.querySelector('.header__wrapper-top')
         let headerWrapperBottom = document.querySelector('.header__wrapper-bottom')
 
@@ -127,12 +131,12 @@ $(function () {
             }
 
 
-            
-        
 
-            
+
+
+
         })
-        document.body.addEventListener('click', function(event) {
+        document.body.addEventListener('click', function (event) {
 
             if (event.target.classList.contains('menu__list-link') &&
                 headerWrapperBottom.getBoundingClientRect().top === 0) {
@@ -142,33 +146,13 @@ $(function () {
         })
     }();
 
-    // safsds = function() {
-    //     let items = document.querySelectorAll('.categories__item')
-    //     items = Array.from(items)
-    //     items.filter(item => item.classList.contains('item-all') !== false)
-    //     console.log(items)
-        
-    // }();
 
-    let categorItems = document.querySelectorAll('.categories__item');
-    categorItems.forEach(item => {
-        item.onclick = () => {
-            if (item.classList.contains('item-all')) {
-                categorItems.forEach(item => {
-                    item.classList.remove('categories__item--not-active')
-                    item.classList.remove('categories__item--active')
-                })
-                return
-            };
-            categorItems.forEach(item => {
-                if (item.classList.contains('item-all')) return;
-                item.classList.add('categories__item--not-active')
-                item.classList.remove('categories__item--active')
-            })
-            item.classList.add('categories__item--active')
-        }
+    $(".reviews__rating").rateYo({
+        starWidth: "15px",
+        numStars: 5,
+        halfStar: true,
+        rating: 4.5,
+        readOnly: true
     })
-
-
 
 });

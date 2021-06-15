@@ -1713,6 +1713,7 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-between;
+        margin-bottom: 40px;
     }
     .categories__item {
         border: 1px solid $dark-main;
@@ -1722,32 +1723,35 @@
         list-style: none;
         margin: 0 auto;
         transition: all .5s;
-
-            padding: 20px;
-            position: relative;
-            background: transparent;
-            flex-direction: column;
-            display: flex;
-            justify-content: space-between;
+        text-align: center;
+        padding: 20px;
+        position: relative;
+        background: transparent;
+        flex-direction: column;
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
         &:hover {
             transition: all .5s;
             box-shadow: 0px 0px 10px 2px rgba($dark-main, 0.5);
-            // .categories__title, .categories__description {
-            //     color: $orange;
-            // }
         }
     }
+    .item-all {
+        text-align: left;
+    }
     .categories__item--not-active {
-            max-width: 14%;
-            // margin-left: 5px;
+            max-width: 17%;
         }
     .categories__item--active {
-            max-width: 55%;
+            max-width: 45%;
             border: 1px solid $orange;
+            
             &:hover {
                 box-shadow: none;
             }
-            // margin-left: auto;
+            .categories__title {
+                text-align: left;
+            }
         }
     .categories__item:nth-child(2) {
         border-radius: 0 0 0 8px;
@@ -1768,6 +1772,98 @@
     }
     .categories__description {
         font-size: 13px;
+        display: none;
+        
+    }
+    .categories__button {
+        background: transparent;
+        border: none;
+        outline: none;
+        height: 100%;
+        width: 100%;
     }
 
+    .vacancies__item {
+        border: 1px solid $dark-main;
+        min-height: 100px;
+        padding: 20px;
+        margin-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+    }
+    .vacancies__title {
+        margin-bottom: 35px;
+        @include MonNorm;
+        position: relative;
+        &::before {
+            content: '';
+            position: absolute;
+            height: 2px;
+            width: 100%;
+            background: $orange;
+            top: 23px;
+        }
+    }
+    .vacancies__top-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+    }
+    .vacancies__button {
+        padding: 0;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        font-size: 15px;
+        transition: all .5s;
+        &:hover {
+            color: $orange;
+            transition: all .5s;
+        }
+    }
+    .vacancies__description {
+        line-height: 20px;
+    }
+
+}
+
+.reviews {
+    &__item {
+        margin-bottom: 30px;
+    }
+    &__top-wrapper {
+        display: flex;
+        border-bottom: 1px solid rgba($dark-main, .8);
+        padding: 20px;
+    }
+    &__name {
+        min-width: 100px;
+        padding-right: 15px;
+    }
+    &__id {
+        margin-left: auto;
+    }
+    &__bottom-wrapper {
+        padding: 20px;
+        min-height: 150px;
+        display: flex;
+        justify-content: space-between;
+    }
+    &__photos {
+        display: flex;
+        align-self: center;
+    }
+    &__photo {
+        max-width: 66px;
+        max-height: 66px;
+    }
+    &__content {
+        padding-right: 10px;
+        max-width: 600px;
+        line-height: 20px;
+    }
+    &__rating {
+        position: relative;
+        z-index: 2;
+    }
 }
