@@ -203,12 +203,56 @@
           </button>
         </div>
       </div>
+      <div class="user">
+        <div class="user__inner">
+          <div class="user__close-btn-wrapper">
+            <button class="close-btn close-btn--active">
+              <div class="close-btn__decorate-block"></div>
+              <div class="close-btn__decorate-block"></div>
+            </button>
+          </div>
+          <div class="user__choice-block">
+            <button class="choice-block__login">Войти</button>
+            <button class="choice-block__signin">Регистрация</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- <form class="user__form-login" action="">
+        <span class="user__form-subtitle">Логин:</span>
+        <input class="form__input-tel input-text" type="tel" name="">
+        <span class="user__form-subtitle">Пароль:</span>
+        <input class="form__input-password input-text" type="password">
+        <button class="form__login-button" type="button">Войти</button>
+      </form>
+      <form class="user__form-signin" action="">
+        <span class="user__form-subtitle">Логин:</span>
+        <input class="form__input-tel input-text" type="tel" name="">
+        <span class="user__form-subtitle">Пароль:</span>
+        <input class="form__input-tel input-text" type="tel" name="">
+        <span class="user__form-subtitle">Повторите пароль:</span>
+        <input class="form__input-password input-text" type="password">
+        <button class="form__login-button" type="button">Зарегистрироваться</button>
+      </form> -->
     </div>
     <!-- <div class="header__order-panel order-panel"></div> -->
   </header>
   <div class="wrapper">
     <main class="main">
       <div class="container">
+        <div class="modal-window">
+          <div class="modal-window__inner">
+            <div class="modal-window__close-btn-wrapper">
+              <button class="close-btn close-btn--active">
+                <div class="close-btn__decorate-block"></div>
+                <div class="close-btn__decorate-block"></div>
+              </button>
+            </div>
+            <button class="modal-window__prev-btn"></button>
+            <img class="modal-window__image" src="./images/content/hot-dishes-img.png" alt="">
+            <button class="modal-window__next-btn"></button>
+          </div>
+        </div>
         <section class="breadcrumps">
           <ul class="breadcrumps__list">
             <li class="breadcrumps__item">
@@ -223,8 +267,8 @@
           <ul class="reviews__list">
             <li class="reviews__item">
               <div class="reviews__top-wrapper">
-                <div class="reviews__name">Игнат</div>
-                <div class="reviews__rating" id = "rateYo"></div>
+                <div class="reviews__head-name">Игнат</div>
+                <div class="reviews__rating" id="rateYo"></div>
                 <span class="reviews__id">#431</span>
               </div>
               <div class="reviews__bottom-wrapper">
@@ -242,7 +286,7 @@
             </li>
             <li class="reviews__item">
               <div class="reviews__top-wrapper">
-                <div class="reviews__name">Игнат</div>
+                <div class="reviews__head-name">Игнат</div>
                 <div class="reviews__rating"></div>
                 <span class="reviews__id">#431</span>
               </div>
@@ -261,7 +305,7 @@
             </li>
             <li class="reviews__item">
               <div class="reviews__top-wrapper">
-                <div class="reviews__name">Игнат</div>
+                <div class="reviews__head-name">Игнат</div>
                 <div class="reviews__rating"></div>
                 <span class="reviews__id">#431</span>
               </div>
@@ -278,10 +322,58 @@
                 </div>
               </div>
             </li>
-            
-            
           </ul>
+
+          <div class="reviews__pagination">
+            <button class="pagination__btn pagination__prev-btn"></button>
+            <ul class="pagination__list">
+              <li class="pagination__num-page">
+                <a class="pagination__link" href="#">1</a>
+              </li>
+              <li class="pagination__num-page">
+                <a class="pagination__link" href="#">2</a>
+              </li>
+              <li class="pagination__num-page">
+                <a class="pagination__link pagination__link--active" href="#">3</a>
+              </li>
+              <li class="pagination__num-page">
+                <a class="pagination__link" href="#">4</a>
+              </li>
+              <li class="pagination__num-page">
+                <a class="pagination__link" href="#">5</a>
+              </li>
+            </ul>
+            <button class="pagination__btn pagination__next-btn"></button>
+          </div>
+          <form class="reviews__form" action="">
+            <div class="reviews__top-wrapper">
+              <div class="reviews__head-name form__head-name">Ваш отзыв</div>
+            </div>
+            <div class="form__fields">
+              <div class="form__field">
+                <label class="form__field-label" for="">Имя:</label>
+                <input class="form__input" type="text" name="" placeholder="Введите Ваше имя">
+              </div>
+              <div class="form__field">
+                <label class="form__field-label rating" for="">Оценка:</label>
+                <div class="form__rating"></div>
+              </div>
+              <div class="form__bottom-wrapper">
+                <div class="form__field">
+                  <label class="form__field-label" for="">Отзыв:</label>
+                  <textarea class="form__field-review form__input" name="" id="" cols="30" rows="10"
+                    placeholder="Введите Ваш отзыв"></textarea>
+                </div>
+                <div class="form__field">
+                  <input class="form__field-file" type="file" name="" id="">
+                </div>
+              </div>
+              <input class="form__send-btn" type="submit" value="Отправить">
+            </div>
+
+          </form>
         </section>
+        
       </div>
 
 
@@ -403,19 +495,21 @@
 <!-- <div class="user">
   <div class="user__inner">
     <button class="user__exit-btn" type="button">
-      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-                     viewBox="0 0 496.096 496.096" style="enable-background:new 0 0 496.096 496.096;" xml:space="preserve">
-                    <g>
-                      <g>
-                      <path d="M259.41,247.998L493.754,13.654c3.123-3.124,3.123-8.188,0-11.312c-3.124-3.123-8.188-3.123-11.312,0L248.098,236.686
+      <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        x="0px" y="0px" viewBox="0 0 496.096 496.096" style="enable-background:new 0 0 496.096 496.096;"
+        xml:space="preserve">
+        <g>
+          <g>
+            <path
+              d="M259.41,247.998L493.754,13.654c3.123-3.124,3.123-8.188,0-11.312c-3.124-3.123-8.188-3.123-11.312,0L248.098,236.686
                         L13.754,2.342C10.576-0.727,5.512-0.639,2.442,2.539c-2.994,3.1-2.994,8.015,0,11.115l234.344,234.344L2.442,482.342
                         c-3.178,3.07-3.266,8.134-0.196,11.312s8.134,3.266,11.312,0.196c0.067-0.064,0.132-0.13,0.196-0.196L248.098,259.31
-                        l234.344,234.344c3.178,3.07,8.242,2.982,11.312-0.196c2.995-3.1,2.995-8.016,0-11.116L259.41,247.998z"/>
-                      </g>
-                    </g>
+                        l234.344,234.344c3.178,3.07,8.242,2.982,11.312-0.196c2.995-3.1,2.995-8.016,0-11.116L259.41,247.998z" />
+          </g>
+        </g>
       </svg>
-    </button>
-    <div class="user__choice-block">
+    </button> -->
+    <!-- <div class="user__choice-block">
       <button class="choice-block__login">Войти</button>
       <button class="choice-block__signin">Регистрация</button>
     </div>
@@ -437,3 +531,7 @@
     </form>
   </div>
 </div> -->
+
+
+
+

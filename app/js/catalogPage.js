@@ -6,8 +6,11 @@ class CatalogPage {
     this.url = '';
     this.template = `<div class="container">
                        <div class="catalog">
-                         <ul class="product-list"></ul>
-                         <div class="filters"></div>
+                         <div class="product-list__wrapper">
+                          <ul class="product-list"></ul>
+                          <button class="product-list__show-more">Показать еще</button>
+                         </div>
+                          <div class="filters"></div>
                        </div>
                      </div>`
     this.basketBtn = basketBtn

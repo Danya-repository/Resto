@@ -11,7 +11,7 @@ $(function () {
     const catalogPage = new CatalogPage(basket, basketButton);
     const vacanciesPage = new VacanciesPage()
 
-    // indexPage.render();
+    indexPage.render();
 
     basket.render()
 
@@ -76,7 +76,6 @@ $(function () {
     headerBasketOrderToggle = function () {
 
         let basketBtn = document.querySelector('.user-panel__btn.user-panel__basket');
-        let cancelBtn = document.querySelector('.order-panel__close-btn');
         let orderPanel = document.querySelector('.order-panel');
 
 
@@ -87,10 +86,10 @@ $(function () {
                 orderPanel.classList.add('order-panel--active');
             });
 
-            cancelBtn.addEventListener('click', function (event) {
-                event.preventDefault;
-                orderPanel.classList.remove('order-panel--active');
-            });
+            // cancelBtn.addEventListener('click', function (event) {
+            //     event.preventDefault;
+            //     orderPanel.classList.remove('order-panel--active');
+            // });
 
 
         }();
@@ -152,7 +151,18 @@ $(function () {
         numStars: 5,
         halfStar: true,
         rating: 4.5,
-        readOnly: true
+        readOnly: true,
+        normalFill: "#EA9769",
+        ratedFILL : "#EA9769"
     })
+
+    $(".form__rating").rateYo({
+        starWidth: "15px",
+        
+    })
+
+    $('input:file').styler()
+
+    document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
 
 });
