@@ -3046,12 +3046,11 @@ body {
 }
 
 .collage__carousel {
+  max-width: 55%;
   display: -ms-grid;
   display: grid;
-  -ms-grid-columns: (220px)[3];
-  grid-template-columns: repeat(3, 220px);
-  -ms-grid-rows: (220px)[3];
-  grid-template-rows: repeat(3, 220px);
+  -ms-grid-columns: (1fr)[3];
+  grid-template-columns: repeat(3, 1fr);
   grid-gap: 15px;
 }
 
@@ -3160,8 +3159,6 @@ body {
 .collage__carousel-img {
   -o-object-fit: cover;
      object-fit: cover;
-  width: 95%;
-  height: 95%;
   opacity: 1;
 }
 
@@ -3189,7 +3186,6 @@ body {
 }
 
 .collage__info {
-  padding: 105px 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -3224,6 +3220,7 @@ body {
 .collage__info-slide {
   display: none;
   text-align: center;
+  margin: auto;
 }
 
 .collage__info-slide--active {
@@ -3250,7 +3247,7 @@ body {
   font-size: 15px;
   line-height: 23px;
   position: relative;
-  padding: 40px 60px 50px;
+  padding: 40px 70px 50px;
 }
 
 .collage__info-text::after {
@@ -5009,6 +5006,30 @@ body {
   transition: all .5s;
 }
 
+@media (max-width: 1120px) {
+  .collage__info-title {
+    font-size: 19px;
+  }
+  .collage__info-text {
+    font-size: 15px;
+    padding-left: 55px;
+    padding-right: 55px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .collage__info-title {
+    font-size: 19px;
+  }
+}
+
+@media (max-width: 1080px) {
+  .collage__info-text {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
 @media (max-width: 1024px) {
   .header__wrapper-bottom {
     -ms-flex-wrap: wrap;
@@ -5047,6 +5068,37 @@ body {
   }
   .menu__decorate-block {
     display: block;
+  }
+  .collage__info-title {
+    font-size: 18px;
+  }
+  .collage__info-text {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 975px) {
+  .collage__info-text {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 975px) {
+  .collage__info-text {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+@media (max-width: 930px) {
+  .collage__inner {
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+  }
+  .collage__info-text {
+    padding-left: 40px;
+    padding-right: 40px;
   }
 }
 

@@ -60,6 +60,7 @@ function scripts() {
     'app/js/productsBasket.js',
     'app/js/basketButton.js',
     'app/js/vacanciesPage.js',
+    'app/js/reviewsPage.js',
     'app/js/main.js'
   ])
     .pipe(concat('main.min.js'))

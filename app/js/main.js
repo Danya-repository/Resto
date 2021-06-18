@@ -6,6 +6,7 @@ $(function () {
     const basketButton = new BasketButton();
     basketButton.render();
 
+    const reviewsPage = new ReviewsPage();
     const aboutUsPage = new AboutUsPage();
     const basket = new Basket(basketButton);
     const catalogPage = new CatalogPage(basket, basketButton);
@@ -39,6 +40,9 @@ $(function () {
                         break;
                     case ('vacancies'):
                         vacanciesPage.render()
+                        break;
+                    case('reviews'):
+                        reviewsPage.render();
                 }
             }
         })
@@ -144,6 +148,16 @@ $(function () {
             }
         })
     }();
+
+
+
+
+
+
+
+
+
+    //reviews
 
 
     $(".reviews__rating").rateYo({

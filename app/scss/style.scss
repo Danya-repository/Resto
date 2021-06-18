@@ -768,9 +768,10 @@
         display: flex;
     }
     &__carousel {
+        max-width: 55%;
         display: grid;
-        grid-template-columns: repeat(3, 220px);
-        grid-template-rows: repeat(3, 220px);
+        grid-template-columns: repeat(3, 1fr);
+        // grid-template-rows: repeat(3, minmax(120px,220px));
         grid-gap: 15px;
 
         &.animated-item {
@@ -844,8 +845,8 @@
     }
     &__carousel-img {
         object-fit: cover;
-        width: 95%;
-        height: 95%;
+        // width: 95%;
+        // height: 95%;
         opacity: 1;
     }
     &__carousel-window {
@@ -864,7 +865,6 @@
 
 
     &__info {
-        padding: 105px 0;;
         display: flex;
         flex-direction: column;
         text-align: center;
@@ -884,6 +884,7 @@
     &__info-slide {
         display: none;
         text-align: center;
+        margin: auto;
     }
     &__info-slide--active {
         display: flex;
@@ -901,7 +902,7 @@
         font-size: 15px;
         line-height: 23px;
         position: relative;
-        padding: 40px 60px 50px;
+        padding: 40px 70px 50px;
         &::after {
             content: '';
             position: absolute;
@@ -2187,6 +2188,37 @@
     }
 }
 
+
+@media (max-width: 1120px) {
+    .collage {
+        &__info-title {
+            font-size: 19px;
+        }
+        &__info-text {
+            font-size: 15px;
+
+            padding-left: 55px;
+            padding-right: 55px;
+        }
+    }
+}
+@media (max-width: 1080px) {
+    .collage {
+        &__info-title {
+            font-size: 19px;
+        }
+    }
+}
+
+@media (max-width: 1080px) {
+    .collage {
+        &__info-text {
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+    }
+}
+
 @media (max-width: 1024px) {
     .header__wrapper-bottom {
         flex-wrap: wrap;
@@ -2217,7 +2249,48 @@
             display: block;
         }
     }
+    .collage {
+        &__info-title {
+            font-size: 18px;
+        }
+        &__info-text {
+            font-size: 14px;
+        }
+    }
+    
 }
+
+@media (max-width: 975px) {
+    .collage {
+        &__info-text {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+}
+
+@media (max-width: 975px) {
+    .collage {
+        &__info-text {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+}
+
+@media (max-width: 930px) {
+    .collage {
+        &__inner {
+            flex-wrap: wrap;
+        }
+        &__info-text {
+            padding-left: 40px;
+            padding-right: 40px;
+        }
+    }
+}
+
+
 @media (min-width: 800px) and (max-width: 1024px) {
     .user {
         &__bar{
@@ -2247,7 +2320,6 @@
     .menu {
         transform: translateY(-200%);
         transition: all 1.5s;
-        // display: none;
         opacity: 0;
         position: absolute;
         width: 100%;
