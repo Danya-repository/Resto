@@ -928,11 +928,12 @@
 
 
 .benefits {
-    // overflow: hidden;
     margin-bottom: 50px;
     &__inner {
-        display: flex;
-        justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-auto-rows: minmax(250px, 400px);
+        grid-gap: 15px;
     }
     &__item {
         display: flex;
@@ -947,9 +948,10 @@
         border: 1px solid $dark-main;
         max-width: 379px;
         width: 100%;
-        height: 400px;
+        height: auto;
         display: flex;
         align-items: center;
+        justify-content: center;
         transition: all .5s;
         &:hover {
             box-shadow: 0px 0px 10px 2px rgba($dark-main, 0.5);
@@ -2189,6 +2191,10 @@
 }
 
 
+@media (max-width: 1180px) {
+
+}
+
 @media (max-width: 1120px) {
     .collage {
         &__info-title {
@@ -2202,16 +2208,12 @@
         }
     }
 }
+
 @media (max-width: 1080px) {
     .collage {
         &__info-title {
             font-size: 19px;
         }
-    }
-}
-
-@media (max-width: 1080px) {
-    .collage {
         &__info-text {
             padding-left: 50px;
             padding-right: 50px;
@@ -2269,33 +2271,85 @@
     }
 }
 
-@media (max-width: 975px) {
-    .collage {
-        &__info-text {
-            padding-left: 40px;
-            padding-right: 40px;
+@media (max-width: 950px) {
+    .quote {
+        &__text-quote {
+            font-size: 29px;
+        }
+        &__text-author {
+            font-size: 20px;
         }
     }
 }
 
 @media (max-width: 930px) {
     .collage {
+        &__carousel {
+            max-width: 100%;
+            grid-template-columns: repeat(5, 1fr);
+            grid-auto-rows: 1fr 1fr 1fr;
+            margin-bottom: 30px;
+        }
+        &__carousel-window {
+            grid-column: span 5;
+            grid-row: span 2;
+        }
         &__inner {
             flex-wrap: wrap;
+            justify-content: center;
         }
         &__info-text {
             padding-left: 40px;
             padding-right: 40px;
         }
+        &__carousel-slide-1,
+        &__carousel-slide-2,
+        &__carousel-slide-3,
+        &__carousel-slide-4,
+        &__carousel-slide-5 {
+            grid-column: auto;
+            grid-row: auto;
+        }
+    }
+    .carousel-item-text {
+        font-size: 12px;
+    }
+    .geo {
+        &__title {
+            font-size: 24px;
+        }
+        &__address {
+            font-size: 19px;
+        }
     }
 }
 
+@media (max-width: 850px) {
+    .benefits {
+        &__inner {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-gap: 15px;
+        }
+        &__item-wrapper {
+            max-width: 100%;
+        }
+        &__item-wrapper-1 {
+            grid-column: span 2;
+        }
+        &__item-wrapper-2 {
+            grid-column:  3 / span 2;
+        }
+        &__item-wrapper-3 {
+            grid-column: 2 / span 2;
+        }
+    }
+}
 
 @media (min-width: 800px) and (max-width: 1024px) {
     .user {
         &__bar{
             display: flex;
-            
         }
         &__drop-down {
             position: static;
@@ -2380,7 +2434,83 @@
     .user__drop-down {
         top: 35px;
     }
+    .benefits {
+        &__item-title {
+            font-size: 14px;
+        }
+        &__item-text {
+            font-size: 12px;
+        }
+    }
+    .quote {
+        &__text-quote {
+            font-size: 23px;
+        }
+        &__text-author {
+            font-size: 17px;
+        }
+    }
 }
+
+@media (max-width: 700px) {
+    .quote {
+        &__text-quote {
+            font-size: 17px;
+        }
+        &__text-author {
+            &::before {
+                width: 190px;
+            }
+            font-size: 10px;
+        }
+    }
+    .geo {
+        &__title {
+            font-size: 22px;
+        }
+        &__address {
+            font-size: 17px;
+        }
+    }
+}
+
+@media (max-width: 650px) {
+    .collage {
+        &__carousel {
+            grid-template-columns: 1fr;
+            grid-template-rows: minmax(300px, 500px);
+            width: 100%;
+        }
+        &__info-title {
+            font-size: 17px;
+        }
+        &__info-text {
+            font-size: 13px;
+        }
+        &__carousel-slide-1,
+        &__carousel-slide-2,
+        &__carousel-slide-3,
+        &__carousel-slide-4,
+        &__carousel-slide-5 {
+            display: none;
+        }
+    }
+    .benefits {
+        &__item-title {
+            font-size: 15px;
+        }
+        &__item-text {
+            font-size: 13px;
+        }
+        &__inner {
+            grid-auto-rows: minmax(150px, 300px);
+        }
+    }
+}
+
+
+
+
 @media (max-width: 580px){
     .logo__icon-container {
         width: 18px;
@@ -2396,9 +2526,6 @@
     .extra-menu {
         margin-top: 0;
     }
-}
-
-@media (max-width: 580px) {
     .footer__inner {
         padding-top: 30px;
         align-items: flex-start;
@@ -2408,7 +2535,89 @@
         flex-direction: column;
         height: 170px;
     }
+    .benefits {
+        &__inner {
+            display: grid;
+            grid-template-columns: 1fr;
+            grid-gap: 15px;
+        }
+        &__item-wrapper {
+            max-width: 100%;
+        }
+        &__item-wrapper-1 {
+            grid-column: auto;
+        }
+        &__item-wrapper-2 {
+            grid-column:  auto;
+        }
+        &__item-wrapper-3 {
+            grid-column: auto;
+        }
+    }
 }
+
+@media (max-width: 500px) {
+    .collage {
+        &__info-title {
+            font-size: 15px;
+        }
+        &__info-text {
+            font-size: 11px;
+        }
+    }
+    .collage {
+        &__carousel {
+            grid-template-columns: 1fr;
+            grid-template-rows: minmax(200px, 300px);
+        }
+    }
+    .benefits {
+        &__item-title {
+            font-size: 13px;
+        }
+        &__item-text {
+            font-size: 11px;
+        }
+    }
+    .geo {
+        &__title {
+            font-size: 19px;
+        }
+        &__address {
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .quote {
+        &__text-quote {
+            padding: 0 45px;
+        }
+        &__text-author {
+            font-size: 13px;
+            &::before {
+                width: 160px;
+            }
+        }
+    }
+}
+
+@media (max-width: 440px){
+    .collage {
+        &__info-title {
+            font-size: 14px;
+        }
+        &__info-text {
+            font-size: 10px;
+        }
+        &__info-text {
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+    }
+}
+
 
 @media (max-width: 420px){
     .extra-menu {
@@ -2424,6 +2633,34 @@
         height: 175px;
     }
     
+}
+
+@media (max-width: 400px) {
+    .quote {
+        &__text-quote {
+            padding: 0;
+        }
+        &__text-author {
+            font-size: 13px;
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .collage {
+        &__info-text {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+    }
+    .geo {
+        &__title {
+            font-size: 17px;
+        }
+        &__address {
+            font-size: 12px;
+        }
+    }
 }
 
 

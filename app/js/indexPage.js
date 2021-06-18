@@ -401,7 +401,7 @@ class IndexPage {
                                             <div class="maps">
                                               <iframe
                                                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2278.3311596482263!2d61.32577831607243!3d55.17747704368281!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x43c5931ecbc45479%3A0xf663f4906f596d4b!2z0YPQuy4g0JHRgNCw0YLRjNC10LIg0JrQsNGI0LjRgNC40L3Ri9GFLCAxMTcsINCn0LXQu9GP0LHQuNC90YHQuiwg0KfQtdC70Y_QsdC40L3RgdC60LDRjyDQvtCx0LsuLCA0NTQxMzY!5e0!3m2!1sru!2sru!4v1620237353676!5m2!1sru!2sru"
-                                                width="1170" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                                                width="100%" height="600" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
                                             </div>
                                           </section>
                                         </div>`
