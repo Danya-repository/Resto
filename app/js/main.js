@@ -12,7 +12,7 @@ $(function () {
     const catalogPage = new CatalogPage(basket, basketButton);
     const vacanciesPage = new VacanciesPage()
 
-    indexPage.render();
+    // indexPage.render();
 
     basket.render()
 
@@ -24,11 +24,13 @@ $(function () {
 
         menu.addEventListener('click', function (event) {
 
-            if (event.target.classList.contains('menu__list-link')) {
+            if (event.target.classList.contains('menu__link')) {
+
                 catalogPage.init(event.target.dataset.typeFood)
                 catalogPage.render()
 
             }
+            event.preventDefault()
 
         })
         extraMenu.addEventListener('click', function (event) {
@@ -184,6 +186,6 @@ $(function () {
 
     $('input:file').styler()
 
-    document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
+    // document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
 
 });
