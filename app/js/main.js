@@ -12,7 +12,7 @@ $(function () {
     const catalogPage = new CatalogPage(basket, basketButton);
     const vacanciesPage = new VacanciesPage()
 
-    // indexPage.render();
+    indexPage.render();
 
     basket.render()
 

@@ -173,6 +173,22 @@ class AboutUsPage {
       autoplaySpeed: 4000,
       slidesToShow: 3,
       slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 741,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+          }
+        },
+        {
+          breakpoint: 451,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1,
+          }
+        }
+      ]
     })
   }
 
