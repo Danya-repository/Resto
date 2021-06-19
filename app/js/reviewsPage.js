@@ -126,5 +126,23 @@ class ReviewsPage {
 
     render() {
         this.place.innerHTML = this.template;
+
+        $(".form__rating").rateYo({
+          starWidth: "15px",
+        })
+
+        $(".reviews__rating").rateYo({
+          starWidth: "15px",
+          numStars: 5,
+          halfStar: true,
+          rating: 4.5,
+          readOnly: true,
+          normalFill: "#EA9769",
+          ratedFILL: "#EA9769"
+        })
+
+        $('input:file').styler()
+
+        document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
     }
 }

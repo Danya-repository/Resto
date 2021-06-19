@@ -38,7 +38,7 @@
             position: fixed;
             top: 0;
             background: #fff; 
-            z-index: 5;
+            z-index: 15;
             max-width: 1170px;
             width: 100%;
             width: calc(100% - 30px);
@@ -516,7 +516,7 @@
 
 .order-panel {
     position: fixed;
-    z-index: 5;
+    z-index: 20;
     right: -200%;
     top: 0;
     bottom: 0;
@@ -1854,7 +1854,7 @@
         }
     }
     &__content {
-        padding-right: 10px;
+        padding-right: 30px;
         max-width: 600px;
         line-height: 20px;
     }
@@ -1862,6 +1862,7 @@
         position: relative;
         z-index: 2;
     }
+    
     &__head-name {
         min-width: 120px;
     }
@@ -1944,8 +1945,8 @@
     }
     .form__field {
         display: flex;
-        margin-bottom: 25px;
         align-items: start;
+        margin-bottom: 25px;
     }
     .form__field-label {
         margin-top: 5px;
@@ -1960,9 +1961,6 @@
         justify-content: space-between;
         align-items: flex-end;
         margin-bottom: 25px;
-        .form__field {
-            margin-bottom: 0;
-        }
     }
     .form__field-review {
         resize: none;
@@ -1979,6 +1977,11 @@
     }
     .jq-file.focused .jq-file__name{
         border: none;
+    }
+    .form__field-file {
+        width: 150px;
+        height: 115px;
+        margin-left: 87px;
     }
     .jq-file.form__field-file {
         display: flex;
@@ -2003,7 +2006,7 @@
         border-radius: 8px;
         border: 1px solid $dark-main;
         background: transparent;
-        margin-left: 90px;
+        margin-left: 84px;
         transition: all .5s;
         &:hover {
             transition: all .5s;
@@ -2579,6 +2582,17 @@
             font-size: 17px;
         }
     }
+    .form{
+        &__bottom-wrapper{
+            flex-wrap: wrap;
+        }
+        &__bottom-wrapper {
+
+            .form__field:nth-child(1){ 
+                margin-bottom: 30px;
+            }
+        }
+    }
 }
 
 @media (max-width: 650px) {
@@ -2611,6 +2625,14 @@
         }
         &__inner {
             grid-auto-rows: minmax(150px, 300px);
+        }
+    }
+    .reviews {
+        &__content {
+            font-size: 13px;
+        }
+        .form__field-file {
+            position: absolute;
         }
     }
 }
@@ -2676,6 +2698,21 @@
     .product-list {
         grid-template: 1fr / repeat(2, 1fr);
     }
+    .reviews {
+        &__bottom-wrapper {
+            flex-wrap: wrap;
+        }
+        &__content {
+            margin-bottom: 30px;
+            padding-right: 0;
+        }
+    }
+    .form__input {
+            &::placeholder {
+                font-size: 13px;
+            }
+        }
+    
 }
 
 @media (max-width: 540px) {
@@ -2736,6 +2773,28 @@
             }
         }
     }
+    .reviews {
+        &__head-name {
+            font-size: 13px;
+        }
+        &__id {
+            font-size: 13px;
+        }
+        &__field-label {
+            font-size: 12px;
+        }
+        .form__input {
+            min-width: 259px;
+        }
+        // .form__fields {
+        //     display: flex;
+        //     align-items: center;
+        //     flex-direction: column;
+        // }
+        .form__field {
+            flex-wrap: wrap;
+        }
+    }
 }
 
 @media (max-width: 450px) {
@@ -2778,6 +2837,18 @@
         width: 80px;
         height: 175px;
     }
+    .jq-file.form__field-file {
+        margin-left: 0;
+    }
+    .reviews .form__send-btn {
+        margin-left: 0;
+    }
+    .form__input {
+        width: 100%;
+    }
+    .form__field-label {
+        margin-bottom: 20px;
+    }
     
 }
 
@@ -2812,13 +2883,13 @@
     }
 }
 
-@media (max-width: 350px) {
-     .about-us {
-        &__text {
-            // font-size: 8px;
-        } 
-    }
-}
+// @media (max-width: 350px) {
+//      .about-us {
+//         &__text {
+//             // font-size: 8px;
+//         } 
+//     }
+// }
 
 @media (max-width: 345px){
     .extra-menu {
