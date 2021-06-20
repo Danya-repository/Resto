@@ -19,7 +19,7 @@ $(function () {
 
 
     headerMenulinks = function () {
-        const menu = document.querySelector('.menu');
+        let menu = document.querySelector('.menu');
         const extraMenu = document.querySelector('.extra-menu__list')
 
         menu.addEventListener('click', function (event) {
@@ -28,6 +28,9 @@ $(function () {
 
                 catalogPage.init(event.target.dataset.typeFood)
                 catalogPage.render()
+                if (window.innerWidth < 800) {
+                    menu.classList.remove('open')
+                }
 
             }
             event.preventDefault()

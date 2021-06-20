@@ -2864,8 +2864,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -ms-flex-preferred-size: 125px;
-      flex-basis: 125px;
+  max-width: 135px;
   margin-right: 14px;
 }
 
@@ -2889,8 +2888,8 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  height: 46px;
-  width: 46px;
+  height: 40px;
+  width: 41px;
   border-radius: 8px;
   border: 1px solid #252836;
 }
@@ -2899,6 +2898,7 @@ body {
   width: 50px;
   margin-right: 25px;
   background: transparent;
+  margin-left: 20px;
 }
 
 .order-panel__item-product-info-price, .order-panel__item-product-total-price {
@@ -2956,6 +2956,8 @@ body {
           justify-content: space-between;
   position: relative;
   font-size: 16px;
+  max-width: 72px;
+  white-space: nowrap;
 }
 
 .order-panel .order-total-info__values {
@@ -5038,6 +5040,7 @@ body {
         flex-wrap: nowrap;
     border: 1px solid #252836;
     border-radius: 8px;
+    overflow-x: auto;
   }
   .vacancies .categories__list::-webkit-scrollbar {
     display: none;
@@ -5473,6 +5476,54 @@ body {
   .form__bottom-wrapper .form__field:nth-child(1) {
     margin-bottom: 30px;
   }
+  .order-panel__item-list {
+    max-height: 45%;
+  }
+  .order-panel__item-list-title {
+    font-size: 16px;
+  }
+  .order-panel__title {
+    font-size: 21px;
+  }
+  .order-panel__status {
+    font-size: 16px;
+  }
+  .order-panel__item-product-info-name {
+    font-size: 14px;
+  }
+  .order-panel__item-product-info-price {
+    font-size: 14px;
+  }
+  .order-panel__item-product-total-price {
+    font-size: 14px;
+  }
+  .order-panel__item-product-count {
+    font-size: 14px;
+  }
+  .order-panel__item-input {
+    font-size: 14px;
+  }
+  .order-panel__item-input::-webkit-input-placeholder {
+    font-size: 14px;
+  }
+  .order-panel__item-input::-moz-placeholder {
+    font-size: 14px;
+  }
+  .order-panel__item-input:-ms-input-placeholder {
+    font-size: 14px;
+  }
+  .order-panel__item-input::-ms-input-placeholder {
+    font-size: 14px;
+  }
+  .order-panel__item-input::placeholder {
+    font-size: 14px;
+  }
+  .order-panel .order-total-info__key {
+    font-size: 14px;
+  }
+  .order-panel .order-total-info__value {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 650px) {
@@ -5608,6 +5659,56 @@ body {
   .vacancies__button {
     font-size: 12px;
   }
+  .order-panel__item-list-title {
+    font-size: 14px;
+  }
+  .order-panel__title {
+    font-size: 21px;
+  }
+  .order-panel__status {
+    font-size: 14px;
+  }
+  .order-panel__item-product-info-name {
+    font-size: 13px;
+  }
+  .order-panel__item-product-info-price {
+    font-size: 13px;
+  }
+  .order-panel__item-product-total-price {
+    display: none;
+  }
+  .order-panel__item-product-count {
+    font-size: 13px;
+  }
+  .order-panel__item-input {
+    font-size: 13px;
+  }
+  .order-panel__item-input::-webkit-input-placeholder {
+    font-size: 13px;
+  }
+  .order-panel__item-input::-moz-placeholder {
+    font-size: 13px;
+  }
+  .order-panel__item-input:-ms-input-placeholder {
+    font-size: 13px;
+  }
+  .order-panel__item-input::-ms-input-placeholder {
+    font-size: 13px;
+  }
+  .order-panel__item-input::placeholder {
+    font-size: 13px;
+  }
+  .order-panel__item-list-titles {
+    display: none;
+  }
+  .order-panel .product-count-block {
+    margin-right: 0;
+  }
+  .order-panel__item-remove-btn {
+    margin-right: 30px;
+    width: 47px;
+    height: 40px;
+  }
 }
 
 @media (max-width: 540px) {
@@ -5681,6 +5782,9 @@ body {
   .about-slider__item {
     padding-right: 0;
   }
+  .order-panel__item-remove-btn {
+    width: 53px;
+  }
 }
 
 @media (max-width: 440px) {
@@ -5745,6 +5849,12 @@ body {
     -ms-grid-rows: 1fr;
     -ms-grid-columns: 1fr;
         grid-template: 1fr / 1fr;
+  }
+}
+
+@media (max-width: 350px) {
+  .order-panel__item-remove-btn {
+    width: 53px;
   }
 }
 

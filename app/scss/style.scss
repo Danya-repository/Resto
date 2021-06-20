@@ -615,7 +615,7 @@
     .product-count-block {
         display: flex;
         justify-content: space-between;
-        flex-basis: 125px;
+        max-width: 135px;
         margin-right: 14px;
             &__minus-button,
             &__plus-button {
@@ -635,15 +635,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        height: 46px;
-        width: 46px;
+        height: 40px;
+        width: 41px;
         border-radius: 8px;
         border: 1px solid #252836;
+        
     }
     &__item-remove-btn {
         width: 50px;
         margin-right: 25px;
         background: transparent;
+        margin-left: 20px;
     }
 
 
@@ -691,6 +693,8 @@
         justify-content: space-between;
         position: relative;
         font-size: 16px;
+        max-width: 72px;
+        white-space: nowrap;
     }
     .order-total-info__values {
         padding-left: 20px;
@@ -2229,6 +2233,7 @@
             flex-wrap: nowrap;
             border: 1px solid $dark-main;
             border-radius: 8px;
+            overflow-x: auto;
             &::-webkit-scrollbar {
                 display: none;
             }
@@ -2600,10 +2605,6 @@
     }
 }
 
-// @media (max-width: 740px) {
-    
-// }
-
 @media (max-width: 700px) {
     .quote {
         &__text-quote {
@@ -2633,6 +2634,44 @@
             .form__field:nth-child(1){ 
                 margin-bottom: 30px;
             }
+        }
+    }
+    .order-panel{
+        &__item-list {
+            max-height: 45%;
+        }
+        &__item-list-title {
+            font-size: 16px;
+        }
+        &__title {
+            font-size: 21px;
+        }
+        &__status {
+            font-size: 16px;
+        }
+        &__item-product-info-name {
+            font-size: 14px;
+        }
+        &__item-product-info-price {
+            font-size: 14px;
+        }
+        &__item-product-total-price {
+            font-size: 14px;
+        }
+        &__item-product-count {
+            font-size: 14px;
+        }
+        &__item-input {
+            font-size: 14px;
+            &::placeholder {
+                font-size: 14px;
+            }
+        }
+        .order-total-info__key {
+            font-size: 14px;
+        }
+        .order-total-info__value {
+            font-size: 14px;
         }
     }
 }
@@ -2765,6 +2804,50 @@
             font-size: 12px;
         }
     }
+    .order-panel{
+        // &__item-list {
+        //     max-height: 45%;
+        // }
+        &__item-list-title {
+            font-size: 14px;
+        }
+        &__title {
+            font-size: 21px;
+        }
+        &__status {
+            font-size: 14px;
+        }
+        &__item-product-info-name {
+            font-size: 13px;
+        }
+        &__item-product-info-price {
+            font-size: 13px;
+        }
+        &__item-product-total-price {
+            display: none;
+        }
+        &__item-product-count {
+            font-size: 13px;
+        }
+        &__item-input {
+            font-size: 13px;
+            &::placeholder {
+                font-size: 13px;
+            }
+        }
+        &__item-list-titles {
+            display: none;
+        }
+        .product-count-block {
+            margin-right: 0;
+        }
+        &__item-remove-btn {
+            margin-right: 30px; 
+            width: 47px;
+            height: 40px;
+        }
+
+    }
     
 }
 
@@ -2839,11 +2922,7 @@
         .form__input {
             min-width: 259px;
         }
-        // .form__fields {
-        //     display: flex;
-        //     align-items: center;
-        //     flex-direction: column;
-        // }
+
         .form__field {
             flex-wrap: wrap;
         }
@@ -2858,6 +2937,11 @@
     }
     .about-slider__item {
         padding-right: 0;
+    }
+    .order-panel {
+        &__item-remove-btn {
+            width: 53px;
+        }
     }
 }
 
@@ -2902,6 +2986,10 @@
     .form__field-label {
         margin-bottom: 20px;
     }
+}
+
+@media (max-width: 410px) {
+
     
 }
 
@@ -2936,13 +3024,13 @@
     }
 }
 
-// @media (max-width: 350px) {
-//      .about-us {
-//         &__text {
-//             // font-size: 8px;
-//         } 
-//     }
-// }
+@media (max-width: 350px) {
+    .order-panel {
+        &__item-remove-btn {
+            width: 53px;
+        }
+    }
+}
 
 @media (max-width: 345px){
     .extra-menu {
