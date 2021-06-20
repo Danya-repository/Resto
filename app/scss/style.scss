@@ -1776,7 +1776,7 @@
         width: 100%;
     }
 
-    .vacancies__item {
+    &__item {
         border: 1px solid $dark-main;
         min-height: 100px;
         padding: 20px;
@@ -1784,7 +1784,7 @@
         display: flex;
         flex-direction: column;
     }
-    .vacancies__title {
+    &__title {
         margin-bottom: 35px;
         @include MonNorm;
         position: relative;
@@ -1797,12 +1797,12 @@
             top: 23px;
         }
     }
-    .vacancies__top-wrapper {
+    &__top-wrapper {
         display: flex;
         justify-content: space-between;
         align-items: start;
     }
-    .vacancies__button {
+    &__button {
         padding: 0;
         border: none;
         border-radius: 8px;
@@ -1814,7 +1814,7 @@
             transition: all .5s;
         }
     }
-    .vacancies__description {
+    &__description {
         line-height: 20px;
     }
 
@@ -2223,6 +2223,43 @@
     }
 }
 
+@media (max-width: 1040px) {
+    .vacancies {
+        .categories__list {
+            flex-wrap: nowrap;
+            border: 1px solid $dark-main;
+            border-radius: 8px;
+            &::-webkit-scrollbar {
+                display: none;
+            }
+        }
+        .categories__item:nth-child(2) {
+            border-radius: 0;
+        }
+        .categories__item {
+            max-width: 200px;
+            width: 100%;
+            border: none;
+            flex: 0 0 auto;
+            &+.categories__item {
+                border-left: 1px solid $dark-main;
+            }
+        }
+        
+        .categories__item.item-all {
+            margin-bottom: 0;
+            box-shadow: none;
+            max-width: 200px;
+
+        }
+        .categories__item--active {
+            button {
+                color: $orange;
+            }
+        }
+    }
+}
+
 @media (max-width: 1024px) {
     .header__wrapper-bottom {
         flex-wrap: wrap;
@@ -2525,6 +2562,11 @@
             right: -15px;
         }
     }
+    .vacancies {
+        .categories__title {
+            font-size: 14px;
+        }
+    }
 }
 
 @media (max-width: 770px) {
@@ -2708,10 +2750,21 @@
         }
     }
     .form__input {
-            &::placeholder {
-                font-size: 13px;
-            }
+        &::placeholder {
+            font-size: 13px;
         }
+    }
+    .vacancies {
+        &__description {
+            font-size: 12px;
+        }
+        &__title {
+            font-size: 13px;
+        }
+        &__button {
+            font-size: 12px;
+        }
+    }
     
 }
 

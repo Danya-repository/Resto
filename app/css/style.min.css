@@ -4446,7 +4446,7 @@ body {
   width: 100%;
 }
 
-.vacancies .vacancies__item {
+.vacancies__item {
   border: 1px solid #252836;
   min-height: 100px;
   padding: 20px;
@@ -4460,14 +4460,14 @@ body {
           flex-direction: column;
 }
 
-.vacancies .vacancies__title {
+.vacancies__title {
   margin-bottom: 35px;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   position: relative;
 }
 
-.vacancies .vacancies__title::before {
+.vacancies__title::before {
   content: '';
   position: absolute;
   height: 2px;
@@ -4476,7 +4476,7 @@ body {
   top: 23px;
 }
 
-.vacancies .vacancies__top-wrapper {
+.vacancies__top-wrapper {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4488,7 +4488,7 @@ body {
           align-items: start;
 }
 
-.vacancies .vacancies__button {
+.vacancies__button {
   padding: 0;
   border: none;
   border-radius: 8px;
@@ -4499,14 +4499,14 @@ body {
   transition: all .5s;
 }
 
-.vacancies .vacancies__button:hover {
+.vacancies__button:hover {
   color: #EA9769;
   -webkit-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
 }
 
-.vacancies .vacancies__description {
+.vacancies__description {
   line-height: 20px;
 }
 
@@ -5032,6 +5032,41 @@ body {
   }
 }
 
+@media (max-width: 1040px) {
+  .vacancies .categories__list {
+    -ms-flex-wrap: nowrap;
+        flex-wrap: nowrap;
+    border: 1px solid #252836;
+    border-radius: 8px;
+  }
+  .vacancies .categories__list::-webkit-scrollbar {
+    display: none;
+  }
+  .vacancies .categories__item:nth-child(2) {
+    border-radius: 0;
+  }
+  .vacancies .categories__item {
+    max-width: 200px;
+    width: 100%;
+    border: none;
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 auto;
+            flex: 0 0 auto;
+  }
+  .vacancies .categories__item + .categories__item {
+    border-left: 1px solid #252836;
+  }
+  .vacancies .categories__item.item-all {
+    margin-bottom: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    max-width: 200px;
+  }
+  .vacancies .categories__item--active button {
+    color: #EA9769;
+  }
+}
+
 @media (max-width: 1024px) {
   .header__wrapper-bottom {
     -ms-flex-wrap: wrap;
@@ -5374,6 +5409,9 @@ body {
     top: 15px;
     right: -15px;
   }
+  .vacancies .categories__title {
+    font-size: 14px;
+  }
 }
 
 @media (max-width: 770px) {
@@ -5560,6 +5598,15 @@ body {
   }
   .form__input::placeholder {
     font-size: 13px;
+  }
+  .vacancies__description {
+    font-size: 12px;
+  }
+  .vacancies__title {
+    font-size: 13px;
+  }
+  .vacancies__button {
+    font-size: 12px;
   }
 }
 
