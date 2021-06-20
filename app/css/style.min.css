@@ -5474,6 +5474,9 @@ body {
   .form__bottom-wrapper .form__field:nth-child(1) {
     margin-bottom: 30px;
   }
+  .order-panel__item-list {
+    max-height: 50%;
+  }
   .order-panel__item-list-title {
     font-size: 16px;
   }

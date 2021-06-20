@@ -2637,9 +2637,9 @@
         }
     }
     .order-panel{
-        // &__item-list {
-        //     max-height: 45%;
-        // }
+        &__item-list {
+            max-height: 50%;
+        }
         &__item-list-title {
             font-size: 16px;
         }
