@@ -2805,12 +2805,10 @@ body {
 .order-panel__item-list {
   max-height: 60vh;
   height: 100%;
-  overflow-y: scroll;
   border: 1px solid #252836;
   border-left: none;
   border-right: none;
   margin-bottom: 40px;
-  overflow: auto;
 }
 
 .order-panel__item {
@@ -5475,9 +5473,6 @@ body {
   }
   .form__bottom-wrapper .form__field:nth-child(1) {
     margin-bottom: 30px;
-  }
-  .order-panel__item-list {
-    max-height: 45%;
   }
   .order-panel__item-list-title {
     font-size: 16px;

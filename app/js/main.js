@@ -1,6 +1,7 @@
 $(function () {
 
     const simpleBar = new SimpleBar(document.querySelector('body'));
+    
 
     const indexPage = new IndexPage(simpleBar);
     const basketButton = new BasketButton();
@@ -15,8 +16,9 @@ $(function () {
     indexPage.render();
 
     basket.render()
-
-
+    
+    
+    
 
     headerMenulinks = function () {
         let menu = document.querySelector('.menu');
