@@ -10,129 +10,6 @@ class IndexPage {
         return this.simpleBar;
     }
 
-    _carousel() {
-
-        
-
-
-        let getCarouselSlides = function() {
-
-            let itemList = document.querySelector('.collage__carousel');
-            let carouselSlides = Array.from(itemList.children)
-                                    .filter(item =>  item.className.includes('collage__carousel-slide'));
-
-            return carouselSlides;
-        }();
-        let getInfoSlides = function () {
-            let itemList = document.querySelector('.collage__info');
-            let infoSlides = Array.from(itemList.children);
-
-            return infoSlides;
-        }();
-
-        let userChangeSlide = function () {
-            
-            let clickSlideArea = document.querySelector('.collage__carousel');
-            
-            clickSlideArea.addEventListener('click', function (event) {
-                if (event.target.parentNode.classList.contains('collage__carousel-slide')) {
-                    getActiveSlide().classList.remove('collage__carousel-slide--active');
-                    event.target.parentNode.classList.add('collage__carousel-slide--active');
-                    mainSlideWindowInserter();
-                    mainSlideInfoInserter();
-                }
-                
-            })
-
-        }();
-
-        let slideChanger = function (slides = getCarouselSlides) {
-        
-
-            for (let i = 0; i < slides.length; i++) {
-
-                if (slides[i].className.includes('collage__carousel-slide--active')) {
-
-
-
-                    slides[i].classList.remove('collage__carousel-slide--active');
-
-                    if (i+1 <= slides.length-1) {
-                        return slides[i+1].classList.add('collage__carousel-slide--active');
-                    
-                    }
-                    else {
-                        return slides[0].classList.add('collage__carousel-slide--active');
-
-                    }
-
-                }
-
-            }
-        
-        }
- 
-
-        let mainSlideWindowInserter = function (slides = getCarouselSlides) {
-            
-            let mainSliderWindow = document.querySelector('.collage__carousel-window');
-            
-            
-                    
-                    let activeSlideImg = getActiveSlide().querySelector('img').cloneNode()
-
-                    mainSliderWindow.innerHTML = "";
-                    mainSliderWindow.appendChild(activeSlideImg);
-
-
-
-
-        }
-
-        let getActiveSlide = function (slides = getCarouselSlides) {
-            for (let i = 0; i < slides.length; i++) {
-                if (slides[i].className.includes('collage__carousel-slide--active')) {
-                    return slides[i];
-                }
-            }
-        }
-
-
-        let mainSlideInfoInserter = function () {
-
-                    
-            let numberSlideActive  = getActiveSlide()
-                                        .classList
-                                        .item(1)
-                                        .slice(-1);
-                                        
-            for (let i of getInfoSlides) {
-                if (i.classList.contains('collage__info-slide--active')) {
-                    i.classList.remove('collage__info-slide--active');
-                    return getInfoSlides[numberSlideActive - 1].classList.add('collage__info-slide--active');
-
-                }
-                    
-            }
-
-
-                    
-
-        }
-
-        mainSlideWindowInserter(); // init first img in window-carousel
-
-        let sliderMove = function () {
-            slideChanger();
-            mainSlideWindowInserter();
-            mainSlideInfoInserter();
-        }
-        
-        return setInterval(sliderMove, 7000);
-        
-        
-    };
-
     __anim() {
         let animItems = document.querySelectorAll('.animated-item');
 
@@ -207,7 +84,7 @@ class IndexPage {
                                                 </div>
                                               </div>
                                               <aside class="collage__info animated-item animated-no-hide">
-                                                <div class="collage__info-slide collage__info-slide-1 collage__info-slide--active">
+                                                <div class="collage__info-slide">
                                                   <p class="collage__info-title subtitle">Картофельный суп с креветками и икрой палтуса
                                                   </p>
                                                   <p class="collage__info-text">Крем-супы являются основой современной кулинарии. Они предоставляют
@@ -215,7 +92,7 @@ class IndexPage {
                                                     креветками и икрой палтуса является одним из наиболее ярких порождений кулинарных фантазий на тему
                                                     крем-супов.</p>
                                                 </div>
-                                                <div class="collage__info-slide collage__info-slide-2">
+                                                <div class="collage__info-slide">
                                                   <p class="collage__info-title subtitle">Холодный суп
                                                   </p>
                                                   <p class="collage__info-text">Холодные супы — общее название первых блюд, приготовляемых обычно на
@@ -223,7 +100,7 @@ class IndexPage {
                                                     перед подачей не разогреваемых, а наоборот — охлаждаемых. Температура подачи 6—12 градусов Цельсия.
                                                   </p>
                                                 </div>
-                                                <div class="collage__info-slide collage__info-slide-3">
+                                                <div class="collage__info-slide">
                                                   <p class="collage__info-title subtitle">Молочный суп
                                                   </p>
                                                   <p class="collage__info-text">Молочный суп — разновидность супа, в котором наряду с водой в качестве
@@ -231,7 +108,7 @@ class IndexPage {
                                                     изделия. Молочный суп готовят с различными клёцками, галушками, например, это польский суп зачерка
                                                     или русская затируха с молоком.</p>
                                                 </div>
-                                                <div class="collage__info-slide collage__info-slide-4">
+                                                <div class="collage__info-slide">
                                                   <p class="collage__info-title subtitle">Сладкий суп
                                                   </p>
                                                   <p class="collage__info-text">Приготовление сладких супов основано на использовании молока, сливок,
@@ -239,7 +116,7 @@ class IndexPage {
                                                     возможный сладкий суп. Рецепт этого блюда может содержать пряности, крупы, вермишель. В таком случае
                                                     его подают на первое. А вот сладкий суп холодный из фруктов или ягод - отличный десерт.</p>
                                                 </div>
-                                                <div class="collage__info-slide collage__info-slide-5">
+                                                <div class="collage__info-slide">
                                                   <p class="collage__info-title subtitle">Картофельный суп с креветками и икрой палтуса
                                                   </p>
                                                   <p class="collage__info-text">Крем-супы являются основой современной кулинарии. Они предоставляют

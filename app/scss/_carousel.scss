@@ -1,0 +1,13 @@
+.carousel {
+    width: 100%;
+    overflow: hidden;
+    
+    &-line {
+        overflow: hidden;
+    }
+
+    &-slide {
+        min-height: 1px;
+        float: left;
+    }
+}

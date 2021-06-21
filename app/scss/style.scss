@@ -4,6 +4,7 @@
 @import 'libs';
 @import 'global';
 @import 'animation';
+@import 'carousel';
 
 .animated-item {
     transition: all 1s ease 0s; 
@@ -789,7 +790,6 @@
         max-width: 55%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        // grid-template-rows: repeat(3, minmax(120px,220px));
         grid-gap: 15px;
 
         &.animated-item {
@@ -828,10 +828,6 @@
             grid-column-start: 3;
             grid-row-start: 2;
         }
-        // &-5 {
-        //     grid-column-start: 1;
-        //     grid-row-start: 3;
-        // }
         .carousel-item-text {
             position: absolute;
             left: 0;
@@ -863,8 +859,6 @@
     }
     &__carousel-img {
         object-fit: cover;
-        // width: 95%;
-        // height: 95%;
         opacity: 1;
     }
     &__carousel-window {
@@ -883,33 +877,34 @@
 
 
     &__info {
-        display: flex;
-        flex-direction: column;
+        // display: flex;
+        // flex-direction: column;
         text-align: center;
         border: none;
         align-items: center;
+        justify-content: center;
 
         &.animated-item {
             opacity: 0;
             transition: all 1.3s ease 0s;
             &--active {
-                transform: translate(0,0);
+                // transform: translate(0,0);
                 opacity: 1;
                 transition: all 1.3s ease 0s;
             }
         }
     }
     &__info-slide {
-        display: none;
-        text-align: center;
-        margin: auto;
+        // text-align: center;
+        // margin: auto;
     }
     &__info-slide--active {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
     }
     &__info-title {
+        margin: 0 auto;
         line-height: 31px;
         margin-bottom: 40px;
         max-width: 90%;
