@@ -1,7 +1,7 @@
 $(function () {
 
     const simpleBar = new SimpleBar(document.querySelector('body'));
-    
+
 
     const indexPage = new IndexPage(simpleBar);
     const basketButton = new BasketButton();
@@ -16,9 +16,9 @@ $(function () {
     indexPage.render();
 
     basket.render()
-    
-    
-    
+
+
+
 
     headerMenulinks = function () {
         let menu = document.querySelector('.menu');
@@ -48,7 +48,7 @@ $(function () {
                     case ('vacancies'):
                         vacanciesPage.render()
                         break;
-                    case('reviews'):
+                    case ('reviews'):
                         reviewsPage.render();
                 }
             }
@@ -153,21 +153,15 @@ $(function () {
 
                 simpleBar.getScrollElement().scrollTop = distanceBetweenBegginingPageAndHeaderWrapperBottom;
             }
+
+            if (event.target.classList.contains('personal-btn') &&
+                headerWrapperBottom.getBoundingClientRect().top === 0) {
+
+                $('.autorization').slideToggle()
+                simpleBar.getScrollElement().scrollTop = distanceBetweenBegginingPageAndHeaderWrapperBottom;
+            }
         })
     }();
-
-
-
-
-
-
-
-
-
-    //reviews
-
-
-    
 
     $('.menu .close-btn').click(() => {
         $('.menu').toggleClass('open')
@@ -176,6 +170,11 @@ $(function () {
         $('.menu').toggleClass('open')
     })
 
-   
+
+
+
+
+
+
 
 });

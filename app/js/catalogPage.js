@@ -373,7 +373,8 @@ class CatalogPage {
             event.target.innerText = (ordered ? this.orderedLabel : this.toOrderLabel)
 
             ordered ? this.basket.addItem(id) : this.basket.removeItem(id) //basket API
-
+            
+            this.basket.__plug()
             this.basketBtn.render()
 
 

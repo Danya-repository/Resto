@@ -271,7 +271,6 @@
 .user {
     display: flex;
     justify-content: space-between;
-    max-height: 20px;
     &__basket {
         position: relative;
 
@@ -305,11 +304,6 @@
             left: 0;
             top: 0;
         }
-    }
-    
-    &__log-in-btn,
-    &__log-out-btn {
-        top: 1px;
     }
     
     &__bar {
@@ -376,6 +370,10 @@
             
         }
     }
+}
+
+.autorization {
+    display: none;
     &__inner {
         padding: 70px 0;
         position: relative;
@@ -438,7 +436,7 @@
     .form__input-password {
         margin-bottom: 35px;
     }
-    .form__login-button, .choice-block__login {
+    .form__login-button, .form__signin-button, .form__to-back-button, .choice-block__login {
         background: transparent;
         outline: none;
         padding: 10px 25px;
@@ -455,6 +453,14 @@
             transition: all .5s;
         }
     }
+    .form__to-back-button {
+        &:hover {
+            background: #fff;
+            border: 1px solid $orange;
+            color: $orange;
+        }
+    }
+
     &__choice-block {
         display: flex;
         justify-content: center;
@@ -491,7 +497,7 @@
             transition: all .5s;
         }
     }
-    .user__close-btn-wrapper {
+    .autorization__close-btn-wrapper {
         height: 38px;
         width: 38px;
         background: transparent;
@@ -725,6 +731,14 @@
         width: 40px;
         background: transparent;
         border: none;
+    }
+    &__plug {
+        width: 100%;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        opacity: 0.5;
+        text-align: center;
     }
     
 

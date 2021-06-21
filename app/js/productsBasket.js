@@ -64,6 +64,22 @@ class Basket {
     return btn;
   }
 
+  __plug() {
+    let place = document.querySelector('.order-panel .simplebar-content') ? document.querySelector('.order-panel .simplebar-content') : document.querySelector('.order-panel__item-list')
+
+    let countItemsInList = place.children.length;
+    let plug = document.createElement('li');
+    plug.classList.add('order-panel__plug')
+    plug.innerText = 'Корзина пуста'
+
+    if (countItemsInList > 0 && place.querySelector('.order-panel__plug')) {
+        place.removeChild(place.querySelector('.order-panel__plug'))
+    }
+    else if (countItemsInList === 0 && !place.querySelector('.order-panel__plug')){
+        place.appendChild(plug)
+    }
+  }
+
   removeItem(id) {
     let listProductsFromLocalStorage = localStorageUtil.getProducts();
 
@@ -117,6 +133,7 @@ class Basket {
     removeBtn.addEventListener('click', function () {
       this.removeItem(id);
       this.basketBtn.render() // отрисовка кол-ва товаров на кнопке корзины
+      this.__plug()
     }.bind(this))
     basketProductListItem.querySelector('.order-panel__item-bottom').appendChild(removeBtn)
 
@@ -147,6 +164,8 @@ class Basket {
     if (place) {
       place.appendChild(basketProductListItem)
     }
+    
+    this.__plug()
     this.updateCountAndDiscount()
   }
 
@@ -166,19 +185,8 @@ class Basket {
     for (let id in listProductsFromLocalStorage) {
       this.addItem(id)
     }
-    
+    this.__plug()    
   }
-
-  // hideOrShow() {
-  //   const place = document.querySelector('.order-panel')
-
-  //   if (place.classList.contains('order-panel--active')) {
-  //     place.classList.remove('order-panel--active')
-  //   }
-  //   else {
-  //     place.classList.add('order-panel--active')
-  //   }
-  // }
 
   updateCountAndDiscount() {
     let countPlace = document.querySelector('.total-count');

@@ -2424,7 +2424,6 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  max-height: 20px;
 }
 
 .user__basket {
@@ -2463,10 +2462,6 @@ body {
   position: absolute;
   left: 0;
   top: 0;
-}
-
-.user__log-in-btn, .user__log-out-btn {
-  top: 1px;
 }
 
 .user__bar {
@@ -2546,12 +2541,16 @@ body {
   transition: all .5s;
 }
 
-.user__inner {
+.autorization {
+  display: none;
+}
+
+.autorization__inner {
   padding: 70px 0;
   position: relative;
 }
 
-.user__form-login {
+.autorization__form-login {
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2567,7 +2566,7 @@ body {
   position: relative;
 }
 
-.user__form-login::after {
+.autorization__form-login::after {
   content: '';
   position: absolute;
   width: 190px;
@@ -2576,7 +2575,7 @@ body {
   top: -40px;
 }
 
-.user__form-login::before {
+.autorization__form-login::before {
   content: '';
   position: absolute;
   width: 190px;
@@ -2585,7 +2584,7 @@ body {
   bottom: -40px;
 }
 
-.user__form-signin {
+.autorization__form-signin {
   margin: 0 auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2601,7 +2600,7 @@ body {
   position: relative;
 }
 
-.user__form-signin::after {
+.autorization__form-signin::after {
   content: '';
   position: absolute;
   width: 190px;
@@ -2610,7 +2609,7 @@ body {
   top: -40px;
 }
 
-.user__form-signin::before {
+.autorization__form-signin::before {
   content: '';
   position: absolute;
   width: 190px;
@@ -2619,20 +2618,20 @@ body {
   bottom: -40px;
 }
 
-.user__form-subtitle {
+.autorization__form-subtitle {
   margin-bottom: 10px;
 }
 
-.user .form__input-tel, .user .form__input-password {
+.autorization .form__input-tel, .autorization .form__input-password {
   margin-bottom: 25px;
   padding: 10px 5px;
 }
 
-.user .form__input-password {
+.autorization .form__input-password {
   margin-bottom: 35px;
 }
 
-.user .form__login-button, .user .choice-block__login {
+.autorization .form__login-button, .autorization .form__signin-button, .autorization .form__to-back-button, .autorization .choice-block__login {
   background: transparent;
   outline: none;
   padding: 10px 25px;
@@ -2646,7 +2645,7 @@ body {
   width: 100%;
 }
 
-.user .form__login-button:hover, .user .choice-block__login:hover {
+.autorization .form__login-button:hover, .autorization .form__signin-button:hover, .autorization .form__to-back-button:hover, .autorization .choice-block__login:hover {
   border-color: #EA9769;
   background-color: #EA9769;
   color: #fff;
@@ -2655,7 +2654,13 @@ body {
   transition: all .5s;
 }
 
-.user__choice-block {
+.autorization .form__to-back-button:hover {
+  background: #fff;
+  border: 1px solid #EA9769;
+  color: #EA9769;
+}
+
+.autorization__choice-block {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -2664,7 +2669,7 @@ body {
           justify-content: center;
 }
 
-.user .choice-block__login {
+.autorization .choice-block__login {
   background: transparent;
   outline: none;
   padding: 10px 25px;
@@ -2678,7 +2683,7 @@ body {
   width: 150px;
 }
 
-.user .choice-block__login:hover {
+.autorization .choice-block__login:hover {
   border-color: #EA9769;
   background-color: #EA9769;
   color: #fff;
@@ -2687,7 +2692,7 @@ body {
   transition: all .5s;
 }
 
-.user .choice-block__signin {
+.autorization .choice-block__signin {
   background: transparent;
   outline: none;
   padding: 10px 25px;
@@ -2700,7 +2705,7 @@ body {
   width: 150px;
 }
 
-.user .choice-block__signin:hover {
+.autorization .choice-block__signin:hover {
   border-color: #EA9769;
   color: #EA9769;
   -webkit-transition: all .5s;
@@ -2708,7 +2713,7 @@ body {
   transition: all .5s;
 }
 
-.user .user__close-btn-wrapper {
+.autorization .autorization__close-btn-wrapper {
   height: 38px;
   width: 38px;
   background: transparent;
@@ -2987,6 +2992,17 @@ body {
   width: 40px;
   background: transparent;
   border: none;
+}
+
+.order-panel__plug {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  opacity: 0.5;
+  text-align: center;
 }
 
 .breadcrumps {
