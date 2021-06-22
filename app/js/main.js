@@ -12,7 +12,11 @@ $(function () {
     const basket = new Basket(basketButton);
     const catalogPage = new CatalogPage(basket, basketButton);
     const vacanciesPage = new VacanciesPage()
-    const carousel = new Carousel(document.querySelector('.collage__info'))
+    // const carousel = new Carousel(document.querySelector('.collage__info'), {
+    //     margin: 10
+    // })
+    const slider = new Slider(document.querySelector('.collage__info'))
+
 
     // indexPage.render();
 

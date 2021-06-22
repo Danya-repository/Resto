@@ -1,10 +1,11 @@
 @import 'vars';
+@import 'slider';
+@import 'carousel';
 @import 'fonts';
 @import 'reset';
 @import 'libs';
 @import 'global';
 @import 'animation';
-@import 'carousel';
 
 .animated-item {
     transition: all 1s ease 0s; 
@@ -582,12 +583,10 @@
     &__item-list {
         max-height: 60vh;
         height: 100%;
-        // overflow-y: scroll;
         border: 1px solid $dark-main;
         border-left: none;
         border-right: none;
         margin-bottom: 40px;
-        // overflow: auto;
     }
     &__item {
         margin: 24px 0;
@@ -780,9 +779,6 @@
 .collage {
     margin-bottom: 50px;
     overflow: hidden;
-    &.container {
-        overflow: hidden
-    };
     &__inner {
         display: flex;
     }
@@ -874,23 +870,94 @@
     &__carousel-slide--active {
         border-color: $orange;
     }
-
-
     &__info {
         // display: flex;
-        // flex-direction: column;
+        min-height: 650px;
         text-align: center;
         border: none;
         align-items: center;
-        justify-content: center;
+        position: relative;
+        // max-width: 45%;
 
         &.animated-item {
             opacity: 0;
             transition: all 1.3s ease 0s;
             &--active {
-                // transform: translate(0,0);
                 opacity: 1;
                 transition: all 1.3s ease 0s;
+            }
+        }
+        .slick-arrow {
+            position: absolute;
+            top: 50%;
+            font-size: 0;
+            height: 40px;
+            width: 40px;
+            transform: translateY(-50%);
+            border: none;
+            outline: none;
+            cursor: pointer;
+            background: transparent;
+            z-index: 5;
+            &.slick-prev {
+                left: 5px;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 22px;
+                    height: 2px;
+                    background-color: $dark-main;
+                    left: 12px;
+                    top: 12px;
+                    transform: rotate(-45deg);               
+                    transition: all .5s;
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 22px;
+                    height: 2px;
+                    background-color: $dark-main;
+                    bottom: 11px;
+                    transform: rotate(45deg);
+                    left: 12px;
+                    transition: all .5s;
+                }
+            }
+            &.slick-next {
+                right: 5px;
+                &::after {
+                    content: '';
+                    position: absolute;
+                    width: 22px;
+                    height: 2px;
+                    background-color: #252836;
+                    right: 12px;
+                    top: 11px;
+                    transform: rotate(45deg);               
+                    transition: all .5s;
+                }
+                &::before {
+                    content: '';
+                    position: absolute;
+                    width: 22px;
+                    height: 2px;
+                    background-color: #252836;
+                    bottom: 12px;
+                    transform: rotate(-45deg);
+                    right: 12px;
+                    transition: all .5s;
+                }
+            }
+            &:hover {    
+                &::after {
+                    background-color: $orange;
+                    transition: all .5s;
+                }
+                &::before {
+                    background-color: $orange;
+                    transition: all .5s;
+                }
             }
         }
     }
@@ -2341,7 +2408,7 @@
             max-width: 100%;
             grid-template-columns: repeat(5, 1fr);
             grid-auto-rows: 1fr 1fr 1fr;
-            margin-bottom: 30px;
+            margin-bottom: 70px;
         }
         &__carousel-window {
             grid-column: span 5;
@@ -2350,6 +2417,10 @@
         &__inner {
             flex-wrap: wrap;
             justify-content: center;
+        }
+        &__info {
+            max-width: 100%;
+            min-height: 0;
         }
         &__info-text {
             padding-left: 40px;

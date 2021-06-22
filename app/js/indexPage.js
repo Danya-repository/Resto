@@ -1,62 +1,79 @@
 class IndexPage {
-    constructor(simpleInstance) {
-        this.placeToRender = document.querySelector('main');
-        this.simpleBar = simpleInstance
-        this.__anim = this.__anim.bind(this)
-        this.__offset = this.__offset.bind(this)
-    }
+  constructor(simpleInstance) {
+    this.placeToRender = document.querySelector('main');
+    this.simpleBar = simpleInstance
+    this.__anim = this.__anim.bind(this)
+    this.__offset = this.__offset.bind(this)
+  }
 
-    getSimpleBarInstance() {
-        return this.simpleBar;
-    }
+  getSimpleBarInstance() {
+    return this.simpleBar;
+  }
 
-    __anim() {
-        let animItems = document.querySelectorAll('.animated-item');
+  __anim() {
+    let animItems = document.querySelectorAll('.animated-item');
 
-        for (let i = 0; i < animItems.length; i++) {
-            const animItem = animItems[i];
-            const animItemHeight = animItem.offsetHeight;
-            const animItemOffset = this.__offset(animItem).top;
-            const animStart = 7;
+    for (let i = 0; i < animItems.length; i++) {
+      const animItem = animItems[i];
+      const animItemHeight = animItem.offsetHeight;
+      const animItemOffset = this.__offset(animItem).top;
+      const animStart = 7;
 
 
-            let animItemPoint = window.innerHeight - animItemHeight / animStart;
+      let animItemPoint = window.innerHeight - animItemHeight / animStart;
 
-            if(animItemHeight > window.innerHeight) {
-                animItemPoint = window.innerHeight - window.innerHeight / animStart;
-            }
+      if (animItemHeight > window.innerHeight) {
+        animItemPoint = window.innerHeight - window.innerHeight / animStart;
+      }
 
-            if((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
-                animItem.classList.add('animated-item--active');
-            }
-            else {
-                if (!animItem.classList.contains('animated-no-hide')) {
+      if ((pageYOffset > animItemOffset - animItemPoint) && pageYOffset < (animItemOffset + animItemHeight)) {
+        animItem.classList.add('animated-item--active');
+      }
+      else {
+        if (!animItem.classList.contains('animated-no-hide')) {
 
-                    animItem.classList.remove('animated-item--active');
-                }
-            }
+          animItem.classList.remove('animated-item--active');
         }
+      }
     }
+  }
 
-    __offset(el) {
-        const rect = el.getBoundingClientRect(),
-            scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
-            scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+  __offset(el) {
+    const rect = el.getBoundingClientRect(),
+      scrollLeft = window.pageXOffset || document.documentElement.scrollLeft,
+      scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    return { top: rect.top + scrollTop, left: rect.left + scrollLeft }
+  }
+
+  _animationAllItemAfterScroll() {
+    let animItems = document.querySelectorAll('.animated-item');
+
+    if (animItems.length > 0) {
+      this.simpleBar.getScrollElement().addEventListener('scroll', this.__anim);
     }
+    setTimeout(this.__anim, 500);
 
-    _animationAllItemAfterScroll() {
-        let animItems = document.querySelectorAll('.animated-item');
+  };
 
-        if (animItems.length > 0) {
-          this.simpleBar.getScrollElement().addEventListener('scroll', this.__anim);
-        }
-        setTimeout(this.__anim, 500);
+  // carousel() {
+  //   $('.collage__info').slick({
+  //     autoplay: true,
+  //     autoplaySpeed: 7000,
+  //     slidesToShow: 1,
+  //     slidesToScroll: 1,
+  //     responsive: [
+  //       {
+  //         breakpoint: 701,
+  //         settings: {
+  //           arrows: false
+  //         }
+  //       },
+  //     ]
+  //   })
+  // }
 
-    };
-
-    render() {
-        this.placeToRender.innerHTML = `<div class="container"> 
+  render() {
+    this.placeToRender.innerHTML = `<div class="container"> 
                                            <section class="collage">
                                             <div class="collage__inner">
                                               <div class="collage__carousel animated-item animated-no-hide">
@@ -83,7 +100,7 @@ class IndexPage {
                                                   <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
                                                 </div>
                                               </div>
-                                              <aside class="collage__info animated-item animated-no-hide">
+                                              <aside class="collage__info">
                                                 <div class="collage__info-slide">
                                                   <p class="collage__info-title subtitle">Картофельный суп с креветками и икрой палтуса
                                                   </p>
@@ -282,8 +299,10 @@ class IndexPage {
                                             </div>
                                           </section>
                                         </div>`
-        this._animationAllItemAfterScroll();
-        // this.carousel();
-    }
+    this._animationAllItemAfterScroll();
+
+
+    // this.carousel()
+  }
 }
 

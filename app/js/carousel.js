@@ -1,6 +1,7 @@
 const CarouselClassName = 'carousel';
 const CarouselLineClassName = 'carousel-line';
 const CarouselSlideClassName = 'carousel-slide';
+const CarouselDraggableClassName = 'carousel-draggable'
 
 
 class Carousel {
@@ -8,6 +9,10 @@ class Carousel {
         this.containerNode = carouselWrapper;
         this.size = carouselWrapper.childElementCount;
         this.currentSlide = 0;
+        this.currentSlideWasChanged = false;
+        this.settings = {
+            margin: options.margin || 0
+        }
 
         this.manageHTML = this.manageHTML.bind(this);
         this.setParameters = this.setParameters.bind(this);
@@ -42,10 +47,15 @@ class Carousel {
     setParameters() {
         const coordsContainer = this.containerNode.getBoundingClientRect();
         this.width = coordsContainer.width;
+        this.maximumX = -(this.size - 1) * (this.width + this.settings.margin);
+        this.x = -this.currentSlide * (this.width + this.settings.margin)
 
-        this.lineNode.style.width = `${this.width * this.size}px`
+        this.resetStyleTransition();
+        this.lineNode.style.width = `${this.size * (this.width + this.settings.margin)}px`
+        this.setStylePosition();
         Array.from(this.slideNodes).forEach((slideNode) => {
-            slideNode.style.width = `${this.width}px`
+            slideNode.style.width = `${this.width}px`;
+            slideNode.style.marginRight = `${this.settings.margin}px`
         })
     }
 
@@ -53,11 +63,17 @@ class Carousel {
         this.debouncedResizeGallery = debounce(this.resizeGallery)
         window.addEventListener('resize', this.debouncedResizeGallery);
         this.lineNode.addEventListener('pointerdown', this.startDrag)
+        this.lineNode.addEventListener('touchstart', this.startDrag)
         window.addEventListener('pointerup', this.stopDrag)
+        window.addEventListener('touchend', this.stopDrag)
+        window.addEventListener('pointercancel', this.stopDrag)
     }
 
     destroyEvents() {
-        window.addEventListener('resize', this.debouncedResizeGallery);
+        window.removeEventListener('resize', this.debouncedResizeGallery);
+        this.lineNode.removeEventListener('pointerdown', this.startDrag)
+        window.removeEventListener('pointerup', this.stopDrag)
+        window.removeEventListener('pointercancel', this.stopDrag)
     }
 
     resizeGallery() {
@@ -65,23 +81,66 @@ class Carousel {
     }
 
     startDrag(evt) {
+        this.currentSlideWasChanged = false;
         this.clickX = evt.pageX;
-        console.log(this.clickX)
+        this.startX = this.x;
+        this.resetStyleTransition()
+
+        this.containerNode.classList.add(CarouselDraggableClassName)
         window.addEventListener('pointermove', this.dragging);
+        window.addEventListener('touchmove', this.dragging);
     }
 
     stopDrag() {
         window.removeEventListener('pointermove', this.dragging)
+
+        this.containerNode.classList.remove(CarouselDraggableClassName)
+
+        this.x = -this.currentSlide * (this.width + this.settings.margin);
+        this.setStylePosition()
+        this.setStyleTransition()
     };
 
     dragging(evt) {
         this.dragX = evt.pageX;
         const dragShift = this.dragX - this.clickX;
-        this.setStylePosition(dragShift)
+        const easing = dragShift / 5;
+        this.x = Math.max(Math.min(this.startX + dragShift, easing), this.maximumX + easing);
+
+        this.setStylePosition()
+
+        //change active slide 
+        if (
+            dragShift > 10 &&
+            dragShift > 0 &&
+            !this.currentSlideWasChanged &&
+            this.currentSlide > 0
+        ) {
+            this.currentSlideWasChanged = true;
+            this.currentSlide = this.currentSlide - 1
+        }
+
+        if (
+            dragShift < -10 &&
+            dragShift < 0 &&
+            !this.currentSlideWasChanged &&
+            this.currentSlide < this.size - 1
+        ) {
+            this.currentSlideWasChanged = true;
+            this.currentSlide = this.currentSlide + 1
+        }
     }
 
-    setStylePosition(shift) {
-        this.lineNode.style.transform = `translate3d(${shift}px, 0, 0)`;
+    setStylePosition() {
+        this.lineNode.style.transform = `translate3d(${this.x}px, 0, 0)`;
+    }
+
+    setStyleTransition() {
+        this.lineNode.style.transition = `all 0.25s ease`
+    }
+
+    resetStyleTransition() {
+        this.lineNode.style.transition = `all 0s ease`
     }
 }
 

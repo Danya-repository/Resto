@@ -53,8 +53,8 @@ function scripts() {
 
     // modules
 
+    'app/js/customCarousel.js',
     'app/js/indexPage.js',
-    'app/js/carousel.js',
     'app/js/catalogPage.js',
     'app/js/aboutUsPage.js',
     'app/js/utilitLocalStorage.js',

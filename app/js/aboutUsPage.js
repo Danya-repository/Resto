@@ -167,7 +167,6 @@ class AboutUsPage {
   };
 
   carousel() {
-    let slider = document.querySelector('.slider__inner')
     $('.about-slider__inner').slick({
       autoplay: true,
       autoplaySpeed: 4000,

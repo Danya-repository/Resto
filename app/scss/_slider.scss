@@ -1,0 +1,16 @@
+.slider {
+    &-wrapper {
+        user-select: none;
+        -webkit-user-select: none;
+        overflow: hidden;
+        max-width: 100%;
+    }
+
+    &-track{
+        display: flex;
+        // float:left;
+    }
+    &-item {
+        // 
+    }
+}
