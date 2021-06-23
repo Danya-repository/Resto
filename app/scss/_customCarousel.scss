@@ -7,8 +7,10 @@
     }
 
     &-track{
+        user-select: none;
+        -webkit-user-select: none;
         display: flex;
-        // float:left;
+        float: left;
     }
     &-item {
         // 

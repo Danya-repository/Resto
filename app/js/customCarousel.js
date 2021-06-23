@@ -1,6 +1,6 @@
 const ClassNameSliderWrapper = `slider-wrapper`;
-const ClassNameSliderTrack = `slider-track`
-const ClassNameSliderItem = `slider-item`
+const ClassNameSliderTrack = `slider-track`;
+const ClassNameSliderItem = `slider-item`;
 
 
 
@@ -10,6 +10,7 @@ class Slider {
         this.countSlides = this.sliderDomElement.children.length;
         this.currentSlide = 0;
         this.positionTrack = 0;
+        this.easeDragging = 2.37;
 
         this.prepareHTML = this.prepareHTML.bind(this);
         this.setSize = this.setSize.bind(this);
@@ -17,6 +18,10 @@ class Slider {
         this.mouseDrag = this.mouseDrag.bind(this);
         this.touchDrag = this.touchDrag.bind(this);
         this.setTrackPosition = this.setTrackPosition.bind(this);
+        this.nextSlide = this.nextSlide.bind(this);
+        this.prevSlide = this.prevSlide.bind(this);
+        this.setStyleTransition = this.setStyleTransition.bind(this);
+        this.resetStyleTransition = this.resetStyleTransition.bind(this)
 
         this.prepareHTML();
         this.setSize();
@@ -51,33 +56,33 @@ class Slider {
 
     setSize() {
         // global wrapper width
-        this.widthWindow = this.sliderDomElement.parentNode.getBoundingClientRect().width
+        this.widthWindow = this.sliderDomElement.parentNode.getBoundingClientRect().width;
 
         // set width main window
-        this.sliderMainWindowWidth = this.widthWindow;
-        this.sliderMainWindow.style.width = `${this.widthWindow}px`
+        this.sliderMainWindowWidth = this.widthWindow;;
+        this.sliderMainWindow.style.width = `${this.widthWindow}px`;
 
         // set width slider track
         this.sliderTrackWidth = this.widthWindow * this.countSlides;
-        this.sliderTrack.style.width = `${this.widthWindow * this.countSlides}px`
+        this.sliderTrack.style.width = `${this.widthWindow * this.countSlides}px`;
 
         // set width slider item
         this.slideWidth = this.widthWindow;
         Array.from(this.sliderTrack.children).forEach(childItem => {
-            childItem.style.width = `${this.widthWindow}px`
+            childItem.style.width = `${this.widthWindow}px`;
         })
     }
 
     setEvents() {
         // window adaptive listener 
-        window.addEventListener('resize', debounce(this.setSize.bind(this)))
+        window.addEventListener('resize', debounce(this.setSize.bind(this)));
 
         //slider move listeners
-        this.sliderTrack.addEventListener('mousedown', this.mouseStart.bind(this))
-        window.addEventListener('mouseup', this.mouseStop.bind(this))
+        this.sliderTrack.addEventListener('mousedown', this.mouseStart.bind(this));
+        window.addEventListener('mouseup', this.mouseStop.bind(this));
 
-        this.sliderTrack.addEventListener('touchstart', this.touchStart.bind(this))
-        window.addEventListener('touchend', this.touchStop.bind(this))
+        this.sliderTrack.addEventListener('touchstart', this.touchStart.bind(this));
+        window.addEventListener('touchend', this.touchStop.bind(this));
 
 
     }
@@ -86,78 +91,152 @@ class Slider {
 
     mouseStart(event) {
 
-        this.startX = event.pageX + this.positionTrack
+        this.startX = event.pageX + this.positionTrack;
         this.clientX = event.pageX;
-        window.addEventListener('mousemove', this.mouseDrag)
+        window.addEventListener('mousemove', this.mouseDrag);
+        this.resetStyleTransition();
     }
 
     mouseStop(event) {
-        window.removeEventListener('mousemove', this.mouseDrag)
-        this.slideChanger()
+        window.removeEventListener('mousemove', this.mouseDrag);
+        this.slideChanger();
+        this.setStyleTransition();
     }
 
     touchStart(event) {
+        // event.preventDefault()
 
         this.startX = event.targetTouches[0].pageX + this.positionTrack;
         this.clientX = event.targetTouches[0].pageX;
-        window.addEventListener('touchmove', this.touchDrag)
+        window.addEventListener('touchmove', this.touchDrag);
+        this.resetStyleTransition();
     }
 
     touchStop(event) {
-        window.removeEventListener('touchmove', this.touchDrag)
-        this.slideChanger()
+        // event.preventDefault()
+        window.removeEventListener('touchmove', this.touchDrag);
+        this.slideChanger();
+        this.setStyleTransition();
     }
 
     //---------------------------------
 
 
     mouseDrag(event) {
-        this.nowX = event.pageX
+        this.nowX = event.pageX;
+        
 
-        this.positionTrack = (this.startX - this.nowX)
-        this.shift = this.clientX - this.nowX
-        this.setTrackPosition(-this.positionTrack)
+
+        this.positionTrack = (this.startX - this.nowX);
+        this.shift = this.clientX - this.nowX;
+        
+        // sticky edges
+
+        // left edge
+        if (this.positionTrack < 0) {
+            this.setTrackPosition(-this.positionTrack / this.easeDragging);
+            return
+        }
+
+        // right edge
+        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
+            this.setTrackPosition(-(this.sliderTrackWidth - this.slideWidth + this.shift / this.easeDragging));
+            return
+        }
+
+        // ---------------------------------------------
+
+        this.setTrackPosition(-this.positionTrack);
     }
 
     touchDrag(event) {
-        this.nowX = event.targetTouches[0].pageX
+        event.preventDefault()
 
-        this.positionTrack = (this.startX - this.nowX)
-        this.shift = this.clientX - this.nowX
-        this.setTrackPosition(-this.positionTrack)
+        this.nowX = event.targetTouches[0].pageX;
+
+        this.positionTrack = (this.startX - this.nowX);
+        this.shift = this.clientX - this.nowX;
+
+         // sticky edges
+
+        // left edge
+        if (this.positionTrack < 0) {
+            this.setTrackPosition(-this.positionTrack / this.easeDragging);
+            return
+        }
+
+        // right edge
+        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
+            this.setTrackPosition(-(this.sliderTrackWidth - this.slideWidth + this.shift / this.easeDragging));
+            return
+        }
+
+        // ---------------------------------------------
+
+        this.setTrackPosition(-this.positionTrack);
     }
 
     setTrackPosition(distance) {
-        this.sliderTrack.style.transform = `translate3d(${distance}px, 0, 0)`
+        this.sliderTrack.style.transform = `translate3d(${distance}px, 0, 0)`;
     }
 
     // slide changer
 
     slideChanger() {
         if (
-            this.shift > 0 &&
-            this.shift > 20 &&
-            this.currentSlide >= 0
-        ) { 
             //next
-            this.positionTrack = (this.currentSlide + 1) * this.slideWidth
-            
-            this.currentSlide += 1
+            this.shift > 0 &&
+            this.shift > 30 &&
+            this.currentSlide >= 0
+        ) {
+            this.nextSlide();
         }
         if (
             //prev
             this.shift < 0 &&
-            this.shift < -20 &&
-            this.currentSlide < this.countSlides - 1
+            this.shift < -30 &&
+            this.currentSlide <= this.countSlides - 1
         ) {
-            this.currentSlide -= 1
-            this.positionTrack = ((this.currentSlide + 1) * this.slideWidth) - this.slideWidth
+            this.prevSlide();
         }
 
         this.shift = 0;
-        this.setTrackPosition(-this.positionTrack)
+        this.setTrackPosition(-this.positionTrack);
 
 
+    }
+
+    nextSlide() {
+        if (this.positionTrack < this.sliderTrackWidth - this.slideWidth) 
+        {
+            this.positionTrack = (this.currentSlide + 1) * this.slideWidth;
+            this.currentSlide += 1;
+        }
+        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) 
+        {
+            this.positionTrack = this.sliderTrackWidth - this.slideWidth;
+        }
+    }
+
+    prevSlide() {
+        if (this.positionTrack > 0) 
+        {
+            this.currentSlide -= 1;
+            this.positionTrack = ((this.currentSlide + 1) * this.slideWidth) - this.slideWidth;
+        }
+        if (this.positionTrack < 0)
+        {
+            this.positionTrack = 0;
+        }
+
+    }
+
+    setStyleTransition () {
+        this.sliderTrack.style.transition = 'all 0.2s';
+    }
+
+    resetStyleTransition() {
+        this.sliderTrack.style.transition = `all 0s`;
     }
 }
 

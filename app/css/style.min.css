@@ -1927,34 +1927,14 @@ Build date: 2019-12-19 16:51:02
 }
 
 .slider-track {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-}
-
-.carousel {
-  width: 100%;
-  overflow: hidden;
   -moz-user-select: none;
    -ms-user-select: none;
        user-select: none;
   -webkit-user-select: none;
-}
-
-.carousel-line {
-  overflow: hidden;
-}
-
-.carousel-slide {
-  min-height: 1px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   float: left;
-  -webkit-transform: translateZ(0);
-          transform: translateZ(0);
-}
-
-.carousel-draggable {
-  cursor: -webkit-grabbing;
-  cursor: grabbing;
 }
 
 @font-face {
