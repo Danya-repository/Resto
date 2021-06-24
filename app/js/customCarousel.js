@@ -5,12 +5,14 @@ const ClassNameSliderItem = `slider-item`;
 
 
 class Slider {
-    constructor(domElement, options = {}) {
+    constructor(domElement, options = {autoChange: false}) {
         this.sliderDomElement = domElement;
         this.countSlides = this.sliderDomElement.children.length;
         this.currentSlide = 0;
         this.positionTrack = 0;
         this.easeDragging = 2.37;
+        this.autoChange = options.autoChange;
+        this.autoTimer;
 
         this.prepareHTML = this.prepareHTML.bind(this);
         this.setSize = this.setSize.bind(this);
@@ -22,10 +24,14 @@ class Slider {
         this.prevSlide = this.prevSlide.bind(this);
         this.setStyleTransition = this.setStyleTransition.bind(this);
         this.resetStyleTransition = this.resetStyleTransition.bind(this)
+        this.autoChanger = this.autoChanger.bind(this)
 
         this.prepareHTML();
         this.setSize();
         this.setEvents();
+        // this.autoChanger()
+
+    
 
     }
 
@@ -56,7 +62,7 @@ class Slider {
 
     setSize() {
         // global wrapper width
-        this.widthWindow = this.sliderDomElement.parentNode.getBoundingClientRect().width;
+        this.widthWindow = this.sliderDomElement.getBoundingClientRect().width;
 
         // set width main window
         this.sliderMainWindowWidth = this.widthWindow;;
@@ -87,7 +93,7 @@ class Slider {
 
     }
 
-    //cursor or touch event listeners
+    //события при касании и отрыве
 
     mouseStart(event) {
 
@@ -95,28 +101,50 @@ class Slider {
         this.clientX = event.pageX;
         window.addEventListener('mousemove', this.mouseDrag);
         this.resetStyleTransition();
+
+        // Сброс сдвига, для того чтобы слайдера не листался по клику или прикосновению
+        this.shift = 0;
+        // пауза если автопереключатель включен
+        clearTimeout(this.autoTimer)
     }
 
     mouseStop(event) {
         window.removeEventListener('mousemove', this.mouseDrag);
         this.slideChanger();
         this.setStyleTransition();
+
+        // возврат слайда в обратное положение при недостаточном свайпе
+        if (
+            this.shift <= 30 &&
+            this.shift >= -30
+        ){
+            this.positionTrack = this.currentSlide * this.slideWidth
+            this.setTrackPosition(-this.positionTrack)
+        }
     }
 
     touchStart(event) {
-        // event.preventDefault()
 
         this.startX = event.targetTouches[0].pageX + this.positionTrack;
         this.clientX = event.targetTouches[0].pageX;
         window.addEventListener('touchmove', this.touchDrag);
         this.resetStyleTransition();
+        
     }
 
     touchStop(event) {
-        // event.preventDefault()
         window.removeEventListener('touchmove', this.touchDrag);
         this.slideChanger();
         this.setStyleTransition();
+
+        // balance if shift is short
+        if (
+            this.shift <= 30 &&
+            this.shift >= -30
+        ){
+            this.positionTrack = this.currentSlide * this.slideWidth
+            this.setTrackPosition(-this.positionTrack)
+        }
     }
 
     //---------------------------------
@@ -124,29 +152,67 @@ class Slider {
 
     mouseDrag(event) {
         this.nowX = event.pageX;
-        
-
-
+    
         this.positionTrack = (this.startX - this.nowX);
         this.shift = this.clientX - this.nowX;
         
-        // sticky edges
+       
+        // липкия края
 
-        // left edge
-        if (this.positionTrack < 0) {
+        // левый край
+        if (this.positionTrack < 0) 
+        {
             this.setTrackPosition(-this.positionTrack / this.easeDragging);
-            return
+
+            // console.log({
+            //     start: this.startX,
+            //     now: this.nowX,
+            //     positionTrack: this.positionTrack / this.easeDragging,
+            //     shift: this.shift
+            // })
+        }
+        // правый край
+        else if (this.positionTrack >= this.sliderTrackWidth - this.slideWidth)
+        {
+
+            if (this.flag) {
+                this.clientX = this.nowX;
+                this.shift = 0;
+                this.flag = false
+            }
+
+
+            console.log({
+                client: this.clientX,
+                now: this.nowX,
+                shift: this.shift
+            })
+
+            this.setTrackPosition(-this.positionTrack + this.shift / this.easeDragging); // - рабочая схема для замедления правого края,
+                                                                                         //   трак замедляется благодаря увеличению на величину сдвига, 
+                                                                                         // которая в свою очередь делится на коэффициент замедления
+            // здесь долго тупил, хз, мб можно это упростить
+            // if (this.positionTrack+1 === Math.floor(this.sliderTrackWidth - this.slideWidth)) {
+            //     console.log('hello')
+            // }
+            // обнаружил поблему при переходе между 2м и 3м условием происходит скачок, из-за того что шифт слишком большой и его необходимо один раз обнулить
+            // console.log({
+            //     a: this.sliderTrackWidth - this.slideWidth,
+            //     b: this.positionTrack
+            // })
+            // this.shift = 0
+            // console.log(this.sliderTrackWidth - this.slideWidth)
+            // console.log(this.positionTrack)
+            // this.setTrackPosition(-this.positionTrack + this.shift / this.easeDragging);
+
+        }
+        else 
+        {   
+            this.flag = true;
+            this.setTrackPosition(-this.positionTrack);
+
         }
 
-        // right edge
-        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
-            this.setTrackPosition(-(this.sliderTrackWidth - this.slideWidth + this.shift / this.easeDragging));
-            return
-        }
-
-        // ---------------------------------------------
-
-        this.setTrackPosition(-this.positionTrack);
     }
 
     touchDrag(event) {
@@ -180,12 +246,11 @@ class Slider {
         this.sliderTrack.style.transform = `translate3d(${distance}px, 0, 0)`;
     }
 
-    // slide changer
+    // методы для смены слайдов
 
     slideChanger() {
         if (
             //next
-            this.shift > 0 &&
             this.shift > 30 &&
             this.currentSlide >= 0
         ) {
@@ -193,15 +258,13 @@ class Slider {
         }
         if (
             //prev
-            this.shift < 0 &&
             this.shift < -30 &&
             this.currentSlide <= this.countSlides - 1
         ) {
             this.prevSlide();
         }
-
-        this.shift = 0;
-        this.setTrackPosition(-this.positionTrack);
+        
+        // this.shift = 0;
 
 
     }
@@ -216,6 +279,10 @@ class Slider {
         {
             this.positionTrack = this.sliderTrackWidth - this.slideWidth;
         }
+
+        this.resetStyleTransition()
+        this.setTrackPosition(-this.positionTrack);
+        this.autoChanger()
     }
 
     prevSlide() {
@@ -228,20 +295,34 @@ class Slider {
         {
             this.positionTrack = 0;
         }
-
+        this.resetStyleTransition()
+        this.setTrackPosition(-this.positionTrack);
+        this.autoChanger()
     }
 
+    // стилизаторы
+
     setStyleTransition () {
-        this.sliderTrack.style.transition = 'all 0.2s';
+        this.sliderTrack.style.transition = 'all 1s';
     }
 
     resetStyleTransition() {
         this.sliderTrack.style.transition = `all 0s`;
     }
+
+    // опциональные функции
+
+    autoChanger() {
+        if (!this.autoChange) {return}
+
+        this.setStyleTransition();
+        this.autoTimer = setTimeout(this.nextSlide, 10000)
+        console.log(this.currentSlide)
+    }
 }
 
 
-// helpers 
+// вспомогательные функции
 
 function debounce(fn, ms = 500) {
     let timeOut;

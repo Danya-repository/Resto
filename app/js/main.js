@@ -12,13 +12,12 @@ $(function () {
     const basket = new Basket(basketButton);
     const catalogPage = new CatalogPage(basket, basketButton);
     const vacanciesPage = new VacanciesPage()
-    // const carousel = new Carousel(document.querySelector('.collage__info'), {
-    //     margin: 10
-    // })
-    const slider = new Slider(document.querySelector('.collage__info'))
-
-
-    // indexPage.render();
+    
+    
+    indexPage.render();
+    const slider = new Slider(document.querySelector('.collage__info'), {
+        autoChange: false,
+    })
 
     basket.render()
 

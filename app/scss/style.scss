@@ -870,13 +870,13 @@
         border-color: $orange;
     }
     &__info {
-        // display: flex;
+        display: flex;
         min-height: 650px;
         text-align: center;
         border: none;
         align-items: center;
         position: relative;
-        // max-width: 45%;
+        max-width: 45%;
 
         &.animated-item {
             opacity: 0;
