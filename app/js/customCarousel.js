@@ -9,13 +9,12 @@ class Slider {
         this.sliderDomElement = domElement;
         this.countSlides = this.sliderDomElement.children.length;
         this.currentSlide = 0;
-        this.positionTrack = 0;
         this.easeDragging = 2.37;
         this.autoChange = options.autoChange;
         this.autoTimer;
 
         this.prepareHTML = this.prepareHTML.bind(this);
-        this.setSize = this.setSize.bind(this);
+        this.setParams = this.setParams.bind(this);
         this.setEvents = this.setEvents.bind(this);
         this.mouseDrag = this.mouseDrag.bind(this);
         this.touchDrag = this.touchDrag.bind(this);
@@ -27,7 +26,7 @@ class Slider {
         this.autoChanger = this.autoChanger.bind(this)
 
         this.prepareHTML();
-        this.setSize();
+        this.setParams();
         this.setEvents();
         // this.autoChanger()
         this.x = 0;
@@ -60,28 +59,31 @@ class Slider {
 
     }
 
-    setSize() {
+    setParams() {
         // global wrapper width
         this.widthWindow = this.sliderDomElement.getBoundingClientRect().width;
-
+        
         // set width main window
         this.sliderMainWindowWidth = this.widthWindow;;
         this.sliderMainWindow.style.width = `${this.widthWindow}px`;
-
+        
         // set width slider track
         this.sliderTrackWidth = this.widthWindow * this.countSlides;
         this.sliderTrack.style.width = `${this.widthWindow * this.countSlides}px`;
-
+        
         // set width slider item
         this.slideWidth = this.widthWindow;
         Array.from(this.sliderTrack.children).forEach(childItem => {
             childItem.style.width = `${this.widthWindow}px`;
         })
+
+        // start position
+        this.positionTrack = this.currentSlide * this.slideWidth 
     }
 
     setEvents() {
         // window adaptive listener 
-        window.addEventListener('resize', debounce(this.setSize.bind(this)));
+        window.addEventListener('resize', debounce(this.setParams.bind(this)));
 
         //slider move listeners
         this.sliderTrack.addEventListener('mousedown', this.mouseStart.bind(this));
@@ -96,15 +98,21 @@ class Slider {
     //события при касании и отрыве
 
     mouseStart(event) {
-        this.startX = event.pageX + this.positionTrack;
-        this.clientX = event.pageX;
+        this.startX = event.pageX + this.positionTrack
         window.addEventListener('mousemove', this.mouseDrag);
+
+        // this.clickX = event.pageX - this.sliderMainWindow.getBoundingClientRect().left;
+        console.log(this.startX)
+        // this.startX = this.clickX - this.slideWidth;
+        // console.log(this.clickX)
+        // console.log(this.sliderMainWindow.getBoundingClientRect().left)
+        // this.clientX = event.pageX;
         this.resetStyleTransition();
 
         // Сброс сдвига, для того чтобы слайдера не листался по клику или прикосновению
-        this.shift = 0;
+        // this.shift = 0;
         // пауза если автопереключатель включен
-        clearTimeout(this.autoTimer)
+        // clearTimeout(this.autoTimer)
     }
 
     mouseStop(event) {
@@ -117,12 +125,10 @@ class Slider {
             this.shift <= 30 &&
             this.shift >= -30
         ) {
-            this.positionTrack = this.currentSlide * this.slideWidth
-            this.setTrackPosition(-this.positionTrack)
+            this.positionTrack = -this.currentSlide * this.slideWidth
+            this.setTrackPosition(this.positionTrack)
         }
 
-        this.positionTrack = this.positionTrack
-        console.log(this.positionTrack)
     }
 
     touchStart(event) {
@@ -155,13 +161,26 @@ class Slider {
     mouseDrag(event) {
         this.nowX = event.pageX;
 
+        const dragX = this.nowX - this.startX
+        this.positionTrack = this.positionTrack + dragX
+        console.log(dragX)
+
+        this.setTrackPosition(this.positionTrack)
+
+
+
+
+        // console.log(this.nowX)
+        // const drag = this.clickX + this.nowX
+        // console.log(this.nowX)
         // this.positionTrack = (this.startX - this.nowX);
         // this.shift = this.clientX - this.nowX;
         // this.positionTrack = (this.startX - this.nowX);
-        this.shift = this.clientX - this.nowX;
+        // this.shift = this.clientX - this.nowX;
 
-        this.positionTrack = (this.startX - this.nowX);
-        this.setTrackPosition(-this.positionTrack);
+        // this.positionTrack = this.nowX - this.startX;
+        // console.log(this.positionTrack)
+        // this.setTrackPosition(this.positionTrack + this.shift);
 
         // липкия края
 
@@ -185,26 +204,26 @@ class Slider {
 
         this.nowX = event.targetTouches[0].pageX;
 
-        this.positionTrack = (this.startX - this.nowX);
-        this.shift = this.clientX - this.nowX;
+        this.shift = this.nowX - this.startX;
+        this.positionTrack = this.positionTrack - this.shift;
 
         // sticky edges
 
         // left edge
-        if (this.positionTrack < 0) {
-            this.setTrackPosition(-this.positionTrack / this.easeDragging);
-            return
-        }
+        // if (this.positionTrack < 0) {
+        //     this.setTrackPosition(-this.positionTrack / this.easeDragging);
+        //     return
+        // }
 
-        // right edge
-        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
-            this.setTrackPosition(-(this.sliderTrackWidth - this.slideWidth + this.shift / this.easeDragging));
-            return
-        }
+        // // right edge
+        // if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
+        //     this.setTrackPosition(-(this.sliderTrackWidth - this.slideWidth + this.shift / this.easeDragging));
+        //     return
+        // }
 
         // ---------------------------------------------
 
-        this.setTrackPosition(-this.positionTrack);
+        this.setTrackPosition(this.positionTrack);
     }
 
     setTrackPosition(distance) {
