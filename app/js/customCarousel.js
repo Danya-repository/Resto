@@ -8,9 +8,10 @@ class Slider {
     constructor(domElement, options = { autoChange: false }) {
         this.sliderDomElement = domElement;
         this.countSlides = this.sliderDomElement.children.length;
+        this.slideWasChanged = false;
         this.currentSlide = 0;
         this.easeDragging = 2.37;
-        this.autoChange = options.autoChange;
+        this.autoChanged = options.autoChange;
         this.autoTimer;
 
         this.prepareHTML = this.prepareHTML.bind(this);
@@ -19,8 +20,6 @@ class Slider {
         this.mouseDrag = this.mouseDrag.bind(this);
         this.touchDrag = this.touchDrag.bind(this);
         this.setTrackPosition = this.setTrackPosition.bind(this);
-        this.nextSlide = this.nextSlide.bind(this);
-        this.prevSlide = this.prevSlide.bind(this);
         this.setStyleTransition = this.setStyleTransition.bind(this);
         this.resetStyleTransition = this.resetStyleTransition.bind(this)
         this.autoChanger = this.autoChanger.bind(this)
@@ -29,7 +28,6 @@ class Slider {
         this.setParams();
         this.setEvents();
         // this.autoChanger()
-        this.x = 0;
 
 
     }
@@ -37,8 +35,8 @@ class Slider {
     prepareHTML() {
         // slider main window
         this.sliderDomElement.innerHTML = `<div class=${ClassNameSliderWrapper}>
-                                    ${this.sliderDomElement.innerHTML}
-                                 </div>`
+                                            ${this.sliderDomElement.innerHTML}
+                                           </div>`
         this.sliderMainWindow = this.sliderDomElement.querySelector(`.${ClassNameSliderWrapper}`)
 
         // slider track
@@ -79,6 +77,7 @@ class Slider {
 
         // start position
         this.positionTrack = this.currentSlide * this.slideWidth
+        this.startX = this.positionTrack;
     }
 
     setEvents() {
@@ -100,15 +99,15 @@ class Slider {
     mouseStart(event) {
         this.clickX = event.pageX;
         window.addEventListener('mousemove', this.mouseDrag);
-
-        console.log(this.clickX)
-
-      
+        this.resetStyleTransition()
     }
 
     mouseStop(event) {
         window.removeEventListener('mousemove', this.mouseDrag);
-        
+        this.slideWasChanged = false;
+        this.startX = this.positionTrack;
+        this.slideChanger()
+        this.setStyleTransition()
 
     }
 
@@ -142,9 +141,38 @@ class Slider {
     mouseDrag(event) {
         this.nowX = event.pageX;
 
-        const shift = this.nowX - this.clickX;
-        console.log(shift)
+        this.shift = this.nowX - this.clickX;
+        this.easeShift = this.shift / 2.47
+        this.positionTrack = this.startX + this.shift
 
+        // Липкие края
+        // Левый липкий край
+        if (this.positionTrack > 0) {
+            this.setTrackPosition((this.startX + this.shift) / 2.47)
+            return
+        }
+        // Правый липкий край
+        if (this.positionTrack < -((this.countSlides - 1) * this.slideWidth)) {
+            let fartHestPoint = -((this.countSlides - 1) * this.slideWidth)
+            let delta = fartHestPoint - this.positionTrack
+            this.setTrackPosition(fartHestPoint - delta / 2.47)
+            console.log(this.shift)
+            return
+            // решение через условие, если слайдер утоплен глубже, чем стартовая позиция его последного слайда,
+            // то для рассчетов берём вместо positionTrack значение fartHestPoint - длинна слайдера без последнего слайда со знаком минус,
+            // и после этого топим на дельту, которая делитсян а коэфициент замедления(2.47), т.е. вместо -2106(fartHestPoin) - 1, -2, -3 ... n,
+            // мы берём -2106(fartHestPoin) - 0.404, -0.809, -1.214 ... n / 2.47
+
+            // delta it is difference 
+            // let delta = -((this.countSlides - 1) * this.slideWidth) - this.positionTrack // v 1.0
+        }
+        this.setTrackPosition(this.positionTrack)
+
+
+
+
+
+        
     }
 
     touchDrag(event) {
@@ -183,50 +211,27 @@ class Slider {
     slideChanger() {
         if (
             //next
-            this.shift > 30 &&
-            this.currentSlide >= 0
+            this.shift < -30 &&
+            this.currentSlide < this.countSlides - 1 &&
+            this.slideWasChanged == false
         ) {
-            this.nextSlide();
+            this.currentSlide += 1
+            this.slideWasChanged = true
         }
         if (
-            //prev
-            this.shift < -30 &&
-            this.currentSlide <= this.countSlides - 1
+            //next
+            this.shift > 30 &&
+            this.currentSlide > 0 &&
+            this.slideWasChanged == false
         ) {
-            this.prevSlide();
+            this.currentSlide -= 1
+            this.slideWasChanged = true
         }
-
-        // this.shift = 0;
-
-
+        this.positionTrack = -(this.currentSlide * this.slideWidth)
+        this.setTrackPosition(this.positionTrack)
+        this.startX = this.positionTrack
     }
 
-    nextSlide() {
-        if (this.positionTrack < this.sliderTrackWidth - this.slideWidth) {
-            this.positionTrack = (this.currentSlide + 1) * this.slideWidth;
-            this.currentSlide += 1;
-        }
-        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
-            this.positionTrack = this.sliderTrackWidth - this.slideWidth;
-        }
-
-        this.resetStyleTransition()
-        this.setTrackPosition(-this.positionTrack);
-        this.autoChanger()
-    }
-
-    prevSlide() {
-        if (this.positionTrack > 0) {
-            this.currentSlide -= 1;
-            this.positionTrack = ((this.currentSlide + 1) * this.slideWidth) - this.slideWidth;
-        }
-        if (this.positionTrack < 0) {
-            this.positionTrack = 0;
-        }
-        this.resetStyleTransition()
-        this.setTrackPosition(-this.positionTrack);
-        this.autoChanger()
-    }
 
     // стилизаторы
 
