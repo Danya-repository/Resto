@@ -5,7 +5,7 @@ const ClassNameSliderItem = `slider-item`;
 
 
 class Slider {
-    constructor(domElement, options = {autoChange: false}) {
+    constructor(domElement, options = { autoChange: false }) {
         this.sliderDomElement = domElement;
         this.countSlides = this.sliderDomElement.children.length;
         this.currentSlide = 0;
@@ -31,7 +31,7 @@ class Slider {
         this.setEvents();
         // this.autoChanger()
         this.x = 0;
-    
+
 
     }
 
@@ -96,8 +96,6 @@ class Slider {
     //события при касании и отрыве
 
     mouseStart(event) {
-        this.min = this.positionTrack
-
         this.startX = event.pageX + this.positionTrack;
         this.clientX = event.pageX;
         window.addEventListener('mousemove', this.mouseDrag);
@@ -118,12 +116,13 @@ class Slider {
         if (
             this.shift <= 30 &&
             this.shift >= -30
-        ){
+        ) {
             this.positionTrack = this.currentSlide * this.slideWidth
             this.setTrackPosition(-this.positionTrack)
         }
 
-        this.x = 0;
+        this.positionTrack = this.positionTrack
+        console.log(this.positionTrack)
     }
 
     touchStart(event) {
@@ -132,7 +131,7 @@ class Slider {
         this.clientX = event.targetTouches[0].pageX;
         window.addEventListener('touchmove', this.touchDrag);
         this.resetStyleTransition();
-        
+
     }
 
     touchStop(event) {
@@ -144,7 +143,7 @@ class Slider {
         if (
             this.shift <= 30 &&
             this.shift >= -30
-        ){
+        ) {
             this.positionTrack = this.currentSlide * this.slideWidth
             this.setTrackPosition(-this.positionTrack)
         }
@@ -155,93 +154,29 @@ class Slider {
 
     mouseDrag(event) {
         this.nowX = event.pageX;
-    
+
         // this.positionTrack = (this.startX - this.nowX);
         // this.shift = this.clientX - this.nowX;
-        this.positionTrack = (this.startX - this.nowX);
+        // this.positionTrack = (this.startX - this.nowX);
         this.shift = this.clientX - this.nowX;
-        
-       
+
+        this.positionTrack = (this.startX - this.nowX);
+        this.setTrackPosition(-this.positionTrack);
+
         // липкия края
 
         // левый край
-        if (this.positionTrack < 0) 
-        {
+        // if (this.positionTrack < 0) {
+        //     this.positionTrack -= this.positionTrack / this.easeDragging;
+        //     // this.setTrackPosition(-this.positionTrack);
+        // }
+        // // правый край
+        // else if (this.positionTrack >= this.sliderTrackWidth - this.slideWidth) {
+        //     console.log(this.positionTrack)
+        // }
+        // else {
 
-            // this.setTrackPosition(-this.positionTrack / this.easeDragging);
-            // this.setTrackPosition(-this.positionTrack);
-
-            // this.positionTrack = (Math.min(this.startX, this.nowX) - Math.max(this.startX, this.nowX)) / this.easeDragging
-            // this.positionTrack = (Math.min(this.startX, this.nowX) - Math.max(this.startX, this.nowX))
-            this.setTrackPosition(-this.positionTrack);
-            
-            console.log({
-                // start: this.startX,
-                // now: this.nowX,
-                // positionTrack: this.positionTrack,
-                // shift: this.shift,
-                // min: this.min,
-                
-                // dif: this.min + this.nowX,
-                // startMinusDif: this.startX - this.min - this.nowX + this.shift,
-            })
-        }
-        // правый край
-        else if (this.positionTrack >= this.sliderTrackWidth - this.slideWidth)
-        {
-
-
-            this.x+=1
-
-            // this.setStyleTransition(-this.positionTrack - this.x / this.easeDragging)
-            // this.positionTrack = this.positionTrack - (this.startX - this.min - this.nowX) / this.easeDragging
-            // this.setTrackPosition(-this.positionTrack);
-            console.log({
-                // start: this.startX,
-                // now: this.nowX,
-                // positionTrack: this.positionTrack,
-                // shift: this.shift,
-                // min: this.min,
-                pos:this.positionTrack,
-                x: this.x,
-                dropX: this.x / this.easeDragging,
-                dropPos: this.positionTrack - this.x / this.easeDragging
-                // dif: this.min + this.nowX,
-                // startMinusDif: this.startX - this.min - this.nowX + this.shift,
-            })
-
-            // console.log({
-            //     startX: this.startX,
-            //     min: this.min,
-            //     now: this.nowX,
-            //     startMinusMin: this.startX - this.min,
-            //     startMinusMinPlusNow:  this.startX - this.min + this.nowX
-            // })
-
-            // this.setTrackPosition(-this.positionTrack + this.shift / this.easeDragging); // - рабочая схема для замедления правого края,
-                                                                                         //   трак замедляется благодаря увеличению на величину сдвига, 
-                                                                                         // которая в свою очередь делится на коэффициент замедления
-            // здесь долго тупил, хз, мб можно это упростить
-            // if (this.positionTrack+1 === Math.floor(this.sliderTrackWidth - this.slideWidth)) {
-            //     console.log('hello')
-            // }
-            // обнаружил поблему при переходе между 2м и 3м условием происходит скачок, из-за того что шифт слишком большой и его необходимо один раз обнулить
-            // console.log({
-            //     a: this.sliderTrackWidth - this.slideWidth,
-            //     b: this.positionTrack
-            // })
-            // this.shift = 0
-            // console.log(this.sliderTrackWidth - this.slideWidth)
-            // console.log(this.positionTrack)
-            // this.setTrackPosition(-this.positionTrack + this.shift / this.easeDragging);
-
-        }
-        else 
-        {   
-            // this.flag = true;
-            this.setTrackPosition(-this.positionTrack);
-
-        }
+        // }
 
     }
 
@@ -253,7 +188,7 @@ class Slider {
         this.positionTrack = (this.startX - this.nowX);
         this.shift = this.clientX - this.nowX;
 
-         // sticky edges
+        // sticky edges
 
         // left edge
         if (this.positionTrack < 0) {
@@ -293,20 +228,18 @@ class Slider {
         ) {
             this.prevSlide();
         }
-        
+
         // this.shift = 0;
 
 
     }
 
     nextSlide() {
-        if (this.positionTrack < this.sliderTrackWidth - this.slideWidth) 
-        {
+        if (this.positionTrack < this.sliderTrackWidth - this.slideWidth) {
             this.positionTrack = (this.currentSlide + 1) * this.slideWidth;
             this.currentSlide += 1;
         }
-        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) 
-        {
+        if (this.positionTrack > this.sliderTrackWidth - this.slideWidth) {
             this.positionTrack = this.sliderTrackWidth - this.slideWidth;
         }
 
@@ -316,13 +249,11 @@ class Slider {
     }
 
     prevSlide() {
-        if (this.positionTrack > 0) 
-        {
+        if (this.positionTrack > 0) {
             this.currentSlide -= 1;
             this.positionTrack = ((this.currentSlide + 1) * this.slideWidth) - this.slideWidth;
         }
-        if (this.positionTrack < 0)
-        {
+        if (this.positionTrack < 0) {
             this.positionTrack = 0;
         }
         this.resetStyleTransition()
@@ -332,7 +263,7 @@ class Slider {
 
     // стилизаторы
 
-    setStyleTransition () {
+    setStyleTransition() {
         this.sliderTrack.style.transition = 'all 1s';
     }
 
@@ -343,7 +274,7 @@ class Slider {
     // опциональные функции
 
     autoChanger() {
-        if (!this.autoChange) {return}
+        if (!this.autoChange) { return }
 
         this.setStyleTransition();
         this.autoTimer = setTimeout(this.nextSlide, 10000)
