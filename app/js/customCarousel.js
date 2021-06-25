@@ -30,7 +30,7 @@ class Slider {
         this.setSize();
         this.setEvents();
         // this.autoChanger()
-
+        this.x = 0;
     
 
     }
@@ -96,6 +96,7 @@ class Slider {
     //события при касании и отрыве
 
     mouseStart(event) {
+        this.min = this.positionTrack
 
         this.startX = event.pageX + this.positionTrack;
         this.clientX = event.pageX;
@@ -121,6 +122,8 @@ class Slider {
             this.positionTrack = this.currentSlide * this.slideWidth
             this.setTrackPosition(-this.positionTrack)
         }
+
+        this.x = 0;
     }
 
     touchStart(event) {
@@ -153,6 +156,8 @@ class Slider {
     mouseDrag(event) {
         this.nowX = event.pageX;
     
+        // this.positionTrack = (this.startX - this.nowX);
+        // this.shift = this.clientX - this.nowX;
         this.positionTrack = (this.startX - this.nowX);
         this.shift = this.clientX - this.nowX;
         
@@ -162,33 +167,58 @@ class Slider {
         // левый край
         if (this.positionTrack < 0) 
         {
-            this.setTrackPosition(-this.positionTrack / this.easeDragging);
 
-            // console.log({
-            //     start: this.startX,
-            //     now: this.nowX,
-            //     positionTrack: this.positionTrack / this.easeDragging,
-            //     shift: this.shift
-            // })
+            // this.setTrackPosition(-this.positionTrack / this.easeDragging);
+            // this.setTrackPosition(-this.positionTrack);
+
+            // this.positionTrack = (Math.min(this.startX, this.nowX) - Math.max(this.startX, this.nowX)) / this.easeDragging
+            // this.positionTrack = (Math.min(this.startX, this.nowX) - Math.max(this.startX, this.nowX))
+            this.setTrackPosition(-this.positionTrack);
+            
+            console.log({
+                // start: this.startX,
+                // now: this.nowX,
+                // positionTrack: this.positionTrack,
+                // shift: this.shift,
+                // min: this.min,
+                
+                // dif: this.min + this.nowX,
+                // startMinusDif: this.startX - this.min - this.nowX + this.shift,
+            })
         }
         // правый край
         else if (this.positionTrack >= this.sliderTrackWidth - this.slideWidth)
         {
 
-            if (this.flag) {
-                this.clientX = this.nowX;
-                this.shift = 0;
-                this.flag = false
-            }
 
+            this.x+=1
 
+            // this.setStyleTransition(-this.positionTrack - this.x / this.easeDragging)
+            // this.positionTrack = this.positionTrack - (this.startX - this.min - this.nowX) / this.easeDragging
+            // this.setTrackPosition(-this.positionTrack);
             console.log({
-                client: this.clientX,
-                now: this.nowX,
-                shift: this.shift
+                // start: this.startX,
+                // now: this.nowX,
+                // positionTrack: this.positionTrack,
+                // shift: this.shift,
+                // min: this.min,
+                pos:this.positionTrack,
+                x: this.x,
+                dropX: this.x / this.easeDragging,
+                dropPos: this.positionTrack - this.x / this.easeDragging
+                // dif: this.min + this.nowX,
+                // startMinusDif: this.startX - this.min - this.nowX + this.shift,
             })
 
-            this.setTrackPosition(-this.positionTrack + this.shift / this.easeDragging); // - рабочая схема для замедления правого края,
+            // console.log({
+            //     startX: this.startX,
+            //     min: this.min,
+            //     now: this.nowX,
+            //     startMinusMin: this.startX - this.min,
+            //     startMinusMinPlusNow:  this.startX - this.min + this.nowX
+            // })
+
+            // this.setTrackPosition(-this.positionTrack + this.shift / this.easeDragging); // - рабочая схема для замедления правого края,
                                                                                          //   трак замедляется благодаря увеличению на величину сдвига, 
                                                                                          // которая в свою очередь делится на коэффициент замедления
             // здесь долго тупил, хз, мб можно это упростить
@@ -208,7 +238,7 @@ class Slider {
         }
         else 
         {   
-            this.flag = true;
+            // this.flag = true;
             this.setTrackPosition(-this.positionTrack);
 
         }
