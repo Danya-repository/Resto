@@ -15,9 +15,12 @@ $(function () {
     
     
     indexPage.render();
-    const slider = new Slider(document.querySelector('.collage__info'), {
-        autoChange: true,
-    })
+    const slider = new Slider(document.querySelector('.collage__info'),
+        {
+            autoChange: true,
+            duration: 10000,
+        }
+    )
 
     basket.render()
 
