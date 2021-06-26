@@ -19,6 +19,7 @@ $(function () {
         {
             autoChange: true,
             duration: 10000,
+            // infinite: true,
         }
     )
 

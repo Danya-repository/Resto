@@ -5,8 +5,10 @@ const ClassNameSliderItem = `slider-item`;
 
 
 class Slider {
-    constructor(domElement, options = { autoChange: false,
+    constructor(domElement, options = { 
+                                        autoChange: false,
                                         duration: 5000,
+                                        infinite: false,
                                         }) {
         this.sliderDomElement = domElement;
         this.countSlides = this.sliderDomElement.children.length;
@@ -15,6 +17,7 @@ class Slider {
         this.easeDragging = 2.37;
         this.autoChange = options.autoChange || false;
         this.autoChangeDuration = options.duration || 5000;
+        this.infinite = options.infinite || false;
         this.autoTimer;
         this.autoHandler;
         this.startX;
@@ -62,8 +65,18 @@ class Slider {
             this.sliderTrack.append(wrappedChildItem)
         })
 
-        this.sliderMainWindow.append(this.sliderTrack)
+        if (this.infinite === true) 
+        {
+            // clone slider items
+            const firstCloneSlideItem = this.sliderTrack.firstChild.cloneNode(true)
+            const lastCloneSlideItem = this.sliderTrack.lastChild.cloneNode(true)
 
+            this.sliderTrack.append(firstCloneSlideItem)
+            this.sliderTrack.prepend(lastCloneSlideItem)
+            this.countSlides += 2;
+        }
+
+        this.sliderMainWindow.append(this.sliderTrack)
 
     }
 
@@ -86,9 +99,15 @@ class Slider {
         })
 
         // start position
-        this.positionTrack = this.currentSlide * this.slideWidth
-        this.startX = this.positionTrack;
+        if (this.infinite === true) {
+            this.positionTrack = -1 * this.slideWidth
+        }
+        else if (this.infinite === false) {
+            this.positionTrack = this.currentSlide * this.slideWidth
+        }
 
+        this.startX = this.positionTrack;
+        this.setTrackPosition()
         // auto handler
         this.autoHandler = this.nextSlide;
     }
@@ -156,7 +175,7 @@ class Slider {
         this.positionTrack = this.startX + this.shift
 
 
-        if (this.autoChange === false) {
+        if (this.infinite === false) {
             this.stickyEdges()
         }
         this.setTrackPosition()    
@@ -217,7 +236,10 @@ class Slider {
         this.setTrackPosition()
         this.startX = this.positionTrack;
 
-        clearTimeout(this.autoTimer)
+        clearTimeout(this.autoTimer);
+        if (this.currentSlide >= this.countSlides - 1) {
+            this.autoHandler = this.prevSlide;
+        }
         this.autoChanger()
     }
 
@@ -228,7 +250,10 @@ class Slider {
         this.setTrackPosition(this.positionTrack)
         this.startX = this.positionTrack;
 
-        clearTimeout(this.autoTimer)
+        clearTimeout(this.autoTimer);
+        if (this.currentSlide <= 0) {
+            this.autoHandler = this.nextSlide;
+        }
         this.autoChanger();
 
     }
@@ -271,13 +296,8 @@ class Slider {
     autoChanger() {
         if (this.autoChange === false) { return }
 
-
-        if (this.currentSlide >= this.countSlides - 1) {
-            this.autoHandler = this.prevSlide;
-        }
-        else if (this.currentSlide <= 0) {
-            this.autoHandler = this.nextSlide;
-        }
+        console.log(this.currentSlide)
+        
         this.autoTimer = setTimeout(this.autoHandler, this.autoChangeDuration);
         this.setStyleTransition();
     }
