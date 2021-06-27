@@ -17,9 +17,9 @@ $(function () {
     indexPage.render();
     const slider = new Slider(document.querySelector('.collage__info'),
         {
-            autoChange: true,
+            // autoChange: true,
             duration: 10000,
-            // infinite: true,
+            infinite: true,
         }
     )
 
