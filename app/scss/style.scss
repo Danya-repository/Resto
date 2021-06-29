@@ -787,6 +787,8 @@
         grid-template-columns: repeat(3, 1fr);
         grid-gap: 15px;
 
+        order: 2;
+
         &.animated-item {
             opacity: 0;
             transform: translate(-50%,0);

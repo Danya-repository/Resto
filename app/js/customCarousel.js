@@ -12,15 +12,19 @@ class Slider {
     }) {
         this.sliderDomElement = domElement;
         this.countSlides = this.sliderDomElement.children.length;
+        this.countOriginalSlides = this.sliderDomElement.children.length;
         this.slideWasChanged = false;
         this.currentSlide = 0;
         this.easeDragging = 2.37;
         this.autoChange = options.autoChange || false;
         this.autoChangeDuration = options.duration || 5000;
         this.infinite = options.infinite || false;
+        this.moveX = 0;
+        this.moveRelatedX = true;
+
         this.autoTimer;
         this.autoHandler;
-        this.startX;
+        this.startPositionTrack;
         this.sliderTrackWidth;
         this.sliderMainWindowWidth;
 
@@ -52,7 +56,7 @@ class Slider {
                                            </div>`
         this.sliderMainWindow = this.sliderDomElement.querySelector(`.${ClassNameSliderWrapper}`)
 
-      
+
 
         // slider track
         this.sliderTrack = document.createElement('div');
@@ -65,6 +69,15 @@ class Slider {
             let wrappedChildItem = document.createElement('div');
             wrappedChildItem.classList.add(ClassNameSliderItem)
             wrappedChildItem.setAttribute('data-number-slide', `${childItemIndex}`)
+
+            wrappedChildItem.onmousedown = () => {
+                this.numberSlideClicked = +wrappedChildItem.dataset.numberSlide;
+            }
+
+            wrappedChildItem.ontouchstart = () => {
+                this.numberSlideClicked = +wrappedChildItem.dataset.numberSlide;
+            }
+
             wrappedChildItem.append(childItem)
 
             this.sliderTrack.append(wrappedChildItem)
@@ -75,10 +88,25 @@ class Slider {
             const firstCloneSlideItem = this.arrayOfSlides[0].cloneNode(true)
             const lastCloneSlideItem = this.arrayOfSlides[this.countSlides - 1].cloneNode(true)
 
+            firstCloneSlideItem.onmousedown = () => {
+                this.numberSlideClicked = 4;
+            }
+            lastCloneSlideItem.onmousedown = () => {
+                this.numberSlideClicked = -1;
+                // console.log(this.numberSlideClicked)
+            }
+
+            firstCloneSlideItem.ontouchstart = () => {
+                this.numberSlideClicked = 4;
+            }
+            lastCloneSlideItem.ontouchstart = () => {
+                this.numberSlideClicked = -1;
+                // console.log(this.numberSlideClicked)
+            }
+
             this.sliderTrack.append(firstCloneSlideItem)
             this.sliderTrack.prepend(lastCloneSlideItem)
             this.countSlides += 2;
-            console.log(firstCloneSlideItem,lastCloneSlideItem)
         }
 
         this.sliderMainWindow.append(this.sliderTrack)
@@ -117,7 +145,7 @@ class Slider {
             this.positionTrack = this.currentSlide * this.slideWidth
         }
 
-        this.startX = this.positionTrack;
+        this.startPositionTrack = this.positionTrack;
         this.setTrackPosition()
         // auto handler
         this.autoHandler = this.nextSlide;
@@ -141,8 +169,12 @@ class Slider {
 
     mouseStart(event) {
         this.clickX = event.pageX;
-        // this.clickRelatedWrapper = this.clickX - this.sliderMainWindow.getBoundingClientRect().left
-        // console.log(this.clickRelatedWrapper)
+
+        this.startX = event.pageX;
+        this.startY = event.pageY;
+
+        this.moveX = event.pageX;
+
         window.addEventListener('mousemove', this.mouseDrag);
         this.resetStyleTransition()
 
@@ -152,27 +184,34 @@ class Slider {
     mouseStop() {
         window.removeEventListener('mousemove', this.mouseDrag);
         this.slideWasChanged = false;
-        this.startX = this.positionTrack;
+        this.startPositionTrack = this.positionTrack;
         this.slideChanger()
         this.setStyleTransition()
         this.shift = 0;
+        this.lockToOverride = true;
     }
 
     touchStart(event) {
         this.clickX = event.targetTouches[0].pageX;
+
+        this.startX = event.targetTouches[0].pageX;
+        this.startY = event.targetTouches[0].pageX;
+
+        this.moveX = event.targetTouches[0].pageX;
         window.addEventListener('touchmove', this.touchDrag);
         this.resetStyleTransition();
 
+        clearTimeout(this.autoTimer)
     }
 
     touchStop() {
         window.removeEventListener('touchmove', this.touchDrag);
         this.slideWasChanged = false;
-        this.startX = this.positionTrack;
-        this.slideChanger();
-        this.setStyleTransition();
+        this.startPositionTrack = this.positionTrack;
+        this.slideChanger()
+        this.setStyleTransition()
         this.shift = 0;
-
+        this.lockToOverride = true;
     }
 
     //---------------------------------
@@ -181,57 +220,71 @@ class Slider {
     mouseDrag(event) {
         this.nowX = event.pageX;
 
-        this.shift = this.nowX - this.clickX;
-        this.positionTrack = this.startX + this.shift;
+        if (this.startX !== event.pageX) {
+            this.moveX += event.pageX - this.startX;
+            this.startX = event.pageX;
+        }
 
+        this.shift = this.moveX - this.clickX;
+        this.positionTrack = this.startPositionTrack + this.shift;
 
         if (this.infinite === false) {
             this.stickyEdges()
         }
 
-        // console.log({
-        //     start: this.startX,
-        //     shift: this.shift
-        // })
         if (this.infinite === true) {
-            if (0 < this.positionTrack) {
-                // this.shift = 0;
-                this.currentSlide = this.countSlides - 2;
-                this.startX = this.backToEndPoint;
+            if (0 < this.positionTrack) 
+            {
                 this.positionTrack = this.backToEndPoint;
+                this.currentSlide = this.countSlides - 2;
+                this.moveX = this.clickX;
+                this.startPositionTrack = this.backToEndPoint;
             }
-            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth) {
-                // this.startX = 0;
+            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth) 
+            {   
+                this.positionTrack = this.backToStartPoint;
                 this.currentSlide = 1;
-                // this.clickX = this.clickRelatedWrapper
-                // this.nowX = 166;
-                this.shift = 0;
-                // this.nowX =  -this.slideWidth;
-                this.startX = 0;
-                this.positionTrack = -this.slideWidth;
-                console.log({
-                    // now: this.nowX,
-                    // shift: this.shift,
-                    click: this.clickX,
-                    start: this.startX,
-                    pos: this.positionTrack,
-                })
+                this.moveX = this.clickX;
+                this.startPositionTrack = this.backToStartPoint;
             }
-
         }
+
         this.setTrackPosition()
     }
 
     touchDrag(event) {
-
         this.nowX = event.targetTouches[0].pageX;
 
-        this.shift = this.nowX - this.clickX;
-        this.easeShift = this.shift / 2.47
-        this.positionTrack = this.startX + this.shift
+        if (this.startX !== event.targetTouches[0].pageX) 
+        {
+            this.moveX += event.targetTouches[0].pageX - this.startX;
+            this.startX = event.targetTouches[0].pageX;
+        }
 
-        if (this.autoChange === false) {
+        this.shift = this.moveX - this.clickX;
+        this.positionTrack = this.startPositionTrack + this.shift;
+
+        if (this.infinite === false) 
+        {
             this.stickyEdges()
+        }
+
+        if (this.infinite === true) 
+        {
+            if (0 < this.positionTrack) 
+            {
+                this.positionTrack = this.backToEndPoint;
+                this.currentSlide = this.countSlides - 2;
+                this.moveX = this.clickX;
+                this.startPositionTrack = this.backToEndPoint;
+            }
+            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth); 
+            {   
+                this.positionTrack = this.backToStartPoint;
+                this.currentSlide = 1;
+                this.moveX = this.clickX;
+                this.startPositionTrack = this.backToStartPoint;
+            }
         }
         this.setTrackPosition()
 
@@ -261,8 +314,9 @@ class Slider {
         else {
             this.positionTrack = -(this.currentSlide * this.slideWidth);
             this.setTrackPosition();
-            this.startX = this.positionTrack;
+            this.startPositionTrack = this.positionTrack;
         }
+        console.log(this.currentSlide)
     }
 
     nextSlide() {
@@ -270,7 +324,7 @@ class Slider {
 
         this.positionTrack = -(this.currentSlide * this.slideWidth)
         this.setTrackPosition()
-        this.startX = this.positionTrack;
+        this.startPositionTrack = this.positionTrack;
 
         // clearTimeout(this.autoTimer);
         if (this.currentSlide === this.countSlides - 1) {
@@ -285,7 +339,7 @@ class Slider {
 
         this.positionTrack = -(this.currentSlide * this.slideWidth)
         this.setTrackPosition(this.positionTrack)
-        this.startX = this.positionTrack;
+        this.startPositionTrack = this.positionTrack;
 
         if (this.currentSlide === 0) {
             this.autoHandler = this.nextSlide;
