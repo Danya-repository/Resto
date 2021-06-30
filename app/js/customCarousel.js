@@ -21,6 +21,7 @@ class Slider {
         this.infinite = options.infinite || false;
         this.moveX = 0;
         this.moveRelatedX = true;
+        this.rollAfterBorder = false;
 
         this.autoTimer;
         this.autoHandler;
@@ -56,61 +57,45 @@ class Slider {
                                            </div>`
         this.sliderMainWindow = this.sliderDomElement.querySelector(`.${ClassNameSliderWrapper}`)
 
-
-
         // slider track
         this.sliderTrack = document.createElement('div');
         this.sliderTrack.classList.add(ClassNameSliderTrack);
 
         // slider items
-        this.arrayOfSlides = Array.from(this.sliderMainWindow.children);
 
-        this.arrayOfSlides.forEach((childItem, childItemIndex) => {
+
+        Array.from(this.sliderMainWindow.children).map((childItem, childItemIndex) => {
             let wrappedChildItem = document.createElement('div');
             wrappedChildItem.classList.add(ClassNameSliderItem)
             wrappedChildItem.setAttribute('data-number-slide', `${childItemIndex}`)
 
-            wrappedChildItem.onmousedown = () => {
-                this.numberSlideClicked = +wrappedChildItem.dataset.numberSlide;
-            }
-
-            wrappedChildItem.ontouchstart = () => {
-                this.numberSlideClicked = +wrappedChildItem.dataset.numberSlide;
-            }
-
             wrappedChildItem.append(childItem)
-
             this.sliderTrack.append(wrappedChildItem)
         })
 
         if (this.infinite === true) {
-            // clone slider items
-            const firstCloneSlideItem = this.arrayOfSlides[0].cloneNode(true)
-            const lastCloneSlideItem = this.arrayOfSlides[this.countSlides - 1].cloneNode(true)
-
-            firstCloneSlideItem.onmousedown = () => {
-                this.numberSlideClicked = 4;
-            }
-            lastCloneSlideItem.onmousedown = () => {
-                this.numberSlideClicked = -1;
-                // console.log(this.numberSlideClicked)
-            }
-
-            firstCloneSlideItem.ontouchstart = () => {
-                this.numberSlideClicked = 4;
-            }
-            lastCloneSlideItem.ontouchstart = () => {
-                this.numberSlideClicked = -1;
-                // console.log(this.numberSlideClicked)
-            }
+            const firstCloneSlideItem = this.sliderTrack.firstChild.cloneNode(true)
+            const lastCloneSlideItem = this.sliderTrack.lastChild.cloneNode(true)
 
             this.sliderTrack.append(firstCloneSlideItem)
             this.sliderTrack.prepend(lastCloneSlideItem)
+
+            Array.from(this.sliderTrack.children).forEach((childItem, childItemIndex) => {
+                childItem.setAttribute('data-number-slide', `${childItemIndex}`)
+                childItem.onmousedown = () => {
+                    this.numberSlideClicked = childItemIndex;
+                    console.log(this.numberSlideClicked)
+                }
+                childItem.ontouchstart = () => {
+                    this.numberSlideClicked = childItemIndex;
+                    console.log(this.numberSlideClicked)
+                }
+            })
+
             this.countSlides += 2;
+
         }
-
         this.sliderMainWindow.append(this.sliderTrack)
-
     }
 
     setParams() {
@@ -175,9 +160,10 @@ class Slider {
 
         this.moveX = event.pageX;
 
+        this.rollAfterBorder = false;
+
         window.addEventListener('mousemove', this.mouseDrag);
         this.resetStyleTransition()
-
         clearTimeout(this.autoTimer)
     }
 
@@ -185,22 +171,24 @@ class Slider {
         window.removeEventListener('mousemove', this.mouseDrag);
         this.slideWasChanged = false;
         this.startPositionTrack = this.positionTrack;
-        this.slideChanger()
         this.setStyleTransition()
+        this.slideChanger()
         this.shift = 0;
-        this.lockToOverride = true;
+
     }
 
     touchStart(event) {
         this.clickX = event.targetTouches[0].pageX;
 
         this.startX = event.targetTouches[0].pageX;
-        this.startY = event.targetTouches[0].pageX;
+        this.startY = event.targetTouches[0].pageY;
 
         this.moveX = event.targetTouches[0].pageX;
+
+        this.rollAfterBorder = false;
+
         window.addEventListener('touchmove', this.touchDrag);
         this.resetStyleTransition();
-
         clearTimeout(this.autoTimer)
     }
 
@@ -211,7 +199,6 @@ class Slider {
         this.slideChanger()
         this.setStyleTransition()
         this.shift = 0;
-        this.lockToOverride = true;
     }
 
     //---------------------------------
@@ -231,32 +218,30 @@ class Slider {
         if (this.infinite === false) {
             this.stickyEdges()
         }
-
-        if (this.infinite === true) {
-            if (0 < this.positionTrack) 
-            {
+        else {
+            if (0 < this.positionTrack) {
                 this.positionTrack = this.backToEndPoint;
-                this.currentSlide = this.countSlides - 2;
                 this.moveX = this.clickX;
                 this.startPositionTrack = this.backToEndPoint;
+
+                this.rollAfterBorder = true;
             }
-            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth) 
-            {   
+            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth) {
                 this.positionTrack = this.backToStartPoint;
-                this.currentSlide = 1;
                 this.moveX = this.clickX;
                 this.startPositionTrack = this.backToStartPoint;
+
+                this.rollAfterBorder = true;
+
             }
         }
-
         this.setTrackPosition()
     }
 
     touchDrag(event) {
         this.nowX = event.targetTouches[0].pageX;
 
-        if (this.startX !== event.targetTouches[0].pageX) 
-        {
+        if (this.startX !== event.targetTouches[0].pageX) {
             this.moveX += event.targetTouches[0].pageX - this.startX;
             this.startX = event.targetTouches[0].pageX;
         }
@@ -264,73 +249,154 @@ class Slider {
         this.shift = this.moveX - this.clickX;
         this.positionTrack = this.startPositionTrack + this.shift;
 
-        if (this.infinite === false) 
-        {
+        if (this.infinite === false) {
             this.stickyEdges()
         }
-
-        if (this.infinite === true) 
-        {
-            if (0 < this.positionTrack) 
-            {
+        else {
+            if (0 < this.positionTrack) {
                 this.positionTrack = this.backToEndPoint;
-                this.currentSlide = this.countSlides - 2;
                 this.moveX = this.clickX;
                 this.startPositionTrack = this.backToEndPoint;
+
+                this.rollAfterBorder = true;
             }
-            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth); 
-            {   
+            if (this.positionTrack < - (this.countSlides - 1) * this.slideWidth) {
                 this.positionTrack = this.backToStartPoint;
-                this.currentSlide = 1;
                 this.moveX = this.clickX;
                 this.startPositionTrack = this.backToStartPoint;
+
+                this.rollAfterBorder = true;
+
             }
         }
         this.setTrackPosition()
-
+        
     }
 
     // methods for change slides
 
     slideChanger() {
+
         if (
-            //next
-            this.shift < -30 &&
-            this.currentSlide < this.countSlides - 1 &&
-            this.slideWasChanged == false
+            this.infinite === true &&
+            this.rollAfterBorder === true &&
+            this.shift > 30
         ) {
-            this.slideWasChanged = true
-            this.nextSlide();
+            console.log('prev')
+            if (this.numberSlideClicked === 0) {
+                console.log(this.numberSlideClicked);
+                this.resetStyleTransition();
+                this.positionTrack = -(5 * this.slideWidth);
+                this.currentSlide = 5;
+            }
+            else if (this.numberSlideClicked === 1) {
+                console.log(this.numberSlideClicked);
+                this.resetStyleTransition();
+                this.positionTrack = -(6 * this.slideWidth);
+                this.currentSlide = 6;
+            }
+            else {
+                console.log(this.numberSlideClicked);
+                console.log(this.numberSlideClicked * this.slideWidth);
+                this.resetStyleTransition();
+                this.positionTrack = -(this.numberSlideClicked * this.slideWidth);
+                this.currentSlide = this.numberSlideClicked;
+            }
+            this.setTrackPosition();
+            this.prevSlide()
         }
         else if (
-            //prev
-            this.shift > 30 &&
-            this.currentSlide > 0 &&
-            this.slideWasChanged == false
+            this.infinite === true &&
+            this.rollAfterBorder === true &&
+            this.shift < -30
         ) {
-            this.slideWasChanged = true
-            this.prevSlide();
+            console.log('next')
+            if (this.numberSlideClicked === 6) {
+                console.log(this.numberSlideClicked);
+                this.resetStyleTransition();
+                this.positionTrack = -(1 * this.slideWidth);
+                this.currentSlide = 1;
+            }
+            else if (this.numberSlideClicked === 5) {
+                console.log(this.numberSlideClicked)
+                console.log(this.numberSlideClicked * this.slideWidth)
+                this.resetStyleTransition()
+                this.positionTrack = 0;
+                this.currentSlide = 0;
+            }
+            else {
+                console.log(this.numberSlideClicked)
+                console.log(this.numberSlideClicked * this.slideWidth)
+                this.resetStyleTransition()
+                this.positionTrack = - this.numberSlideClicked * this.slideWidth;
+                this.currentSlide = this.currentSlide;
+            }
+            this.nextSlide()
+            this.setTrackPosition()
         }
-        else {
-            this.positionTrack = -(this.currentSlide * this.slideWidth);
+        else if (
+            this.infinite === true &&
+            this.rollAfterBorder === false &&
+            this.shift > 30
+        ) {
+            console.log('afsdf')
+            this.currentSlide = this.numberSlideClicked;
+            this.prevSlide()
+        }
+        else if (
+            this.infinite === true &&
+            this.rollAfterBorder === false &&
+            this.shift < 30 &&
+            this.shift < 0
+        ) { 
+            
+            this.currentSlide = this.numberSlideClicked;
+            this.nextSlide()
+        }
+        if (
+            this.shift >= -30 &&
+            this.shift <= 30
+        ) {
+            this.positionTrack = -this.numberSlideClicked * this.slideWidth;
             this.setTrackPosition();
             this.startPositionTrack = this.positionTrack;
         }
-        console.log(this.currentSlide)
+        this.shift = 0;
+
+
+        // if (
+        //     //next
+        //     this.shift < -30 &&
+        //     this.currentSlide < this.countSlides - 1 &&
+        //     this.slideWasChanged == false
+        // ) {
+        //     this.slideWasChanged = true
+        //     this.nextSlide();
+        // }
+        // else if (
+        //     //prev
+        //     this.shift > 30 &&
+        //     this.currentSlide > 0 &&
+        //     this.slideWasChanged == false
+        // ) {
+        //     this.slideWasChanged = true
+        //     this.prevSlide();
+        // }
+        // else {
+        //     this.positionTrack = -(this.currentSlide * this.slideWidth);
+        //     this.setTrackPosition();
+        //     this.startPositionTrack = this.positionTrack;
+        // }
     }
 
     nextSlide() {
         this.currentSlide += 1
 
-        this.positionTrack = -(this.currentSlide * this.slideWidth)
-        this.setTrackPosition()
+        this.positionTrack = -(this.currentSlide * this.slideWidth);
+        this.setStyleTransition();
+        this.setTrackPosition();
         this.startPositionTrack = this.positionTrack;
 
-        // clearTimeout(this.autoTimer);
-        if (this.currentSlide === this.countSlides - 1) {
-            this.autoHandler = this.prevSlide;
-        }
-        this.autoChanger()
 
     }
 
@@ -338,14 +404,9 @@ class Slider {
         this.currentSlide -= 1
 
         this.positionTrack = -(this.currentSlide * this.slideWidth)
+        this.setStyleTransition()
         this.setTrackPosition(this.positionTrack)
         this.startPositionTrack = this.positionTrack;
-
-        if (this.currentSlide === 0) {
-            this.autoHandler = this.nextSlide;
-        }
-        this.autoChanger();
-
     }
 
     // style methods
