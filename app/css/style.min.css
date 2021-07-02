@@ -3119,6 +3119,9 @@ body {
       -ms-flex-align: center;
           align-items: center;
   position: relative;
+  -webkit-transition: all 2s;
+  -o-transition: all 2s;
+  transition: all 2s;
 }
 
 .collage__carousel-slide-1 {
@@ -3188,6 +3191,13 @@ body {
   transition: all .5s;
 }
 
+.collage__carousel-slide--active {
+  border-color: #EA9769;
+  -webkit-transition: all 2s;
+  -o-transition: all 2s;
+  transition: all 2s;
+}
+
 .collage__carousel-img {
   -o-object-fit: cover;
      object-fit: cover;
@@ -3211,10 +3221,15 @@ body {
   -ms-grid-row-span: 2;
   grid-row: span 2;
   border-color: #EA9769;
+  position: relative;
 }
 
-.collage__carousel-slide--active {
-  border-color: #EA9769;
+.collage__carousel-window img {
+  padding: 10px;
+  opacity: 0;
+  -webkit-transition: all 1.5s;
+  -o-transition: all 1.5s;
+  transition: all 1.5s;
 }
 
 .collage__info {

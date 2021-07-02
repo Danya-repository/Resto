@@ -1,9 +1,9 @@
 class IndexPage {
   constructor(simpleInstance) {
     this.placeToRender = document.querySelector('main');
-    this.simpleBar = simpleInstance
-    this.__anim = this.__anim.bind(this)
-    this.__offset = this.__offset.bind(this)
+    this.simpleBar = simpleInstance;
+    this.__anim = this.__anim.bind(this);
+    this.__offset = this.__offset.bind(this);
   }
 
   getSimpleBarInstance() {
@@ -55,23 +55,6 @@ class IndexPage {
 
   };
 
-  // carousel() {
-  //   $('.collage__info').slick({
-  //     autoplay: true,
-  //     autoplaySpeed: 7000,
-  //     slidesToShow: 1,
-  //     slidesToScroll: 1,
-  //     responsive: [
-  //       {
-  //         breakpoint: 701,
-  //         settings: {
-  //           arrows: false
-  //         }
-  //       },
-  //     ]
-  //   })
-  // }
-
   render() {
     this.placeToRender.innerHTML = `<div class="container">
     <section class="collage">
@@ -79,23 +62,23 @@ class IndexPage {
         <div class="collage__carousel animated-item animated-no-hide">
           <div class="collage__carousel-window">
           </div>
-          <div class="collage__carousel-slide collage__carousel-slide-1 collage__carousel-slide--active">
+          <div class="collage__carousel-slide collage__carousel-slide-1 collage__carousel-slide--active" data-number-collage-item="1">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
             <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
-          <div class="collage__carousel-slide collage__carousel-slide-2">
+          <div class="collage__carousel-slide collage__carousel-slide-2" data-number-collage-item="2">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
             <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
-          <div class="collage__carousel-slide collage__carousel-slide-3">
+          <div class="collage__carousel-slide collage__carousel-slide-3" data-number-collage-item="3">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
             <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
-          <div class="collage__carousel-slide collage__carousel-slide-4">
+          <div class="collage__carousel-slide collage__carousel-slide-4" data-number-collage-item="4">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
             <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
-          <div class="collage__carousel-slide collage__carousel-slide-5">
+          <div class="collage__carousel-slide collage__carousel-slide-5" data-number-collage-item="5">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
             <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
@@ -303,6 +286,18 @@ class IndexPage {
 
 
     // this.carousel()
+  }
+
+  init() {
+    this.render()
+
+    const slider = new Slider(document.querySelector('.collage__info'),
+      {
+        autoChange: true,
+        duration: 5000,
+        infinite: true,
+      }
+    )
   }
 }
 

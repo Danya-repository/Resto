@@ -805,6 +805,7 @@
         justify-content: center;
         align-items: center;
         position: relative;
+        transition: all 2s;
         
         &-1 {
             grid-column-start: 1;
@@ -850,6 +851,10 @@
 
             }
         }
+        &--active {
+            border-color: $orange;
+            transition: all 2s;
+        }
     }
     &__carousel-img {
         object-fit: cover;
@@ -864,9 +869,12 @@
         grid-column: span 2;
         grid-row: span 2;
         border-color: $orange;
-    }
-    &__carousel-slide--active {
-        border-color: $orange;
+        position: relative;
+        img {
+            padding: 10px;
+            opacity: 0;
+            transition: all 1.5s;
+        }
     }
     &__info {
         display: flex;

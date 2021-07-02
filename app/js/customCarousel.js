@@ -23,6 +23,8 @@ class Slider {
         this.moveX = 0;
         this.moveRelatedX = true;
         this.rollAfterBorder = false;
+        this.arrayOfCollageItems = document.querySelectorAll('[data-number-collage-item]');
+        this.arrayOfPhotos =
 
         this.autoTimer;
         this.autoHandler;
@@ -42,6 +44,8 @@ class Slider {
         this.nextSlide = this.nextSlide.bind(this);
         this.prevSlide = this.prevSlide.bind(this);
         this.stickyEdges = this.stickyEdges.bind(this);
+        this.setActivePhoto = this.setActivePhoto.bind(this);
+        this.setPhotoInWindow = this.setPhotoInWindow.bind(this);
 
         this.prepareHTML();
         this.setParams();
@@ -64,14 +68,15 @@ class Slider {
 
         // slider items
 
-
         Array.from(this.sliderMainWindow.children).map((childItem, childItemIndex) => {
             let wrappedChildItem = document.createElement('div');
-            wrappedChildItem.classList.add(ClassNameSliderItem)
-            wrappedChildItem.setAttribute('data-number-slide', `${childItemIndex}`)
-
-            wrappedChildItem.append(childItem)
-            this.sliderTrack.append(wrappedChildItem)
+            wrappedChildItem.classList.add(ClassNameSliderItem);
+            wrappedChildItem.setAttribute('data-number-slide', `${childItemIndex}`);
+            if (this.infinite === true) {
+                wrappedChildItem.setAttribute('data-original-number-slide', `${childItemIndex + 1}`)
+            }
+            wrappedChildItem.append(childItem);
+            this.sliderTrack.append(wrappedChildItem);
         })
 
         if (this.infinite === true) {
@@ -83,6 +88,7 @@ class Slider {
 
             Array.from(this.sliderTrack.children).forEach((childItem, childItemIndex) => {
                 childItem.setAttribute('data-number-slide', `${childItemIndex}`)
+                
                 childItem.onmousedown = () => {
                     this.numberSlideClicked = childItemIndex;
                 }
@@ -95,6 +101,15 @@ class Slider {
 
         }
         this.sliderMainWindow.append(this.sliderTrack)
+
+        this.arrayOfCollageItems.forEach((item, index) => {
+            let image = item.querySelector('img').cloneNode()
+            image.style.position = `absolute`;
+            image.setAttribute('data-number-collage-photo', `${index+1}`)
+            
+            const window = document.querySelector('.collage__carousel-window')
+            window.append(image)
+        })
     }
 
     setParams() {
@@ -145,8 +160,6 @@ class Slider {
 
         this.sliderTrack.addEventListener('touchstart', this.touchStart.bind(this));
         window.addEventListener('touchend', this.touchStop.bind(this));
-
-
     }
 
     //события при касании и отрыве
@@ -171,9 +184,9 @@ class Slider {
         window.removeEventListener('mousemove', this.mouseDrag);
         this.positionTrack = -(this.currentSlide * this.slideWidth);
         this.startPositionTrack = this.positionTrack;
-        this.setStyleTransition()
-        this.slideChanger()
-        this.setTrackPosition()
+        this.setStyleTransition();
+        this.slideChanger();
+        this.setTrackPosition();
         this.shift = 0;
 
         clearTimeout(this.autoTimer);
@@ -186,15 +199,15 @@ class Slider {
                     this.resetStyleTransition();
                     this.currentSlide = 1;
                     this.positionTrack = -(this.currentSlide * this.slideWidth);
-                    this.setTrackPosition()
+                    this.setTrackPosition();
                     this.startPositionTrack = this.positionTrack;
                 }
-            }, this.animationDuration)
+            }, this.animationDuration);
     
     
     
-            clearTimeout(this.autoTimer)
-            this.autoChanger()
+            clearTimeout(this.autoTimer);
+            this.autoChanger();
         }
     }
 
@@ -218,9 +231,9 @@ class Slider {
         window.removeEventListener('touchmove', this.touchDrag);
         this.positionTrack = -(this.currentSlide * this.slideWidth);
         this.startPositionTrack = this.positionTrack;
-        this.setStyleTransition()
-        this.slideChanger()
-        this.setTrackPosition()
+        this.setStyleTransition();
+        this.slideChanger();
+        this.setTrackPosition();
         this.shift = 0;
 
         clearTimeout(this.autoTimer);
@@ -233,15 +246,15 @@ class Slider {
                     this.resetStyleTransition();
                     this.currentSlide = 1;
                     this.positionTrack = -(this.currentSlide * this.slideWidth);
-                    this.setTrackPosition()
+                    this.setTrackPosition();
                     this.startPositionTrack = this.positionTrack;
                 }
-            }, this.animationDuration)
+            }, this.animationDuration);
     
     
     
-            clearTimeout(this.autoTimer)
-            this.autoChanger()
+            clearTimeout(this.autoTimer);
+            this.autoChanger();
         }
     }
 
@@ -392,11 +405,11 @@ class Slider {
 
     nextSlide() {
         this.resetStyleTransition()
-        this.positionTrack -= this.slideWidth
+        this.positionTrack -= this.slideWidth;
         this.currentSlide += 1;
-        this.setStyleTransition()
-        this.setTrackPosition()
-        this.startPositionTrack = this.positionTrack
+        this.setStyleTransition();
+        this.setTrackPosition();
+        this.startPositionTrack = this.positionTrack;
 
         if (this.autoChange === true && this.infinite === true) {
 
@@ -416,6 +429,7 @@ class Slider {
             clearTimeout(this.autoTimer)
             this.autoChanger()
         }
+
     }
 
     autoChanger() {
@@ -423,9 +437,9 @@ class Slider {
 
         this.autoChangePromise = new Promise((resolve, reject) => {
             this.autoTimer = setTimeout(() => {
-                this.autoHandler()
-                resolve()
-            }, this.autoChangeDuration)
+                this.autoHandler();
+                resolve();
+            }, this.autoChangeDuration);
         })
         this.autoChangePromise.then(() => {
 
@@ -435,20 +449,27 @@ class Slider {
                     this.resetStyleTransition();
                     this.currentSlide = 1;
                     this.positionTrack = -(this.currentSlide * this.slideWidth);
-                    this.setTrackPosition()
+                    this.setTrackPosition();
                     this.startPositionTrack = this.positionTrack;
                 }
-            }, this.animationDuration)
+            }, this.animationDuration);
 
         })
+
+        
+        
+        let num = Array.from(this.sliderTrack.children)[this.currentSlide].dataset.originalNumberSlide
+        this.setActivePhoto(num)
+        this.setPhotoInWindow(num)
+
     }
 
     prevSlide() {
         this.currentSlide -= 1;
 
         this.positionTrack = -(this.currentSlide * this.slideWidth);
-        this.setStyleTransition()
-        this.setTrackPosition(this.positionTrack)
+        this.setStyleTransition();
+        this.setTrackPosition(this.positionTrack);
         this.startPositionTrack = this.positionTrack;
 
         this.animationTimer = setTimeout(() => {
@@ -457,15 +478,15 @@ class Slider {
                 this.resetStyleTransition();
                 this.currentSlide = 1;
                 this.positionTrack = -(this.currentSlide * this.slideWidth);
-                this.setTrackPosition()
+                this.setTrackPosition();
                 this.startPositionTrack = this.positionTrack;
             }
-        }, this.animationDuration)
+        }, this.animationDuration);
 
 
 
-        clearTimeout(this.autoTimer)
-        this.autoChanger()
+        clearTimeout(this.autoTimer);
+        this.autoChanger();
     }
 
     // style methods
@@ -482,20 +503,46 @@ class Slider {
         this.sliderTrack.style.transition = `none`;
     }
 
+    setActivePhoto(itemNumber) {
+
+        this.arrayOfCollageItems.forEach(item => {
+            item.classList.remove('collage__carousel-slide--active');
+        });
+
+        this.arrayOfCollageItems.forEach(item => {
+            if (item.dataset.numberCollageItem === itemNumber) {
+                item.classList.add('collage__carousel-slide--active');
+            }
+        });
+
+    }
+
+    setPhotoInWindow(photoNumber) {
+        let photos = document.querySelectorAll('[data-number-collage-photo]')
+
+        photos.forEach(item => item.style.opacity = `0`);
+        photos.forEach(item => {
+            if (item.dataset.numberCollagePhoto === photoNumber) {
+                item.style.opacity = 1;
+            }
+        })
+
+    }
+
     // option methods
 
     stickyEdges() {
         // Липкие края
         // Левый липкий край
         if (this.positionTrack > 0) {
-            this.positionTrack = (this.startPositionTrack + this.shift) / 2.47
+            this.positionTrack = (this.startPositionTrack + this.shift) / 2.47;
             this.raznica = this.positionTrack;
         }
         // Правый липкий край
         else if (this.positionTrack < -((this.countSlides - 1) * this.slideWidth)) {
-            let fartHestPoint = -((this.countSlides - 1) * this.slideWidth)
-            let delta = fartHestPoint - this.positionTrack
-            this.positionTrack = fartHestPoint - delta / 2.47
+            let fartHestPoint = -((this.countSlides - 1) * this.slideWidth);
+            let delta = fartHestPoint - this.positionTrack;
+            this.positionTrack = fartHestPoint - delta / 2.47;
             this.raznica = this.positionTrack;
 
             // решение через условие, если слайдер утоплен глубже, чем стартовая позиция его последного слайда,
@@ -518,8 +565,8 @@ class Slider {
 function debounce(fn, ms = 500) {
     let timeOut;
     return function (event) {
-        clearTimeout(timeOut)
+        clearTimeout(timeOut);
 
-        timeOut = setTimeout(fn, ms)
+        timeOut = setTimeout(fn, ms);
     }
 }

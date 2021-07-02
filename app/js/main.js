@@ -14,14 +14,8 @@ $(function () {
     const vacanciesPage = new VacanciesPage()
     
     
-    indexPage.render();
-    const slider = new Slider(document.querySelector('.collage__info'),
-        {
-            autoChange: true,
-            duration: 5000,
-            infinite: true,
-        }
-    )
+    indexPage.init();
+    
 
     basket.render()
 
