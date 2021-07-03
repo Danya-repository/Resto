@@ -24,13 +24,13 @@ class Slider {
         this.moveRelatedX = true;
         this.rollAfterBorder = false;
         this.arrayOfCollageItems = document.querySelectorAll('[data-number-collage-item]');
-        this.arrayOfPhotos =
 
         this.autoTimer;
         this.autoHandler;
         this.startPositionTrack;
         this.sliderTrackWidth;
         this.sliderMainWindowWidth;
+        this.arrayOfSlidesCarousel = [];
 
         this.prepareHTML = this.prepareHTML.bind(this);
         this.setParams = this.setParams.bind(this);
@@ -44,8 +44,9 @@ class Slider {
         this.nextSlide = this.nextSlide.bind(this);
         this.prevSlide = this.prevSlide.bind(this);
         this.stickyEdges = this.stickyEdges.bind(this);
-        this.setActivePhoto = this.setActivePhoto.bind(this);
-        this.setPhotoInWindow = this.setPhotoInWindow.bind(this);
+        this.setCollageItemBorder = this.setCollageItemBorder.bind(this);
+        this.setPhotoInMainCollageWindow = this.setPhotoInMainCollageWindow.bind(this);
+        this.setActiveSlide = this.setActiveSlide.bind(this)
 
         this.prepareHTML();
         this.setParams();
@@ -95,6 +96,8 @@ class Slider {
                 childItem.ontouchstart = () => {
                     this.numberSlideClicked = childItemIndex;
                 }
+            
+                this.arrayOfSlidesCarousel.push(childItem)
             })
 
             this.countSlides += 2;
@@ -160,6 +163,18 @@ class Slider {
 
         this.sliderTrack.addEventListener('touchstart', this.touchStart.bind(this));
         window.addEventListener('touchend', this.touchStop.bind(this));
+
+        //collage listeners
+        this.arrayOfCollageItems.forEach(item => {
+            item.onmousedown = () => {
+                let numberCollageItem = item.dataset.numberCollageItem;
+                this.setActiveSlide(numberCollageItem)
+            }
+            item.ontouchstart = () => {
+                let numberCollageItem = item.dataset.numberCollageItem;
+                this.setActiveSlide(numberCollageItem)
+            }
+        })
     }
 
     //события при касании и отрыве
@@ -229,7 +244,6 @@ class Slider {
 
     touchStop() {
         window.removeEventListener('touchmove', this.touchDrag);
-        this.positionTrack = -(this.currentSlide * this.slideWidth);
         this.startPositionTrack = this.positionTrack;
         this.setStyleTransition();
         this.slideChanger();
@@ -242,7 +256,7 @@ class Slider {
 
             this.animationTimer = setTimeout(() => {
                 if (this.currentSlide === 6) {
-    
+
                     this.resetStyleTransition();
                     this.currentSlide = 1;
                     this.positionTrack = -(this.currentSlide * this.slideWidth);
@@ -250,9 +264,9 @@ class Slider {
                     this.startPositionTrack = this.positionTrack;
                 }
             }, this.animationDuration);
-    
-    
-    
+
+
+
             clearTimeout(this.autoTimer);
             this.autoChanger();
         }
@@ -429,7 +443,7 @@ class Slider {
             clearTimeout(this.autoTimer)
             this.autoChanger()
         }
-
+        this.shift = 0;
     }
 
     autoChanger() {
@@ -458,9 +472,9 @@ class Slider {
 
         
         
-        let num = Array.from(this.sliderTrack.children)[this.currentSlide].dataset.originalNumberSlide
-        this.setActivePhoto(num)
-        this.setPhotoInWindow(num)
+        let numberOriginal = Array.from(this.sliderTrack.children)[this.currentSlide].dataset.originalNumberSlide
+        this.setCollageItemBorder(numberOriginal)
+        this.setPhotoInMainCollageWindow(numberOriginal)
 
     }
 
@@ -489,6 +503,23 @@ class Slider {
         this.autoChanger();
     }
 
+    setActiveSlide(itemNumber) {
+        clearTimeout(this.autoTimer)
+        
+        
+        this.arrayOfSlidesCarousel.forEach(item => {
+            if (itemNumber != item.dataset.originalNumberSlide){
+                this.currentSlide = +itemNumber;
+                this.positionTrack = -(this.currentSlide * this.slideWidth)
+                this.setTrackPosition()
+                this.setCollageItemBorder(itemNumber)
+                this.setPhotoInMainCollageWindow(itemNumber)
+            }
+        })
+
+        this.autoChanger()
+    }
+
     // style methods
 
     setTrackPosition() {
@@ -503,7 +534,7 @@ class Slider {
         this.sliderTrack.style.transition = `none`;
     }
 
-    setActivePhoto(itemNumber) {
+    setCollageItemBorder(itemNumber) {
 
         this.arrayOfCollageItems.forEach(item => {
             item.classList.remove('collage__carousel-slide--active');
@@ -517,7 +548,7 @@ class Slider {
 
     }
 
-    setPhotoInWindow(photoNumber) {
+    setPhotoInMainCollageWindow(photoNumber) {
         let photos = document.querySelectorAll('[data-number-collage-photo]')
 
         photos.forEach(item => item.style.opacity = `0`);

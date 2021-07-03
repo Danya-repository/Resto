@@ -68,15 +68,15 @@ class IndexPage {
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-2" data-number-collage-item="2">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
+            <p class="carousel-item-text">Холодный суп</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-3" data-number-collage-item="3">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
+            <p class="carousel-item-text">Молочный суп</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-4" data-number-collage-item="4">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
+            <p class="carousel-item-text">Сладкий суп</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-5" data-number-collage-item="5">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
