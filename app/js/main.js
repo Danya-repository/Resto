@@ -5,19 +5,15 @@ $(function () {
 
     const indexPage = new IndexPage(simpleBar);
     const basketButton = new BasketButton();
-    basketButton.render();
 
     const reviewsPage = new ReviewsPage();
     const aboutUsPage = new AboutUsPage();
     const basket = new Basket(basketButton);
-    const catalogPage = new CatalogPage(basket, basketButton);
     const vacanciesPage = new VacanciesPage()
     
     
     indexPage.init();
     
-
-    basket.render()
 
 
 
@@ -30,8 +26,7 @@ $(function () {
 
             if (event.target.classList.contains('menu__link')) {
 
-                catalogPage.init(event.target.dataset.typeFood)
-                catalogPage.render()
+                let catalogPage = new CatalogPage(event.target.dataset.typeFood, basketButton)
                 if (window.innerWidth < 800) {
                     menu.classList.remove('open')
                 }
@@ -78,29 +73,6 @@ $(function () {
         });
     }();
 
-
-
-    headerBasketOrderToggle = function () {
-
-        let basketBtn = document.querySelector('.user__btn.user__basket');
-        let orderPanel = document.querySelector('.order-panel');
-
-
-        return function () {
-
-            basketBtn.addEventListener('click', function (event) {
-                event.preventDefault;
-                orderPanel.classList.add('order-panel--active');
-            });
-
-            // cancelBtn.addEventListener('click', function (event) {
-            //     event.preventDefault;
-            //     orderPanel.classList.remove('order-panel--active');
-            // });
-
-
-        }();
-    }();
 
     userbarToggle = function () {
 

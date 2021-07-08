@@ -54,10 +54,11 @@ function scripts() {
     // modules
 
     'app/js/customCarousel.js',
+    'app/js/product.js',
+    'app/js/filter.js',
     'app/js/indexPage.js',
     'app/js/catalogPage.js',
     'app/js/aboutUsPage.js',
-    'app/js/utilitLocalStorage.js',
     'app/js/productsBasket.js',
     'app/js/basketButton.js',
     'app/js/vacanciesPage.js',
