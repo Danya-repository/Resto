@@ -6,7 +6,6 @@ $(function () {
     const indexPage = new IndexPage(simpleBar);
     const basketButton = new BasketButton();
 
-    const reviewsPage = new ReviewsPage();
     const aboutUsPage = new AboutUsPage();
     const basket = new Basket(basketButton);
     const vacanciesPage = new VacanciesPage()
@@ -46,7 +45,7 @@ $(function () {
                         vacanciesPage.render()
                         break;
                     case ('reviews'):
-                        reviewsPage.render();
+                        new ReviewsPage();
                 }
             }
         })

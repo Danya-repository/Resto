@@ -7,8 +7,7 @@
           "weight": 220,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "indonesian",
-          "protein" : "fish",
-          "count": 1
+          "protein" : "fish"
           },
       
     {
@@ -19,8 +18,7 @@
           "weight": 230,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "russian",
-          "protein" : "meat",
-          "count": 1
+          "protein" : "meat"
           },
     {
           "id": 10,   
@@ -30,8 +28,7 @@
           "weight": 200,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "indonesian",
-          "protein" : "meat",
-          "count": 1
+          "protein" : "meat"
       },
     
     {
@@ -42,8 +39,7 @@
           "weight": 550,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "russian",
-          "protein" : "vegetarian",
-          "count": 1
+          "protein" : "vegetarian"
       } ,
     {
           "id": 12,   
@@ -53,8 +49,7 @@
           "weight": 210,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "russian",
-          "protein" : "meat",
-          "count": 1
+          "protein" : "meat"
       },
     
     {
@@ -65,8 +60,7 @@
           "weight": 219,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "russian",
-          "protein" : "meat",
-          "count": 1
+          "protein" : "meat"
       },
     
     {
@@ -77,7 +71,6 @@
           "weight": 370,
           "imgUrl": "images/content/soup-1.png",
           "cousine" : "dutch",
-          "protein" : "meat",
-          "count": 1
+          "protein" : "meat"
     }]
 }

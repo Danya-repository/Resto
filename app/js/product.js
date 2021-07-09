@@ -47,6 +47,7 @@ class Product {
                 this.renderToBasket()
             }
             else {
+                this.count = 1;
                 document.querySelector(`[data-id-in-basket="${this.id}"]`).remove()
             }
 

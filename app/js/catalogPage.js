@@ -1,7 +1,6 @@
 class CatalogPage {
   constructor(type, basketButton) {
 
-    //global properties
     this.place = `.main`;
     this.template = `<div class="container">
                        <div class="catalog">
@@ -34,7 +33,7 @@ class CatalogPage {
     
     filterBar.addEventListener('click', (event) => {
 
-      if (event.target.classList.contains('filters__activate-button')) {
+        if (event.target.classList.contains('filters__activate-button')) {
             this.filter.getProducts()
                         .then(productsAfterFilter => {
                                       this.products = {};
@@ -49,8 +48,8 @@ class CatalogPage {
                         .then(() => {
                           this.renderProducts()
                         })
-      }
-      if (event.target.classList.contains('filters__activate-reset'))  {
+        }
+        if (event.target.classList.contains('filters__activate-reset'))  {
         this.filter.setStartParameters();
         this.filter.getProducts()
                         .then(productsAfterFilter => {
@@ -66,16 +65,9 @@ class CatalogPage {
                         .then(() => {
                           this.renderProducts()
                         })
-      }
+        }
         
       })
-    // catalogList.addEventListener('click', (event) => {
-
-    //   if (event.target.classList.contains('products__order-by')) {
-    //     this.basketButton.render()
-    //   }
-    // })
-    
   }
 
   init() {

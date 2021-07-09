@@ -4723,7 +4723,7 @@ body {
   min-width: 120px;
 }
 
-.reviews .reviews__pagination {
+.reviews .pagination {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4735,7 +4735,7 @@ body {
           align-items: center;
 }
 
-.reviews .reviews__pagination .pagination__list {
+.reviews .pagination .pagination__list {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4745,15 +4745,15 @@ body {
   margin: 0 20px;
 }
 
-.reviews .reviews__pagination .pagination__list .pagination__link--active {
+.reviews .pagination .pagination__list .pagination__link--active {
   color: #EA9769;
 }
 
-.reviews .reviews__pagination .pagination__num-page + .pagination__num-page {
+.reviews .pagination .pagination__num-page + .pagination__num-page {
   margin-left: 15px;
 }
 
-.reviews .reviews__pagination .pagination__btn {
+.reviews .pagination .pagination__btn {
   position: relative;
   height: 30px;
   width: 30px;
@@ -4762,17 +4762,17 @@ body {
   border: none;
 }
 
-.reviews .reviews__pagination .pagination__btn::after {
+.reviews .pagination .pagination__btn::after {
   content: '';
   position: absolute;
 }
 
-.reviews .reviews__pagination .pagination__btn::before {
+.reviews .pagination .pagination__btn::before {
   content: '';
   position: absolute;
 }
 
-.reviews .reviews__pagination .pagination__prev-btn::after {
+.reviews .pagination .pagination__prev-btn::after {
   width: 2px;
   height: 12px;
   background: #EA9769;
@@ -4783,7 +4783,7 @@ body {
   left: 12px;
 }
 
-.reviews .reviews__pagination .pagination__prev-btn::before {
+.reviews .pagination .pagination__prev-btn::before {
   width: 2px;
   height: 12px;
   background: #EA9769;
@@ -4794,7 +4794,7 @@ body {
   left: 12px;
 }
 
-.reviews .reviews__pagination .pagination__next-btn::after {
+.reviews .pagination .pagination__next-btn::after {
   width: 2px;
   height: 12px;
   background: #EA9769;
@@ -4805,7 +4805,7 @@ body {
   left: 12px;
 }
 
-.reviews .reviews__pagination .pagination__next-btn::before {
+.reviews .pagination .pagination__next-btn::before {
   width: 2px;
   height: 12px;
   background: #EA9769;
