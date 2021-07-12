@@ -11,8 +11,8 @@ $(function () {
     const vacanciesPage = new VacanciesPage()
     
     
-    indexPage.init();
-    
+    // indexPage.init();
+    new ReviewsPage();
 
 
 

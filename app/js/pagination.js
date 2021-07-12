@@ -1,12 +1,72 @@
 class Pagination {
     constructor(count) {
         this.place = `.reviews__pagination`;
-        this.count = count;
-        this.startPage = 1;
-        this.paginationList = [];
+        this.paginationList = {};
+        this.getCountElements = 4;
+        this.maxCountOfShowItem = 5;
 
+        this.startPage = 1;
+        this.endPage = Math.ceil(count / this.getCountElements);
+
+        this.activePage = 1;
+
+        this.getFrom;
+        this.getTo;
+
+        this.init()
+        this.getFromTo();
         this.render();
         this.renderItem();
+        this.setEvents();
+    }
+
+    init() {
+        if (this.activePage > Math.floor(this.maxCountOfShowItem / 2)) {
+            this.leftEdge = this.activePage - Math.floor(this.maxCountOfShowItem / 2);
+        }
+        else {
+            this.leftEdge = 1;
+            this.rightEdge = this.endPage;
+        }
+
+        if (this.activePage <= this.endPage - Math.floor(this.maxCountOfShowItem / 2)) {
+            this.rightEdge = this.leftEdge + this.maxCountOfShowItem - 1;
+        }
+        else {
+            this.leftEdge = this.endPage - this.maxCountOfShowItem + 1;
+            this.rightEdge = this.endPage;
+        }
+    }
+
+    setEvents() {
+        const PagList = this.pagination.querySelector('.pagination__list');
+        const LeftArrow = this.pagination.querySelector('.pagination__prev-btn');
+        const RightArrow = this.pagination.querySelector('.pagination__next-btn');
+
+        PagList.addEventListener('click', () => {
+            this.setActivePage();
+            this.init();
+            this.getFromTo()
+            this.renderItem();
+        });
+
+        LeftArrow.addEventListener('click', () => {
+            if (this.activePage > this.startPage) {
+                this.activePage -= 1;
+                this.init();
+                this.getFromTo()
+                this.renderItem();
+            }
+        })
+
+        RightArrow.addEventListener('click', () => {
+            if (this.activePage < this.endPage) {
+                this.activePage += 1;
+                this.init();
+                this.getFromTo()
+                this.renderItem();
+            }
+        })
     }
 
     render() {
@@ -21,9 +81,32 @@ class Pagination {
     }
 
     renderItem() {
-        const Place = this.pagination.querySelector('.pagination__list')
-        for (let i = this.startPage; i < this.startPage + 4; i++) {
-           let pagItem = new PaginationItem(i)
+        const Place = this.pagination.querySelector('.pagination__list');
+        Place.innerHTML = ``;
+        for (let i = this.leftEdge; i <= this.rightEdge; i++) {
+            let pagItem = new PaginationItem(i);
+            i === this.activePage ? pagItem.setActive() : pagItem.setNotActive();
+            this.paginationList[i] = pagItem;
         }
+    }
+
+    setActivePage() {
+        const PagList = this.pagination.querySelector('.pagination__list');
+
+        for (let i in this.paginationList) {
+            if (this.paginationList[i].active === true && this.paginationList[i].number != this.activePage) {
+                this.activePage = this.paginationList[i].number;
+                break;
+            }
+        }
+        PagList.innerHTML = ``;
+
+        this.paginationList = {};
+        this.renderItem();
+    }
+
+    getFromTo() {
+        this.getFrom = (this.activePage - 1) * 4;
+        this.getTo = this.getFrom + 4;
     }
 }

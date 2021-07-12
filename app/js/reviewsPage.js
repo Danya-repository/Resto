@@ -1,20 +1,35 @@
 class ReviewsPage {
-    constructor() {
-        this.place = '.main';
-        this.url = 'reviews'
-        this.reviews = {};
+  constructor() {
+    this.place = '.main';
+    this.url = 'reviews'
+    this.reviews = [];
 
-        this.render = this.render.bind(this);
-        this.init = this.init.bind(this);
+    this.render = this.render.bind(this);
+    this.init = this.init.bind(this);
 
-        this.render();
-        this.getReviews();
-        this.init();
-    }
+    this.render();
+    this.init();
+    
+  }
 
-    render() {
-      const Place = document.querySelector(this.place);
-      Place.innerHTML = `<div class="container">
+  setEvents() {
+    this.paginationBar.pagination.addEventListener('click', (event) => {
+      const ReviewList = document.querySelector('.reviews__list');
+      if (
+        event.target.classList.contains('pagination__link') ||
+        event.target.classList.contains('pagination__prev-btn') ||
+          event.target.classList.contains('pagination__next-btn')
+      ) {
+        ReviewList.innerHTML = ``;
+        this.paginationBar.getFromTo()
+        this.renderReviews()
+      }
+      })
+  }
+
+  render() {
+    const Place = document.querySelector(this.place);
+    Place.innerHTML = `<div class="container">
                                <section class="breadcrumps">
                                  <ul class="breadcrumps__list">
                                    <li class="breadcrumps__item">
@@ -60,37 +75,43 @@ class ReviewsPage {
                                  </form>
                                </section>
                              </div>`
-    }
+  }
 
-    init() {
-      this.paginationBar = new Pagination(5)
-      $(".form__rating").rateYo({
-        starWidth: "15px",
+  
+  init() {
+    this.getReviews()
+      .then(() => {
+        this.paginationBar = new Pagination(this.reviews.length)
+        this.renderReviews()
+        this.setEvents();
+      });
+
+
+    $(".form__rating").rateYo({
+      starWidth: "15px",
+    })
+    $('input:file').styler()
+    document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
+
+
+  }
+
+  getReviews() {
+    return fetch(`./database/${this.url}.json`)
+      .then(reviews => reviews.json())
+      .then(reviewsAfterParse => {
+        reviewsAfterParse.reviews.forEach(element => {
+          this.reviews.push(element)
+        })
+        return this.reviews;
       })
-      $('input:file').styler()
-      document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
 
-      
-    }
+  }
 
-    getReviews() {
-      fetch(`./database/${this.url}.json`)
-                                          .then(reviews => reviews.json())
-                                          .then(reviewsAfterParse => {
-                                            reviewsAfterParse.reviews.forEach(element => {
-                                              this.reviews[element.id] = element;
-                                            })
-                                            return reviewsAfterParse.reviews
-                                          })                          
-                                          .then(() => {
-                                            this.renderReviews()
-                                          });
-                                          
-    }
-
-    renderReviews() {
-      for (let i in this.reviews) {
-        let review = new Review(this.reviews[i])
-      }
-    }
+  renderReviews() {
+    console.log(this.reviews.slice(this.paginationBar.getFrom, this.paginationBar.getTo))
+    this.reviews.slice(this.paginationBar.getFrom, this.paginationBar.getTo).forEach(element => {
+      new Review(element)
+    })
+  }
 }

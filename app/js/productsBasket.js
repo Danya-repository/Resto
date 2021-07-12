@@ -35,7 +35,6 @@ class Basket {
     const CloseButton = document.querySelector('.order-panel__close-btn-wrapper .close-btn');
     const BasketButton = document.querySelector('.user__basket');
     CloseButton.addEventListener('click', () => {
-      console.log('1234')
       Basket.classList.remove('order-panel--active')
       CloseButton.classList.remove('close-btn--active')
     })
