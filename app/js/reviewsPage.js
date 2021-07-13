@@ -16,8 +16,8 @@ class ReviewsPage {
     this.paginationBar.pagination.addEventListener('click', (event) => {
       const ReviewList = document.querySelector('.reviews__list');
       if (
-        event.target.classList.contains('pagination__link') ||
-        event.target.classList.contains('pagination__prev-btn') ||
+          event.target.classList.contains('pagination__link')     ||
+          event.target.classList.contains('pagination__prev-btn') ||
           event.target.classList.contains('pagination__next-btn')
       ) {
         ReviewList.innerHTML = ``;
@@ -91,7 +91,7 @@ class ReviewsPage {
       starWidth: "15px",
     })
     $('input:file').styler()
-    document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото'
+    document.querySelector('.jq-file__name').innerHTML = 'Прикрепите фото';
 
 
   }
@@ -109,7 +109,6 @@ class ReviewsPage {
   }
 
   renderReviews() {
-    console.log(this.reviews.slice(this.paginationBar.getFrom, this.paginationBar.getTo))
     this.reviews.slice(this.paginationBar.getFrom, this.paginationBar.getTo).forEach(element => {
       new Review(element)
     })

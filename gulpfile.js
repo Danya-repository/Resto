@@ -54,6 +54,7 @@ function scripts() {
     // modules
 
     'app/js/customCarousel.js',
+    'app/js/modalWindow.js',
     'app/js/product.js',
     'app/js/filter.js',
     'app/js/review.js',

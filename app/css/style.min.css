@@ -4700,12 +4700,17 @@ body {
 }
 
 .reviews__photo {
-  max-width: 66px;
-  max-height: 66px;
+  max-width: 70px;
+  max-height: 70px;
+  padding: 5px;
 }
 
 .reviews__photo + .reviews__photo {
   margin-left: 10px;
+}
+
+.reviews__photo--active {
+  border: 1px solid #EA9769;
 }
 
 .reviews__content {
@@ -4964,14 +4969,13 @@ body {
 }
 
 .modal-window {
-  position: absolute;
+  position: fixed;
   height: 100vh;
   left: 0;
   right: 0;
   bottom: 0;
   top: 0;
-  background: rgba(255, 255, 255, 0.9);
-  z-index: 10;
+  z-index: 50;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -4981,12 +4985,26 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  background: rgba(255, 255, 255, 0);
+  -webkit-transition: all 1.7s;
+  -o-transition: all 1.7s;
+  transition: all 1.7s;
+}
+
+.modal-window--active {
+  background: rgba(255, 255, 255, 0.9);
+  -webkit-transition: all .7s;
+  -o-transition: all .7s;
+  transition: all .7s;
 }
 
 .modal-window__inner {
+  -webkit-transform: translateY(-400%);
+      -ms-transform: translateY(-400%);
+          transform: translateY(-400%);
   position: relative;
-  max-height: 60%;
-  max-width: 60%;
+  max-height: 70%;
+  max-width: 25%;
   width: 100%;
   height: 100%;
   border: 1px solid #252836;
@@ -5000,6 +5018,53 @@ body {
       -ms-flex-align: center;
           align-items: center;
   background: #fff;
+  opacity: 0;
+  -webkit-transition: all 1.9s;
+  -o-transition: all 1.9s;
+  transition: all 1.9s;
+}
+
+.modal-window__inner--active {
+  opacity: 1;
+  -webkit-transform: translateY(0);
+      -ms-transform: translateY(0);
+          transform: translateY(0);
+  -webkit-transition: all .9s;
+  -o-transition: all .9s;
+  transition: all .9s;
+}
+
+.modal-window__content {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: absolute;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.modal-window__item {
+  height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px;
+}
+
+.modal-window__photo {
+  height: 100%;
+  -o-object-position: center;
+     object-position: center;
+  -o-object-fit: scale-down;
+     object-fit: scale-down;
 }
 
 .modal-window__close-btn-wrapper {
@@ -5010,7 +5075,7 @@ body {
   right: 0;
 }
 
-.modal-window .modal-window__prev-btn {
+.modal-window__prev-btn {
   position: absolute;
   left: -60px;
   height: 40px;
@@ -5019,7 +5084,7 @@ body {
   background: transparent;
 }
 
-.modal-window .modal-window__prev-btn::after {
+.modal-window__prev-btn::after {
   content: '';
   position: absolute;
   width: 22px;
@@ -5035,7 +5100,7 @@ body {
   transition: all .5s;
 }
 
-.modal-window .modal-window__prev-btn::before {
+.modal-window__prev-btn::before {
   content: '';
   position: absolute;
   width: 22px;
@@ -5051,7 +5116,7 @@ body {
   transition: all .5s;
 }
 
-.modal-window .modal-window__next-btn {
+.modal-window__next-btn {
   position: absolute;
   right: -60px;
   height: 40px;
@@ -5060,7 +5125,7 @@ body {
   background: transparent;
 }
 
-.modal-window .modal-window__next-btn::after {
+.modal-window__next-btn::after {
   content: '';
   position: absolute;
   width: 22px;
@@ -5076,7 +5141,7 @@ body {
   transition: all .5s;
 }
 
-.modal-window .modal-window__next-btn::before {
+.modal-window__next-btn::before {
   content: '';
   position: absolute;
   width: 22px;

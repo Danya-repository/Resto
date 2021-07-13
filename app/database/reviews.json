@@ -5,189 +5,189 @@
             "clientName": "Игнат",
             "rating": 2,
             "reviewsText": "Потрясающий ресторан. Все очень вкусное, по приемлемым ценам, заказали сет из 5 настоек, очень всё вкусное и чувствуется натуральное. Морскик клюквенный просто потрясающий, вареники ассорти офигенные, объелись, начали улыбаться и радоваться))) вышли покурить, а нам дали шинели военные, пофоткались в них, ещё вынесли кокошники и в них сфотались. Вобщем приходите не пожалеете!! Супер ресторан)))",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]               
          },
          {
             "id": 2,
             "clientName": "Иван",
             "rating": 3,
             "reviewsText": "Супер, было очень вкусно, тёплая атмосфера, прекрасная музыка!",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 3,
             "clientName": "Хейтер",
             "rating": 4.5,
             "reviewsText": "Невкусный вкус у еды, странный запах от ложечки",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 4,
             "clientName": "Мария",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 5,
             "clientName": "Вита",
             "rating": 5,
             "reviewsText": "Всем, привет!",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 6,
             "clientName": "Евгения",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 7,
             "clientName": "Ангелина",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 8,
             "clientName": "Анжела",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 9,
             "clientName": "Владислава",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 10,
             "clientName": "Ирина",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 11,
             "clientName": "Марина",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 12,
             "clientName": "Ксения",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 13,
             "clientName": "Евгения",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 14,
             "clientName": "Ярослава",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 15,
             "clientName": "Антонина",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 16,
             "clientName": "Алина",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 17,
             "clientName": "Александра",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 18,
             "clientName": "Михаил",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 19,
             "clientName": "PussyEater228",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 20,
             "clientName": "Анна",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 21,
             "clientName": "Владислав",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 22,
             "clientName": "Геннадий",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 23,
             "clientName": "Кирилл",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 24,
             "clientName": "Дмитрий",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 25,
             "clientName": "Даниил",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 26,
             "clientName": "Руслан",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          },
          {
             "id": 27,
             "clientName": "Сталкер",
             "rating": 5,
             "reviewsText": "Я не знала как жить, до посещения вашего ресторана, мне помогла капля простого советского ...",
-            "photos": []               
+            "photos": ["/images/content/hot-dishes-img.png", "/images/content/soup-3.png", "/images/content/soup-5.png"]                
          }
         ]
 }

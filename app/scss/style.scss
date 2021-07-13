@@ -14,8 +14,6 @@
     }
 }
 
-
-
 .header {
     padding: 24px 0;
     &__wrapper-top {
@@ -1936,10 +1934,14 @@
         align-self: center;
     }
     &__photo {
-        max-width: 66px;
-        max-height: 66px;
+        max-width: 70px;
+        max-height: 70px;
+        padding: 5px;
         &+.reviews__photo {
             margin-left: 10px;
+        }
+        &--active {
+            border: 1px solid $orange;
         }
     }
     &__content {
@@ -2135,21 +2137,27 @@
 }
 
 .modal-window {
-    position: absolute;
+    position: fixed;
     height: 100vh;
     left: 0;
     right: 0;
     bottom: 0;
     top: 0;
-    background: rgba(#fff, 0.9);
-    z-index: 10;
+    z-index: 50;
     display: flex;
     justify-content: center;
     align-items: center;
+    background: rgba(#fff, 0);
+    transition: all 1.7s;
+    &--active {
+        background: rgba(#fff, 0.9);
+        transition: all .7s;
+    }
     &__inner {
+        transform: translateY(-400%);
         position: relative;
-        max-height: 60%;
-        max-width: 60%;
+        max-height: 70%;
+        max-width: 25%;
         width: 100%;
         height: 100%;
         border: 1px solid $dark-main;
@@ -2157,6 +2165,33 @@
         justify-content: center;
         align-items: center;
         background: #fff;
+        opacity: 0;
+        transition: all 1.9s;
+        // overflow: hidden;
+        &--active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all .9s;
+        }
+    }
+    &__content {
+        height: 100%;
+        display: flex;
+        position: absolute;
+        justify-content: space-between;
+        
+    }
+    &__item {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+    }
+    &__photo {
+        height: 100%;
+        object-position: center;
+        object-fit: scale-down;
     }
     &__close-btn-wrapper {
         width: 40px;
@@ -2167,7 +2202,7 @@
     }
     
 
-    .modal-window__prev-btn {
+    &__prev-btn {
         position: absolute;
         left: -60px;
         height: 40px;
@@ -2197,7 +2232,7 @@
             transition: all .5s;
         }
     }
-    .modal-window__next-btn {
+    &__next-btn {
         position: absolute;
         right: -60px;
         height: 40px;
