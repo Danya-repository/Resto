@@ -1937,11 +1937,14 @@
         max-width: 70px;
         max-height: 70px;
         padding: 5px;
+        transition: all .5s;
         &+.reviews__photo {
             margin-left: 10px;
         }
         &--active {
+            transition: all .5s;
             border: 1px solid $orange;
+
         }
     }
     &__content {
@@ -2138,20 +2141,25 @@
 
 .modal-window {
     position: fixed;
-    height: 100vh;
     left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
-    top: 0;
+    height: 100vh;
     z-index: 50;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(#fff, 0);
-    transition: all 1.7s;
-    &--active {
-        background: rgba(#fff, 0.9);
-        transition: all .7s;
+    &__background {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: rgba(#fff, 0);
+        transition: all 3.0s;
+        &--active {
+            background: rgba(#fff, 0.9);
+            transition: all 2.0s;
+        }
     }
     &__inner {
         transform: translateY(-400%);
@@ -2167,7 +2175,6 @@
         background: #fff;
         opacity: 0;
         transition: all 1.9s;
-        // overflow: hidden;
         &--active {
             opacity: 1;
             transform: translateY(0);
@@ -2176,20 +2183,27 @@
     }
     &__content {
         height: 100%;
-        display: flex;
-        position: absolute;
-        justify-content: space-between;
-        
+        width: 100%;
+        position: relative;
+        overflow: hidden;
     }
-    &__item {
+    &__track {
+        position: absolute;
         height: 100%;
         display: flex;
-        justify-content: center;
-        align-items: center;
-        padding: 20px;
+        justify-content: space-between;
     }
+    // &__item {
+    //     height: 100%;
+    //     width: 100%;
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     padding: 20px;
+    // }
     &__photo {
         height: 100%;
+        width: 100%;
         object-position: center;
         object-fit: scale-down;
     }

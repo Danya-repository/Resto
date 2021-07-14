@@ -13,11 +13,13 @@ class Review {
     }
 
     setEvents() {
-        this.PhotoReviewBar.addEventListener('click', (event) => {
-            new ModalWindow(this.photos, event.target);
-        })
+        this.PhotoReviewBar.addEventListener('click', debounce(() => {
+            this.modal = new ModalWindow(this.photos, event.target, this.reviewItem)
+        }), event)
+            
+        
+    
     }
-
     render() {
         const Place = document.querySelector(this.place);
         this.reviewItem = document.createElement('li');
@@ -43,7 +45,7 @@ class Review {
         for (let photoNumber in this.photos) {
             let photoClass = (+photoNumber === 0 ? `reviews__photo reviews__photo--active` : `reviews__photo`)
 
-            let img = `<img class="${photoClass}" src="${this.photos[photoNumber]}" alt="">`;
+            let img = `<img class="${photoClass}" src="${this.photos[photoNumber]}" data-photo-review-number="${photoNumber}" alt="">`;
             this.PhotoReviewBar.innerHTML += img;
         }
 
@@ -61,4 +63,13 @@ class Review {
         })
     }
 
+}
+
+function debounce(fn, event, ms = 200) {
+    let timeOut;
+    return function () {
+        clearTimeout(timeOut);
+
+        timeOut = setTimeout(fn(event), ms);
+    }
 }

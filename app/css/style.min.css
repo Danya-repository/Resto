@@ -4703,6 +4703,9 @@ body {
   max-width: 70px;
   max-height: 70px;
   padding: 5px;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
 }
 
 .reviews__photo + .reviews__photo {
@@ -4710,6 +4713,9 @@ body {
 }
 
 .reviews__photo--active {
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
   border: 1px solid #EA9769;
 }
 
@@ -4970,11 +4976,11 @@ body {
 
 .modal-window {
   position: fixed;
-  height: 100vh;
   left: 0;
+  top: 0;
   right: 0;
   bottom: 0;
-  top: 0;
+  height: 100vh;
   z-index: 50;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -4985,17 +4991,23 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
-  background: rgba(255, 255, 255, 0);
-  -webkit-transition: all 1.7s;
-  -o-transition: all 1.7s;
-  transition: all 1.7s;
 }
 
-.modal-window--active {
+.modal-window__background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0);
+  -webkit-transition: all 3.0s;
+  -o-transition: all 3.0s;
+  transition: all 3.0s;
+}
+
+.modal-window__background--active {
   background: rgba(255, 255, 255, 0.9);
-  -webkit-transition: all .7s;
-  -o-transition: all .7s;
-  transition: all .7s;
+  -webkit-transition: all 2.0s;
+  -o-transition: all 2.0s;
+  transition: all 2.0s;
 }
 
 .modal-window__inner {
@@ -5036,31 +5048,25 @@ body {
 
 .modal-window__content {
   height: 100%;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal-window__track {
+  position: absolute;
+  height: 100%;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  position: absolute;
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
 }
 
-.modal-window__item {
-  height: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding: 20px;
-}
-
 .modal-window__photo {
   height: 100%;
+  width: 100%;
   -o-object-position: center;
      object-position: center;
   -o-object-fit: scale-down;
