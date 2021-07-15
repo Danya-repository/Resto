@@ -1,19 +1,15 @@
 class ModalWindow {
-    constructor(content, clickTarget, parentNode) {
+    constructor(content, parentNode) {
         this.place = `.main`
         this.content = content;
         this.open = false;
         this.inProcess = false;
         this.parentNode = parentNode;
         this.count = this.content.length;
-        this.click = clickTarget;
+        this.click;
 
-        this.activeImage = +clickTarget.dataset.photoReviewNumber;
+        this.activeImage;
 
-        this.prepareHTML();
-        this.setParentItemBorder();
-        this.setEvents();
-        this.toggle();
     }
 
     prepareHTML() {
@@ -21,75 +17,96 @@ class ModalWindow {
 
         this.modal = document.createElement('div');
         this.modal.classList.add('modal-window');
-        this.modal.innerHTML = `<div class="modal-window__background" data-close-modal></div>
-                                <div class="modal-window__inner">
-                                  <div class="modal-window__close-btn-wrapper">
-                                    <button class="close-btn close-btn--active" data-close-modal>
-                                      <div class="close-btn__decorate-block" data-close-modal></div>
-                                      <div class="close-btn__decorate-block" data-close-modal></div>
-                                    </button>
-                                  </div>
-                                  <button class="modal-window__prev-btn"></button>
-                                  <div class="modal-window__content">
-                                    <div class="modal-window__track"></div>
-                                  </div>
-                                  <button class="modal-window__next-btn"></button>
-                                </div>`
+        this.modal.insertAdjacentHTML('afterbegin', `<div class="modal-window__background" data-close-modal></div>
+                                                        <div class="modal-window__inner">
+                                                          <div class="modal-window__close-btn-wrapper">
+                                                            <button class="close-btn close-btn--active" data-close-modal>
+                                                              <div class="close-btn__decorate-block" data-close-modal></div>
+                                                              <div class="close-btn__decorate-block" data-close-modal></div>
+                                                            </button>
+                                                          </div>
+                                                          <button class="modal-window__prev-btn"></button>
+                                                          <div class="modal-window__content">
+                                                            <div class="modal-window__track"></div>
+                                                          </div>
+                                                          <button class="modal-window__next-btn"></button>
+                                                        </div>`)
+
         this.wrapper = this.modal.querySelector('.modal-window__inner');
-        this.background = this.modal.querySelector('.modal-window__background')
+        this.background = this.modal.querySelector('.modal-window__background');
         this.track = this.modal.querySelector('.modal-window__track');
+        this.closeBtn = this.modal.querySelector('.close-btn');
+
+        this.placeToRender.append(this.modal)
+    }
+
+    setParameters() {
+        this.windowWidth = this.wrapper.getBoundingClientRect().width;
+        
+        this.track.style.width = `${this.windowWidth * this.content.length}px`;
+        Array.from(this.track.children).forEach(item => item.style.width = `${this.windowWidth}px`)
+
+        this.position = -(this.activeImage * this.windowWidth);
+        this.setPosition();
+    }
+
+    setContent() {
+        for (let link of this.content) {
+            let item = `<div class="modal-window__item">
+                            <img class="modal-window__photo" src="${link}">
+                        </div>`
+            this.track.innerHTML += item;
+        }
     }
 
     setEvents() {
+
+        window.addEventListener('resize', debounce(this.setParameters.bind(this)))
+
         this.modal.onclick = (event) => {
             if (event.target.hasAttribute('data-close-modal')) {
                 this.toggle()
             }
-            if (event.target.classList.contains('modal-window__prev-btn')) {
+            else if (event.target.classList.contains('modal-window__prev-btn')) {
                 this.prev();
             }
-            if (event.target.classList.contains('modal-window__next-btn')) {
+            else if (event.target.classList.contains('modal-window__next-btn')) {
                 this.next();
             }
         }
     }
 
-    setParameters() {
-        this.windowWidth = this.modal.querySelector('.modal-window__inner').getBoundingClientRect().width;
-        this.position = -(this.activeImage * this.windowWidth);
-        this.track.style.width = `${this.windowWidth * this.content.length}px`
-    }
 
     toggle() {
         if (this.open === false && this.inProcess === false) {
             this.inProcess = true;
-            this.togglePromise = new Promise((resolve) => {
-                this.placeToRender.append(this.modal)
+
+            this.prepareHTML();
+            this.setEvents();
+            setTimeout(() => {
+                this.openModal();
                 setTimeout(() => {
-                    this.openModal();
-                    setTimeout(() => {
-                        this.setContent();
-                        this.setPosition();
-                        this.open = true;
-                        this.inProcess = false;
-                        resolve();
-                    }, 2000)
-                }, 0)
-            })
+                    this.setContent();
+                    this.setParameters();
+                    this.open = true;
+                    this.inProcess = false;
+
+                }, 2000)
+            }, 0)
+
         }
         else if (this.open === true && this.inProcess === false) {
             this.inProcess = true;
-            this.togglePromise = new Promise((resolve) => {
+            setTimeout(() => {
+                this.closeModal();
                 setTimeout(() => {
-                    this.closeModal();
-                    setTimeout(() => {
-                        this.open = false;
-                        this.modal.remove();
-                        this.inProcess = false;
-                        resolve();
-                    }, 1000)
-                }, 0)
-            })
+                    this.open = false;
+                    this.modal.remove();
+                    this.inProcess = false;
+
+                }, 1000)
+            }, 0)
+
         }
 
         return this.TogglePromise;
@@ -99,25 +116,14 @@ class ModalWindow {
         this.background.classList.add('modal-window__background--active');
         this.wrapper.classList.add('modal-window__inner--active');
         document.body.style.overflow = 'hidden';
-        this.setParameters();
     }
 
     closeModal() {
         this.wrapper.classList.remove('modal-window__inner--active');
+        
         this.background.classList.remove('modal-window__background--active');
         document.body.style.overflow = 'visible';
     }
-
-    setContent() {
-        const Place = this.modal.querySelector('.modal-window__track')
-        for (let i in this.content) {
-            let photo = document.createElement('img');
-            photo.setAttribute('src', this.content[i])
-            photo.classList.add('modal-window__photo')
-            Place.append(photo)
-        }
-    }
-
 
     next() {
         if (this.activeImage < this.count - 1) {
@@ -148,7 +154,7 @@ class ModalWindow {
     }
 
     setParentItemBorder() {
-        const ParentNodeItems = this.click.parentNode.children;
+        const ParentNodeItems = this.parentNode.children;
         ParentNodeItems.forEach(item => {
             item.classList.remove('reviews__photo--active')
         })
@@ -156,3 +162,13 @@ class ModalWindow {
     }
 }
 
+
+
+function debounce(fn, ms = 500) {
+    let timeOut;
+    return function (event) {
+        clearTimeout(timeOut);
+
+        timeOut = setTimeout(fn, ms);
+    }
+}

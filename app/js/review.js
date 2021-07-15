@@ -10,11 +10,17 @@ class Review {
         this.render();
         this.renderPhotoBlock();
         this.setEvents();
+
+        this.modal = new ModalWindow(this.photos,this.PhotoReviewBar)
+
+        
     }
 
     setEvents() {
         this.PhotoReviewBar.addEventListener('click', debounce(() => {
-            this.modal = new ModalWindow(this.photos, event.target, this.reviewItem)
+            this.modal.activeImage = +event.target.dataset.photoReviewNumber;
+            this.modal.setParentItemBorder();
+            this.modal.toggle();
         }), event)
             
         
