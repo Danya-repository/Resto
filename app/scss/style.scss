@@ -321,7 +321,7 @@
     &__drop-down {
         position: absolute;
         right: -4px;
-        top: 30px;
+        top: 31px;
         background-color: #fff;
         z-index: 5;
         width: 200px;
@@ -639,16 +639,15 @@
         align-items: center;
         justify-content: center;
         height: 40px;
-        width: 41px;
+        width: 40px;
         border-radius: 8px;
         border: 1px solid #252836;
         
     }
     &__item-remove-btn {
-        width: 50px;
-        margin-right: 25px;
+        margin-right: 29px;
         background: transparent;
-        margin-left: 20px;
+        padding: 0;
     }
 
 
@@ -672,13 +671,11 @@
     }
 
     &__item-form {
-        max-width: 100%;
-        width: 100%;
+        width: 73%;
     }
     &__item-input {
-        max-width: 410px;
+        max-width: 80%;
         padding: 15px 14px 14px 14px;
-        max-width: 410px;
     }
 
 
@@ -1360,6 +1357,12 @@
 .catalog {
     display: flex;
     min-height: 650px;
+    &__spinner {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 }
 
 
@@ -1691,7 +1694,6 @@
     }
     &__tab {
         opacity: 0;
-        // position: absolute;
         max-width: 930px;
         transition: all .5s;
         display: none;
@@ -1705,7 +1707,6 @@
 
 .about-slider {
     &__inner {
-        margin-right: -10px;
         position: relative;
         margin-bottom: 30px;
     }
@@ -2194,16 +2195,6 @@
         display: flex;
         justify-content: space-between;
     }
-    &__item {
-        // height: 100%;
-        // width: 100%;
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        // padding: 20px;
-        position: relative;
-        width: 230px;
-    }
     &__photo {
         height: 100%;
         width: 100%;
@@ -2217,7 +2208,12 @@
         top: -45px;
         right: 0;
     }
-    
+    &__spinner {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }    
 
     &__prev-btn {
         position: absolute;
@@ -2984,7 +2980,7 @@
         }
         &__item-remove-btn {
             margin-right: 30px; 
-            width: 47px;
+            // width: 47px;
             height: 40px;
         }
 
@@ -3079,11 +3075,6 @@
     .about-slider__item {
         padding-right: 0;
     }
-    .order-panel {
-        &__item-remove-btn {
-            width: 53px;
-        }
-    }
 }
 
 @media (max-width: 440px){
@@ -3165,13 +3156,13 @@
     }
 }
 
-@media (max-width: 350px) {
-    .order-panel {
-        &__item-remove-btn {
-            width: 53px;
-        }
-    }
-}
+// @media (max-width: 350px) {
+//     .order-panel {
+//         &__item-remove-btn {
+//             width: 53px;
+//         }
+//     }
+// }
 
 @media (max-width: 345px){
     .extra-menu {

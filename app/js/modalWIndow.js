@@ -27,6 +27,9 @@ class ModalWindow {
                                                           </div>
                                                           <button class="modal-window__prev-btn"></button>
                                                           <div class="modal-window__content">
+                                                            <div class="modal-window__spinner">
+                                                                <img class="spinner__image" src="images/icons/spinner.svg">
+                                                            </div>
                                                             <div class="modal-window__track"></div>
                                                           </div>
                                                           <button class="modal-window__next-btn"></button>
@@ -38,11 +41,13 @@ class ModalWindow {
         this.closeBtn = this.modal.querySelector('.close-btn');
 
         this.placeToRender.append(this.modal)
+
+        this.spinner = this.modal.querySelector('.modal-window__spinner')
     }
 
     setParameters() {
         this.windowWidth = this.wrapper.getBoundingClientRect().width;
-        
+
         this.track.style.width = `${this.windowWidth * this.content.length}px`;
         Array.from(this.track.children).forEach(item => item.style.width = `${this.windowWidth}px`)
 
@@ -78,15 +83,19 @@ class ModalWindow {
 
 
     toggle() {
+        this.setParentItemBorder();
+        clearTimeout(this.toggleTimeOut)
+
         if (this.open === false && this.inProcess === false) {
             this.inProcess = true;
 
             this.prepareHTML();
             this.setEvents();
-            setTimeout(() => {
+            this.toggleTimeOut = setTimeout(() => {
                 this.openModal();
                 setTimeout(() => {
                     this.setContent();
+                    this.spinner.remove();
                     this.setParameters();
                     this.open = true;
                     this.inProcess = false;
@@ -97,7 +106,8 @@ class ModalWindow {
         }
         else if (this.open === true && this.inProcess === false) {
             this.inProcess = true;
-            setTimeout(() => {
+
+            this.toggleTimeOut = setTimeout(() => {
                 this.closeModal();
                 setTimeout(() => {
                     this.open = false;

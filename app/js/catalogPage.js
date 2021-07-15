@@ -5,7 +5,11 @@ class CatalogPage {
     this.template = `<div class="container">
                        <div class="catalog">
                          <div class="product-list__wrapper">
-                          <ul class="product-list"></ul>
+                          <div class="catalog__spinner">
+                              <img class="spinner__image" src="images/icons/spinner.svg">
+                          </div>
+                          <ul class="product-list">
+                          </ul>
                           <button class="product-list__show-more">Показать еще</button>
                          </div>
                           <div class="filters">
@@ -80,7 +84,8 @@ class CatalogPage {
         return productsAfterFilter
       })
       .then(() => {
-        this.renderProducts()
+          this.spinner.remove();
+          this.renderProducts();
       })
 
   }
@@ -89,6 +94,8 @@ class CatalogPage {
   render() {
     const place = document.querySelector(`${this.place}`);
     place.innerHTML = this.template;
+
+    this.spinner = place.querySelector('.catalog__spinner')
   }
 
   renderProducts() {

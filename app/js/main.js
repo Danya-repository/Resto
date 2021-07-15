@@ -8,7 +8,8 @@ $(function () {
 
     const aboutUsPage = new AboutUsPage();
     const basket = new Basket(basketButton);
-    const vacanciesPage = new VacanciesPage()
+    const vacanciesPage = new VacanciesPage();
+    const reviewsPage = new ReviewsPage(simpleBar);
     
     
     indexPage.init();
@@ -24,7 +25,8 @@ $(function () {
 
             if (event.target.classList.contains('menu__link')) {
 
-                let catalogPage = new CatalogPage(event.target.dataset.typeFood, basketButton)
+                let catalogPage = new CatalogPage(event.target.dataset.typeFood, basketButton);
+                simpleBar.getScrollElement().scrollTop = document.querySelector('.header__wrapper-bottom').getBoundingClientRect().top;
                 if (window.innerWidth < 800) {
                     menu.classList.remove('open')
                 }
@@ -44,7 +46,7 @@ $(function () {
                         vacanciesPage.render()
                         break;
                     case ('reviews'):
-                        new ReviewsPage();
+                        reviewsPage.render();
                 }
             }
         })

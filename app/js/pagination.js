@@ -1,9 +1,10 @@
 class Pagination {
-    constructor(count) {
+    constructor(count, simpleBar) {
         this.place = `.reviews__pagination`;
         this.paginationList = {};
         this.getCountElements = 4;
         this.maxCountOfShowItem = 5;
+        this.simpleBar = simpleBar;
 
         this.startPage = 1;
         this.endPage = Math.ceil(count / this.getCountElements);
@@ -43,15 +44,19 @@ class Pagination {
         const LeftArrow = this.pagination.querySelector('.pagination__prev-btn');
         const RightArrow = this.pagination.querySelector('.pagination__next-btn');
 
-        PagList.addEventListener('click', () => {
-            this.setActivePage();
-            this.init();
-            this.getFromTo()
-            this.renderItem();
+        PagList.addEventListener('click', (event) => {
+            if (event.target.classList.contains('pagination__link')) {
+                this.simpleBar.getScrollElement().scrollTop = 0;
+                this.setActivePage();
+                this.init();
+                this.getFromTo()
+                this.renderItem();
+            }
         });
 
         LeftArrow.addEventListener('click', () => {
             if (this.activePage > this.startPage) {
+                this.simpleBar.getScrollElement().scrollTop = 0;
                 this.activePage -= 1;
                 this.init();
                 this.getFromTo()
@@ -61,6 +66,7 @@ class Pagination {
 
         RightArrow.addEventListener('click', () => {
             if (this.activePage < this.endPage) {
+                this.simpleBar.getScrollElement().scrollTop = 0;
                 this.activePage += 1;
                 this.init();
                 this.getFromTo()

@@ -2501,7 +2501,7 @@ body {
 .user__drop-down {
   position: absolute;
   right: -4px;
-  top: 30px;
+  top: 31px;
   background-color: #fff;
   z-index: 5;
   width: 200px;
@@ -2912,16 +2912,15 @@ body {
       -ms-flex-pack: center;
           justify-content: center;
   height: 40px;
-  width: 41px;
+  width: 40px;
   border-radius: 8px;
   border: 1px solid #252836;
 }
 
 .order-panel__item-remove-btn {
-  width: 50px;
-  margin-right: 25px;
+  margin-right: 29px;
   background: transparent;
-  margin-left: 20px;
+  padding: 0;
 }
 
 .order-panel__item-product-info-price, .order-panel__item-product-total-price {
@@ -2944,14 +2943,12 @@ body {
 }
 
 .order-panel__item-form {
-  max-width: 100%;
-  width: 100%;
+  width: 73%;
 }
 
 .order-panel__item-input {
-  max-width: 410px;
+  max-width: 80%;
   padding: 15px 14px 14px 14px;
-  max-width: 410px;
 }
 
 .order-panel__order-total-info {
@@ -3922,6 +3919,19 @@ body {
   min-height: 650px;
 }
 
+.catalog__spinner {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .product-list {
   display: -ms-grid;
   display: grid;
@@ -4378,7 +4388,6 @@ body {
 }
 
 .about-slider__inner {
-  margin-right: -10px;
   position: relative;
   margin-bottom: 30px;
 }
@@ -5065,11 +5074,6 @@ body {
           justify-content: space-between;
 }
 
-.modal-window__item {
-  position: relative;
-  width: 230px;
-}
-
 .modal-window__photo {
   height: 100%;
   width: 100%;
@@ -5085,6 +5089,19 @@ body {
   position: absolute;
   top: -45px;
   right: 0;
+}
+
+.modal-window__spinner {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 100%;
 }
 
 .modal-window__prev-btn {
@@ -5933,7 +5950,6 @@ body {
   }
   .order-panel__item-remove-btn {
     margin-right: 30px;
-    width: 47px;
     height: 40px;
   }
 }
@@ -6009,9 +6025,6 @@ body {
   .about-slider__item {
     padding-right: 0;
   }
-  .order-panel__item-remove-btn {
-    width: 53px;
-  }
 }
 
 @media (max-width: 440px) {
@@ -6076,12 +6089,6 @@ body {
     -ms-grid-rows: 1fr;
     -ms-grid-columns: 1fr;
         grid-template: 1fr / 1fr;
-  }
-}
-
-@media (max-width: 350px) {
-  .order-panel__item-remove-btn {
-    width: 53px;
   }
 }
 

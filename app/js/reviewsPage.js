@@ -1,15 +1,12 @@
 class ReviewsPage {
-  constructor() {
+  constructor(simpleBar) {
     this.place = '.main';
     this.url = 'reviews'
     this.reviews = [];
+    this.simpleBar = simpleBar;
 
     this.render = this.render.bind(this);
     this.init = this.init.bind(this);
-
-    this.render();
-    this.init();
-    
   }
 
   setEvents() {
@@ -75,13 +72,14 @@ class ReviewsPage {
                                  </form>
                                </section>
                              </div>`
+    this.init();
   }
 
   
   init() {
     this.getReviews()
       .then(() => {
-        this.paginationBar = new Pagination(this.reviews.length)
+        this.paginationBar = new Pagination(this.reviews.length, this.simpleBar)
         this.renderReviews()
         this.setEvents();
       });

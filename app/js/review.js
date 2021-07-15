@@ -19,7 +19,6 @@ class Review {
     setEvents() {
         this.PhotoReviewBar.addEventListener('click', debounce(() => {
             this.modal.activeImage = +event.target.dataset.photoReviewNumber;
-            this.modal.setParentItemBorder();
             this.modal.toggle();
         }), event)
             
