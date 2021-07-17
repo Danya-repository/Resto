@@ -6,6 +6,301 @@
 @import 'global';
 @import 'animation';
 
+.dark-theme {
+    background: $dark-main;
+    color: #fff;
+    .menu__link {
+        transition: all .5s;
+        color: #fff;
+    }
+    .header__section {
+        color: #fff;
+    }
+    .extra-menu__link {
+        color: #fff;
+    }
+    .extra-menu__btn-decorate-block {
+        background-color: $dark-grey;
+    }
+    .extra-menu__btn-decorate-block:nth-child(1) {
+        background-color: #fff;
+    }
+    .extra-menu__btn-decorate-block:nth-child(2) {
+        background-color: #fff;
+    }
+    .header__wrapper-bottom {
+        border-color: $orange;
+        background-color: $dark-main;
+    }
+    .user__btn svg {
+        transition: all .5s;
+        fill: #fff;
+        &:hover {
+            transition: all .5s;
+            fill: $orange;
+        }
+    }
+    .user__icon svg{
+        transition: all .5s;
+        fill: #fff;
+        &:hover {
+            transition: all .5s;
+            fill: $orange;
+        }
+    }
+    .collage__carousel-slide {
+        border-color: $dark-grey;
+        &--active {
+            border-color: $orange;
+        }
+        &:hover{
+            border-color: $orange;
+            .carousel-item-text {
+                color: $orange;
+                background-color: rgba(#fff, 0.09)
+            }
+        }
+    }
+    
+    .collage__info-title {
+        color: #fff;
+    }
+    .collage__info-text {
+        color: #fff;
+    }
+    .benefits__item-wrapper {
+        border-color: $dark-grey;
+        &:hover {
+            box-shadow: 0px 0px 10px 2px rgba($dark-grey, 1);
+            border-color: $dark-grey;
+            .benefits__item-icon svg {
+                fill: $orange;
+            }
+            .benefits__item-title {
+                color: $orange;
+            }
+            .benefits__item-text {
+                color: $orange;
+            }
+        }
+    }
+    .benefits__item-icon svg {
+        fill: #fff;
+    }
+    .benefits__item-title {
+        color: #fff;
+    }
+    .benefits__item-text {
+        color: #fff;
+    }
+    .quote__text-quote {
+        color: #fff;
+    }
+    .quote__text-author {
+        color: #fff;
+    }
+    .geo__title {
+        color: #fff;
+    }
+    .geo__address {
+        color: #fff;
+    }
+    .links__link svg path{
+        fill: #fff;
+    }
+    .contacts__item-title {
+        color: #fff;
+    }
+    .contacts__link {
+        color: #fff;
+    }
+    .footer__inner {
+        border-color: $orange;
+    }
+    .header__order-panel {
+        background-color: $dark-main;
+        color: #fff;
+        border-color: $orange;
+    }
+    .order-panel__status {
+        color: #fff;
+        border-color: $orange;
+    }
+    .order-panel__item-list-title {
+        color: #fff;
+    }
+    .order-panel__item-list {
+        border-color: $orange;
+    }
+    .order-total-info__key {
+        color: #fff;
+    }
+    .order-total-info__value {
+        color: #fff;
+    }
+    .products__item {
+        color: #fff;
+    }
+    .products__order-by {
+        color: #fff;
+        border-color: #fff;
+        &--active {
+            border-color: $orange;
+        }
+    }
+    .products__decorative-layer {
+        border-color: $orange;
+    }
+    .filters {
+        color: #fff;
+    }
+    .filters__tab-button {
+        color: #fff;
+        &--active {
+            border-bottom-color: $dark-main;
+        }
+    }
+    .filters__activate-button {
+        color: #fff;
+        border-color: #fff
+    }
+    .filters__activate-reset {
+        color: #fff;
+        border-color: #fff
+    }
+    .filters__search-form-input {
+        background-color: transparent;
+        border-color: $orange;
+        color: #fff;
+    }
+    .filters__search-form-input.input-text::placeholder {
+        color: #fff;
+    }
+    .product-list__show-more {
+        color: #fff;
+        border-color: #fff;
+    }
+    .order-panel .product-count-block__value, .order-panel__item-remove-btn {
+        color: #fff;
+        border-color: #fff;
+    }
+    .order-panel__item-remove-btn {
+        border-color: $orange;
+    }
+    .product-count-block__plus-button, .product-count-block__minus-button {
+        color: #fff;
+    }
+    .order-panel__item-input.input-text, .reviews .form__input {
+        background-color: transparent;
+        color: #fff;
+        border-color: $orange;
+        &::placeholder {
+            color: #fff;
+        }
+    }
+    .breadcrumps__link {
+        color: #fff;
+    }
+    .about-us__menu {
+        border-color: $orange;
+    }
+    .about-us__tab-btn {
+        color: #fff;
+        border-color: $orange;
+        &:hover {
+            color: $orange;
+        }
+    }
+    .about-us__tab-btn--active {
+        color: $orange;
+        border-color: $orange;
+    }
+    .about-us__tab-btn:hover {
+        background: rgba(#fff, 0.09)
+    }
+    .jq-radio {
+        border-color: #fff
+    }
+    .about-us__text {
+        background-color: transparent;
+        color: #fff;
+    }
+    .about-us__text-wrapper {
+        background-color: $dark-main;
+    }
+    .about-us__decorative-layer {
+        border-color: $dark-grey;
+    }
+    .reviews {
+        color: #fff;
+        &__top-wrapper {
+            border-color: $dark-grey;
+        }
+        .form__send-btn {
+            border: 1px solid #fff;
+            color: #fff;
+        }
+        .jq-file__name {
+            color: #fff;
+        }
+        .pagination__link {
+            color: #fff;
+        }
+    }
+    .vacancies {
+        color: #fff;
+        .vacancies__button {
+            color: #fff;
+            &:hover {
+                color: $orange;
+            }
+        }
+        .categories__item {
+            border-color: #fff;
+            color: #fff;
+            .categories__title {
+                color: #fff;
+            }
+        }
+        .categories__item--not-active,  {
+            border-color: #fff;
+            color: #fff;
+            .categories__title {
+                color: #fff;
+            }
+        }
+        
+        .categories__item--active {
+            border-color: $orange;
+            color: $orange;
+            .categories__title {
+                color: $orange;
+            }
+        }
+        .vacancies__item {
+            border-color: $dark-grey;
+        }
+        
+    }
+    .user__drop-down {
+        border-color: $orange;
+        border-top: 1px solid $dark-main;
+        background: rgba($dark-main, .89);
+    }
+    .user__link {
+        color: #fff;
+    }
+    .modal-window__background {
+        background-color: rgba($dark-main, .89);
+    }
+    .modal-window__photo {
+        background-color: $dark-main;
+    }
+    .modal-window__content {
+        border: 1px solid $dark-grey;
+    }
+}
+
 .animated-item {
     transition: all 1s ease 0s; 
     &--active {
@@ -20,7 +315,6 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background-color: #fff;
         margin-bottom: 20px;
     }
     &__wrapper-bottom {
@@ -30,7 +324,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 1px solid $dark-grey;
+        border-bottom: 1px solid $dark-main;
         margin-bottom: 20px;
         &--animation-fix-to-top {
             opacity: 0.89 !important;
@@ -326,7 +620,7 @@
         z-index: 5;
         width: 200px;
         padding: 0 15px!important;
-        border: 1px solid $dark-grey;
+        border: 1px solid $dark-main;
         border-top: 0;
         display: none;
         opacity: 1;
@@ -366,7 +660,6 @@
                 border-bottom: 1px solid $orange;
                 transition: all .5s
             }
-            
         }
     }
 }
@@ -794,7 +1087,7 @@
         
     }
     &__carousel-slide {
-        border: 1px solid $dark-grey;
+        border: 1px solid $dark-main;
         padding: 10px;
         display: flex;
         justify-content: center;
@@ -856,7 +1149,7 @@
         opacity: 1;
     }
     &__carousel-window {
-        border: 1px solid $dark-grey;
+        border: 1px solid $dark-main;
         padding: 10px;
         display: flex;
         justify-content: center;
@@ -1577,6 +1870,7 @@
     background: transparent;
     outline: none;
     border-color: $dark-main;
+    box-shadow: none;
 }
 
 .jq-checkbox.checked .jq-checkbox__div {
