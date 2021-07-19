@@ -27,12 +27,12 @@ class AboutUsPage {
                                 <h3 class="about-us__subtitle subtitle">Что такое Resto?</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">
-                                    <p>Ресторан «Resto» - не только идеальное место для любых встреч - для романтических свиданий,
+                                    <p class="about-us__paragraph">Ресторан «Resto» - не только идеальное место для любых встреч - для романтических свиданий,
                                       обкашливания вопросиков, для вечеров с друзьями, а также мы работаем на доставку.
                                       У нас можно одинаково хорошо проводить тихие вечера с самыми близкими и шумно отмечать праздники в
                                       огромной компании. Принимают так, как в лучших домах Парижа и Нью-Йорка.
-                                      У нас уютно, душевно и очень вкусно.</p>
-                                    <p>Посетителям нашего заведения доступна живая музыка в исполнении лауреата премий "Лучшее исполнение
+                                      У нас уютно, душевно и очень вкусно.</p">
+                                    <p class="about-us__paragraph">Посетителям нашего заведения доступна живая музыка в исполнении лауреата премий "Лучшее исполнение
                                       шлягера 1993" и "Голос Адлера".
                                       В меню ресторана «Resto» есть блюда на любой вкус: традиционные восточные, классические европейские
                                       и
@@ -49,14 +49,14 @@ class AboutUsPage {
                                 <h3 class="about-us__subtitle subtitle">Как мы работаем?</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">
-                                    <p>Ресторан «Resto» приглашает жителей и гостей Челябинска отлично провести время и насладиться
+                                    <p class="about-us__paragraph">Ресторан «Resto» приглашает жителей и гостей Челябинска отлично провести время и насладиться
                                       лучшими блюдами русской, японской, голладнской, индонезийской кухни. Вас ждут уютные залы,
                                       внимательный персонал, вкусная
                                       кухня и зажигательная музыка. Наш приветливый коллектив сделает все, чтобы отдых стал для вас
                                       незабываемым. В нашем заведении в центре Челябинска вы можете отметить любое торжество:
                                       провести банкет, отгулять свадьбу, отпраздновать юбилей или день рождения, устроить корпоратив,
                                       организовать фуршет или конференцию.</p>
-                                    <p>Наш ресторан, расположенный на окраине Ленинского района, считается одним из лучших в Челябинске. К
+                                    <p class="about-us__paragraph">Наш ресторан, расположенный на окраине Ленинского района, считается одним из лучших в Челябинске. К
                                       услугам наших
                                       гостей банкетные залы различного размера. Наши повара предлагают попробовать вкуснейшие блюда. Наш
                                       шеф повар практикует авторский подход и вносит нотки современности в каждое блюдо, делая их еще
@@ -70,12 +70,12 @@ class AboutUsPage {
                                 <h3 class="about-us__subtitle subtitle">Доставка и оплата</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">
-                                    <p>После того, как вы оформили заказ, через специальное мобильное приложение он попадает к курьеру –
+                                    <p class="about-us__paragraph">После того, как вы оформили заказ, через специальное мобильное приложение он попадает к курьеру –
                                       специалисту Resto. Он отбирает самые качественные и
                                       свежие продукты на полках магазина. Этому правилу учат каждого специалиста Resto,
                                       поэтому клиенты могут быть уверены, доставленный товар не окажется испорченным.
                                     </p>
-                                    <p>
+                                    <p class="about-us__paragraph">
                                       Такие же правила действуют и в случаях, если товар не соответствует
                                       стандартам качества Resto. Доступен безналичный расчёт, или оплата через наше веб-приложение.
                                     </p>
@@ -87,8 +87,8 @@ class AboutUsPage {
                                 <h3 class="about-us__subtitle subtitle">Документы</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">
-                                    <p>Документы.</p>
-                                    <p>Санпенстанция.</p>
+                                    <p class="about-us__paragraph">Документы.</p>
+                                    <p class="about-us__paragraph">Санпенстанция.</p>
                                   </div>
                                   <div class="about-us__decorative-layer"></div>
                                 </div>
@@ -97,12 +97,12 @@ class AboutUsPage {
                                 <h3 class="about-us__subtitle subtitle">Помощь</h3>
                                 <div class="about-us__text-wrapper">
                                   <div class="about-us__text">
-                                    <p>Обратившийся за психологической помощью человек может получить 4 бесплатные консультации. В течение
+                                    <p class="about-us__paragraph">Обратившийся за психологической помощью человек может получить 4 бесплатные консультации. В течение
                                       этого времени будет проведено уточнение запроса клиента и проведена работа с одним запросом в рамках
                                       краткосрочного консультирования (у клиента есть возможность получить дополнительные консультации на
                                       коммерческой основе с льготными условиями оплаты). Возможно повторное обращение в психологическую
                                       службу от клиента с новым запросом через полгода после завершения работы.</p>
-                                    <p>Обращаться можно как индивидуально, так и со своими партнерами или близкими; как с ясным запросом —
+                                    <p class="about-us__paragraph">Обращаться можно как индивидуально, так и со своими партнерами или близкими; как с ясным запросом —
                                       определенной темой или вопросом, так и без него. Может быть, для Вас сейчас актуальны темы принятия
                                       себя и идентичности, камин-аута, формирование целостного образа себя и ощущения безусловной
                                       самоценности своей личности, развитие навыков отстаивания жизненной позиции и противодействия разным
@@ -116,34 +116,34 @@ class AboutUsPage {
                               </div>
                             </div>
                           </section>
-                          <section class="about-slider">
-                            <div class="about-slider__inner">
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
+                          <section class="about-us-slider">
+                            <div class="about-us-slider__inner">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-1.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-2.jpg" alt="">
                               </div>
-                              <div class="about-slider__item">
-                                <img class="about-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
+                              <div class="about-us-slider__item">
+                                <img class="about-us-slider__img" src="./images/content/about-us-slider-3.jpg" alt="">
                               </div>
                             </div>
                           </section>
@@ -167,7 +167,7 @@ class AboutUsPage {
   };
 
   carousel() {
-    $('.about-slider__inner').slick({
+    $('.about-us-slider__inner').slick({
       autoplay: true,
       autoplaySpeed: 4000,
       slidesToShow: 3,

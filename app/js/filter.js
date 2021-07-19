@@ -31,10 +31,10 @@ class Filter {
                 e.target.classList.add('filters__tab-button--active');
                 document.querySelector(`[data-tab-section="${e.target.dataset.tabBtn}"]`).classList.add('filters__tab--active')
             }
-            if (e.target.classList.contains('category__slide-item-title')) {
+            if (e.target.classList.contains('filters__category-slide-title')) {
 
-                $(e.target).next($('.category__slide-item-content')).slideToggle()
-                $(e.target).toggleClass('category__slide-item-title--active')
+                $(e.target).next($('.filters__category-slide-content')).slideToggle()
+                $(e.target).toggleClass('filters__category-slide-title--active')
             }
             if (e.target.classList.contains('filters__activate-reset')) {
                 $('[data-filters-checkbox-cuisine]').each(function () {
@@ -188,10 +188,10 @@ class Filter {
                          <div class="filters__tabs">
                            <div class="filters__tab filters__tab--active" data-tab-section="category">
                              <form class="filters__tab-check-list">
-                             <ul class="category-tab__list">
-                               <li class="category-tab__item">
-                                 <p class="category__slide-item-title category__slide-item-title--active">Кухня</p>
-                                 <div class="category__slide-item-content">
+                             <ul class="filters__category-tab-list">
+                               <li class="filters__category-tab">
+                                 <p class="filters__category-slide-title filters__category-slide-title--active">Кухня</p>
+                                 <div class="filters__category-slide-content">
                                    <label class="filters__checkbox-label">
                                      <input type="checkbox" checked="checked" data-filters-checkbox-cuisine="japanese">Японская
                                    </label>
@@ -209,9 +209,9 @@ class Filter {
                                    </label>
                                  </div>
                                </li>
-                               <li class="category-tab__item">
-                                 <p class="category__slide-item-title category__slide-item-title--active">Тип супа</p>
-                                 <div class="category__slide-item-content">
+                               <li class="filters__category-tab">
+                                 <p class="filters__category-slide-title filters__category-slide-title--active">Тип супа</p>
+                                 <div class="filters__category-slide-content">
                                    <label class="filters__radio-label">
                                      <input type="radio" checked="checked" name="type-soup" data-filters-radio-protein="meat">Мясные супы
                                    </label>
@@ -223,9 +223,9 @@ class Filter {
                                    </label>
                                  </div>
                                </li>
-                               <li class="category-tab__item">
-                                 <p class="category__slide-item-title category__slide-item-title--active">Цена</p>
-                                 <div class="category__slide-item-content">
+                               <li class="filters__category-tab">
+                                 <p class="filters__category-slide-title filters__category-slide-title--active">Цена</p>
+                                 <div class="filters__category-slide-content">
                                    <input type="text" class="js-range-slider" name="my_range" value="" />
                                  </div>
                                </li>

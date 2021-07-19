@@ -67,7 +67,7 @@ class ReviewsPage {
                                          <input class="form__field-file" type="file" name="" id="">
                                        </div>
                                      </div>
-                                     <input class="form__send-btn" type="submit" value="Отправить">
+                                     <input class="reviews__send-btn" type="submit" value="Отправить">
                                    </div>
                                  </form>
                                </section>

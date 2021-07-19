@@ -64,23 +64,23 @@ class IndexPage {
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-1 collage__carousel-slide--active" data-number-collage-item="1">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
+            <p class="collage__carousel-slide-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-2" data-number-collage-item="2">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Холодный суп</p>
+            <p class="collage__carousel-slide-text">Холодный суп</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-3" data-number-collage-item="3">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Молочный суп</p>
+            <p class="collage__carousel-slide-text">Молочный суп</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-4" data-number-collage-item="4">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Сладкий суп</p>
+            <p class="collage__carousel-slide-text">Сладкий суп</p>
           </div>
           <div class="collage__carousel-slide collage__carousel-slide-5" data-number-collage-item="5">
             <img class="collage__carousel-img" src="./images/content/soup-7.png" alt="">
-            <p class="carousel-item-text">Картофельный суп с креветками и икрой палтуса</p>
+            <p class="collage__carousel-slide-text">Картофельный суп с креветками и икрой палтуса</p>
           </div>
         </div> 
         <aside class="collage__info">

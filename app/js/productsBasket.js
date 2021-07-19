@@ -18,36 +18,36 @@ class Basket {
   }
   
   plug() {
-    const Place = document.querySelector('.order-panel .simplebar-content') ? document.querySelector('.order-panel .simplebar-content') : document.querySelector('.order-panel__item-list')
+    const Place = document.querySelector('.basket .simplebar-content') ? document.querySelector('.basket .simplebar-content') : document.querySelector('.basket__item-list')
 
     if (Array.from(Place.children).length === 0) {
-      Place.innerHTML = `<li class="order-panel__plug">Корзина пуста</li>`;
+      Place.innerHTML = `<li class="basket__plug">Корзина пуста</li>`;
     }
     else {
-      if (document.querySelector(`.order-panel__plug`)) {
-        document.querySelector(`.order-panel__plug`).remove();
+      if (document.querySelector(`.basket__plug`)) {
+        document.querySelector(`.basket__plug`).remove();
       }
     }
   }
   
   setEvents() {
-    const Basket = document.querySelector('.order-panel');
-    const CloseButton = document.querySelector('.order-panel__close-btn-wrapper .close-btn');
-    const BasketButton = document.querySelector('.user__basket');
+    const Basket = document.querySelector('.basket');
+    const CloseButton = document.querySelector('.basket__close-btn-wrapper .close-btn');
+    const BasketButton = document.querySelector('.basket-btn');
     CloseButton.addEventListener('click', () => {
-      Basket.classList.remove('order-panel--active')
+      Basket.classList.remove('basket--active')
       CloseButton.classList.remove('close-btn--active')
     })
     BasketButton.addEventListener('click', () => {
-      Basket.classList.add('order-panel--active')
+      Basket.classList.add('basket--active')
       CloseButton.classList.add('close-btn--active')
     })
     document.addEventListener('click', (event) => {
-      if (event.target.classList.contains('products__order-by') ||
-          event.target.classList.contains('product-count-block__minus-button') ||
-          event.target.classList.contains('product-count-block__plus-button') ||
-          event.target.classList.contains('order-panel__item-remove-btn') ||
-          event.target.parentNode.classList.contains('order-panel__item-remove-btn'))
+      if (event.target.classList.contains('product__order-by') ||
+          event.target.classList.contains('basket__item-minus-btn') ||
+          event.target.classList.contains('basket__item-plus-btn') ||
+          event.target.classList.contains('basket__item-remove-btn') ||
+          event.target.parentNode.classList.contains('basket__item-remove-btn'))
         
         {
           this.productsInBasket = this.getProductsFromLocalStorage();
@@ -88,35 +88,35 @@ class Basket {
 
   render() {
     const Place = document.querySelector(this.place);
-    Place.innerHTML += `<div class = "header__order-panel order-panel">
-                        <div class = "order-panel__close-btn-wrapper">
+    Place.innerHTML += `<div class = "basket">
+                        <div class = "basket__close-btn-wrapper">
                         <button class="close-btn close-btn--active">
                           <div class="close-btn__decorate-block"></div>
                           <div class="close-btn__decorate-block"></div>
                         </button>
                         </div>
-                          <h3 class="order-panel__title subtitle">Заказ #11</h3>
-                          <ul class="order-panel__status-bar">
-                            <li class="order-panel__status">Формируется</li>
+                          <h3 class="basket__title subtitle">Заказ #11</h3>
+                          <ul class="basket__status-bar">
+                            <li class="basket__status">Формируется</li>
                           </ul>
-                          <div class="order-panel__item-list-titles">
-                            <h4 class="order-panel__item-list-title title-pos">Позиция</h4>
-                            <h4 class="order-panel__item-list-title item-list-title__count">Количество</h4>
-                            <h4 class="order-panel__item-list-title item-list-title__price">Цена</h4>
+                          <div class="basket__column-names">
+                            <h4 class="basket__column-name">Позиция</h4>
+                            <h4 class="basket__column-name">Количество</h4>
+                            <h4 class="basket__column-name">Цена</h4>
                           </div>
-                          <ul class="order-panel__item-list" data-simplebar>
+                          <ul class="basket__item-list" data-simplebar>
                           </ul>
-                          <div class="order-panel__order-total-info">
-                            <div class="order-total-info__keys">
-                              <span class="order-total-info__key">Скидка</span>
-                              <span class="order-total-info__key">Общая стоимость</span>
+                          <div class="basket__total-info">
+                            <div class="basket__total-keys">
+                              <span class="basket__total-key">Скидка</span>
+                              <span class="basket__total-key">Общая стоимость</span>
                             </div>
-                            <div class="order-total-info__values">
-                              <div class="order-total-info__value">0</div>
-                              <div class="order-total-info__value total-count">0</div>
+                            <div class="basket__total-values">
+                              <div class="basket__total-value">0</div>
+                              <div class="basket__total-value total-count">0</div>
                             </div>
                           </div>
-                          <button class="order__submit" type="submit">
+                          <button class="basket__submit" type="submit">
                             Завершить покупку
                           </button>
                         </div>`
@@ -134,24 +134,4 @@ class Basket {
   }
 
 }
-
-// __plug() {
-//   let place = document.querySelector('.order-panel .simplebar-content') ? document.querySelector('.order-panel .simplebar-content') : document.querySelector('.order-panel__item-list')
-
-//   let countItemsInList = place.children.length;
-  // let plug = document.createElement('li');
-  // plug.classList.add('order-panel__plug')
-  // plug.innerText = 'Корзина пуста'
-
- 
-
-//   if (countItemsInList > 0 && place.querySelector('.order-panel__plug')) {
-//       place.removeChild(place.querySelector('.order-panel__plug'))
-//   }
-//   else if (countItemsInList === 0 && !place.querySelector('.order-panel__plug')){
-//       place.appendChild(plug)
-//   }
-// }
-
-
 

@@ -19,7 +19,7 @@ $(function () {
 
     headerMenulinks = function () {
         let menu = document.querySelector('.menu');
-        const extraMenu = document.querySelector('.extra-menu__list')
+        const extraMenu = document.querySelector('.extra__list')
 
         menu.addEventListener('click', function (event) {
             event.preventDefault()
@@ -31,14 +31,14 @@ $(function () {
                     menu.classList.remove('open')
                 }
 
-                simpleBar.getScrollElement().scrollTop = document.querySelector('.header__wrapper-bottom').getBoundingClientRect().top;
+                simpleBar.getScrollElement().scrollTop = document.querySelector('.header__inner-bottom').getBoundingClientRect().top;
 
             }
 
         })
         extraMenu.addEventListener('click', function (event) {
 
-            if (event.target.classList.contains('extra-menu__link')) {
+            if (event.target.classList.contains('extra__link')) {
                 switch (event.target.dataset.extraHref) {
                     case ('about-us'):
                         aboutUsPage.render()
@@ -56,20 +56,20 @@ $(function () {
 
     headerExtra = function () {
 
-        let extraBtn = document.querySelector('.extra-menu__btn');
-        let extraMenu = document.querySelector('.extra-menu__wrapper');
+        let extraBtn = document.querySelector('.extra__btn');
+        let extraMenu = document.querySelector('.extra__content');
 
         return extraBtn.addEventListener('click', function (event) {
             event.preventDefault;
 
-            if (extraMenu.classList.contains('extra-menu__wrapper--active')) {
-                extraBtn.classList.remove('extra-menu__btn--active');
-                extraMenu.classList.remove('extra-menu__wrapper--active');
+            if (extraMenu.classList.contains('extra__content--active')) {
+                extraBtn.classList.remove('extra__btn--active');
+                extraMenu.classList.remove('extra__content--active');
 
             }
             else {
-                extraBtn.classList.add('extra-menu__btn--active');
-                extraMenu.classList.add('extra-menu__wrapper--active');
+                extraBtn.classList.add('extra__btn--active');
+                extraMenu.classList.add('extra__content--active');
             }
         });
     }();
@@ -96,8 +96,8 @@ $(function () {
 
     animationHeaderFixed = function () {
 
-        let headerWrapperTop = document.querySelector('.header__wrapper-top')
-        let headerWrapperBottom = document.querySelector('.header__wrapper-bottom')
+        let headerWrapperTop = document.querySelector('.header__inner-top')
+        let headerWrapperBottom = document.querySelector('.header__inner-bottom')
 
         let distanceBetweenBegginingPageAndHeaderWrapperBottom = headerWrapperBottom.getBoundingClientRect().top
 
@@ -107,11 +107,11 @@ $(function () {
 
             if (headerWrapperTop.getBoundingClientRect().top + headerWrapperTop.offsetHeight <= 0) {
 
-                headerWrapperBottom.classList.add('header__wrapper-bottom--animation-fix-to-top')
+                headerWrapperBottom.classList.add('header__inner-bottom--animation-fix-to-top')
                 headerWrapperTop.style.marginBottom = `${headerWrapperTop.offsetHeight}px`
             }
             else {
-                headerWrapperBottom.classList.remove('header__wrapper-bottom--animation-fix-to-top')
+                headerWrapperBottom.classList.remove('header__inner-bottom--animation-fix-to-top')
                 headerWrapperTop.style.marginBottom = `0`
             }
 
@@ -141,8 +141,13 @@ $(function () {
     $('.menu .close-btn').click(() => {
         $('.menu').toggleClass('open')
     })
-    $('.menu__button').click(() => {
+    $('.menu__btn').click(() => {
         $('.menu').toggleClass('open')
+    })
+
+    $('.dark-theme-btn').click(() => {
+        $('.dark-theme-btn').toggleClass('active');
+        $('html').toggleClass('dark-theme')
     })
 
 

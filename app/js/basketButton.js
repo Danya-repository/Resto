@@ -1,7 +1,7 @@
 class BasketButton {
 
     constructor() {
-      this.place = '.user-panel__basket-count-wrapper';
+      this.place = '.basket-btn__counter';
 
       this.render = this.render.bind(this);
       this.getProductsFromLocalStorage = this.getProductsFromLocalStorage.bind(this);
@@ -13,7 +13,7 @@ class BasketButton {
       const place = document.querySelector(this.place)
       let count = Object.keys(this.getProductsFromLocalStorage()).length
   
-      let html = `<p class="user-panel__basket-count">${count}</p>`
+      let html = `<p class="basket-btn__count">${count}</p>`
   
       if (count > 0) {
         place.innerHTML = html;

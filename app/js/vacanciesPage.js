@@ -14,53 +14,54 @@ class VacanciesPage {
         </ul>
       </section>
       <section class="vacancies">
-
-        <ul class="categories__list">
-          <li class="categories__item item-all">
-            <button class="categories__button" type="button" data-filter="all">
-              <h4 class="categories__title subtitle">Все вакансии</h4>
-              <span class="categories__description">
+        <div class="vacancies__categories">
+        <ul class="vacancies__categories-list">
+          <li class="vacancies__categories-item vacancies__categories-item-all">
+            <button class="vacancies__categories-button" type="button" data-filter="all">
+              <span class="vacancies__categories-title">Все вакансии</span>
+              <span class="vacancies__categories-description">
                 В наше заведение требуются специалисты для работы в разных направлениях деятельности.
               </span>
             </button>
           </li>
-          <li class="categories__item">
-            <button class="categories__button" type="button" data-filter=".category-a">
-              <h4 class="categories__title subtitle">Кухня</h4>
-              <span class="categories__description">
+          <li class="vacancies__categories-item">
+            <button class="vacancies__categories-button" type="button" data-filter=".category-a">
+              <span class="vacancies__categories-title subtitle">Кухня</span>
+              <span class="vacancies__categories-description">
                 Приготовление пищи
               </span>
             </button>
           </li>
-          <li class="categories__item">
-            <button class="categories__button" type="button" data-filter=".category-b">
-              <h4 class="categories__title subtitle">Сфера услуг</h4>
-              <span class="categories__description">
+          <li class="vacancies__categories-item">
+            <button class="vacancies__categories-button" type="button" data-filter=".category-b">
+              <span class="vacancies__categories-title subtitle">Сфера услуг</span>
+              <span class="vacancies__categories-description">
                 Работа с клиентами заведения
               </span>
             </button>
           </li>
-          <li class="categories__item">
-            <button class="categories__button" type="button" data-filter=".category-c">
-              <h4 class="categories__title subtitle">Логистика</h4>
-              <span class="categories__description">
+          <li class="vacancies__categories-item">
+            <button class="vacancies__categories-button" type="button" data-filter=".category-c">
+              <span class="vacancies__categories-title subtitle">Логистика</span>
+              <span class="vacancies__categories-description">
                 Доставка и закупки
               </span>
             </button>
           </li>
-          <li class="categories__item">
-            <button class="categories__button" type="button" data-filter=".category-d">
-              <h4 class="categories__title subtitle">Менеджмент</h4>
-              <span class="categories__description">
+          <li class="vacancies__categories-item">
+            <button class="vacancies__categories-button" type="button" data-filter=".category-d">
+              <span class="vacancies__categories-title subtitle">Менеджмент</span>
+              <span class="vacancies__categories-description">
                 Управление работой заведения
               </span>
             </button>
           </li>
         </ul>
+        </div>
         <ul class="vacancies__list">
           <li class="vacancies__item mix category-a">
             <div class="vacancies__top-wrapper">
-              <h4 class="vacancies__title">Шеф-повар</h4>
+              <span class="vacancies__title">Шеф-повар</span>
               <a class="vacancies__button" href="mailto:stivenban777@gmail.com">Отправить резюме</a>
             </div>
             <p class="vacancies__description">Шеф-повар является визитной карточкой заведения, в котором он работает.
@@ -72,21 +73,21 @@ class VacanciesPage {
           </li>
           <li class="vacancies__item mix category-c">
             <div class="vacancies__top-wrapper">
-              <h4 class="vacancies__title">Курьер на автомобиле</h4>
+              <span class="vacancies__title">Курьер на автомобиле</span>
               <a class="vacancies__button" href="mailto:stivenban777@gmail.com">Отправить резюме</a>
             </div>
             <p class="vacancies__description">Кабанчик на моторе.</p>
           </li>
           <li class="vacancies__item mix category-c">
             <div class="vacancies__top-wrapper">
-              <h4 class="vacancies__title">Пеший курьер</h4>
+              <span class="vacancies__title">Пеший курьер</span>
               <a class="vacancies__button" href="mailto:stivenban777@gmail.com">Отправить резюме</a>
             </div>
             <p class="vacancies__description">Простой кабанчик.</p>
           </li>
           <li class="vacancies__item mix category-a">
             <div class="vacancies__top-wrapper">
-              <h4 class="vacancies__title">Сомелье</h4>
+              <span class="vacancies__title">Сомелье</span>
               <a class="vacancies__button" href="mailto:stivenban777@gmail.com">Отправить резюме</a>
             </div>
             <p class="vacancies__description">Эксперт по вопросам приобретения, хранения и подачи вина к столу.
@@ -95,7 +96,7 @@ class VacanciesPage {
           </li>
           <li class="vacancies__item mix category-d">
             <div class="vacancies__top-wrapper">
-              <h4 class="vacancies__title">Управляющий</h4>
+              <span class="vacancies__title">Управляющий</span>
               <a class="vacancies__button" href="mailto:stivenban777@gmail.com">Отправить резюме</a>
             </div>
             <p class="vacancies__description">Главная обязанность менеджера ресторана – управление заведением от имени
@@ -113,22 +114,23 @@ class VacanciesPage {
     }
 
     btnsAnimate() {
-        let categorItems = document.querySelectorAll('.categories__item');
+        let categorItems = document.querySelectorAll('.vacancies__categories-item');
         categorItems.forEach(item => {
             item.onclick = () => {
-                if (item.classList.contains('item-all')) {
+                if (item.classList.contains('vacancies__categories-item-all')) {
                     categorItems.forEach(item => {
-                        item.classList.remove('categories__item--not-active')
-                        item.classList.remove('categories__item--active')
+                        item.classList.remove('vacancies__categories-item--not-active')
+                        item.classList.remove('vacancies__categories-item--active')
                     })
                     return
                 };
                 categorItems.forEach(item => {
-                    if (item.classList.contains('item-all')) return;
-                    item.classList.add('categories__item--not-active')
-                    item.classList.remove('categories__item--active')
+                    if (item.classList.contains('vacancies__categories-item-all')) return;
+
+                    item.classList.add('vacancies__categories-item--not-active')
+                    item.classList.remove('vacancies__categories-item--active')
                 })
-                item.classList.add('categories__item--active')
+                item.classList.add('vacancies__categories-item--active')
             }
         })
     }
