@@ -10,7 +10,7 @@ class CatalogPage {
                           </div>
                           <ul class="product-list">
                           </ul>
-                          <button class="product-list__show-more">Показать еще</button>
+                          <button class="product-list__show-more btn">Показать еще</button>
                          </div>
                           <div class="filters">
                           </div>

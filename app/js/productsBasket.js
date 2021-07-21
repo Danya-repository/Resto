@@ -1,8 +1,8 @@
 class Basket {
-  constructor(basketBtn) {
+  constructor() {
     this.productsInBasket = {};
     this.place = '.header';
-    this.basketBtn = basketBtn;
+    // this.basketBtn = basketBtn;
 
     this.getProductsFromLocalStorage = this.getProductsFromLocalStorage.bind(this);
     this.render = this.render.bind(this);
@@ -79,7 +79,7 @@ class Basket {
 
   renderProducts() {
     for (let i in this.productsInBasket) {
-      let product = new Product(this.productsInBasket[i], this.basketButton);
+      let product = new Product(this.productsInBasket[i]);
       product.renderToBasket();
     }
     this.plug()
@@ -88,38 +88,72 @@ class Basket {
 
   render() {
     const Place = document.querySelector(this.place);
-    Place.innerHTML += `<div class = "basket">
-                        <div class = "basket__close-btn-wrapper">
-                        <button class="close-btn close-btn--active">
-                          <div class="close-btn__decorate-block"></div>
-                          <div class="close-btn__decorate-block"></div>
-                        </button>
-                        </div>
-                          <h3 class="basket__title subtitle">Заказ #11</h3>
-                          <ul class="basket__status-bar">
-                            <li class="basket__status">Формируется</li>
-                          </ul>
-                          <div class="basket__column-names">
-                            <h4 class="basket__column-name">Позиция</h4>
-                            <h4 class="basket__column-name">Количество</h4>
-                            <h4 class="basket__column-name">Цена</h4>
-                          </div>
-                          <ul class="basket__item-list" data-simplebar>
-                          </ul>
-                          <div class="basket__total-info">
-                            <div class="basket__total-keys">
-                              <span class="basket__total-key">Скидка</span>
-                              <span class="basket__total-key">Общая стоимость</span>
-                            </div>
-                            <div class="basket__total-values">
-                              <div class="basket__total-value">0</div>
-                              <div class="basket__total-value total-count">0</div>
-                            </div>
-                          </div>
-                          <button class="basket__submit" type="submit">
-                            Завершить покупку
-                          </button>
-                        </div>`
+    this.basket = document.createElement('div');
+    this.basket.className= `basket`;
+    this.basket.insertAdjacentHTML('afterbegin', `<div class = "basket__close-btn-wrapper">
+    <button class="close-btn close-btn--active">
+      <div class="close-btn__decorate-block"></div>
+      <div class="close-btn__decorate-block"></div>
+    </button>
+    </div>
+      <h3 class="basket__title subtitle">Заказ #11</h3>
+      <ul class="basket__status-bar">
+        <li class="basket__status">Формируется</li>
+      </ul>
+      <div class="basket__column-names">
+        <h4 class="basket__column-name">Позиция</h4>
+        <h4 class="basket__column-name">Количество</h4>
+        <h4 class="basket__column-name">Цена</h4>
+      </div>
+      <ul class="basket__item-list" data-simplebar>
+      </ul>
+      <div class="basket__total-info">
+        <div class="basket__total-keys">
+          <span class="basket__total-key">Скидка</span>
+          <span class="basket__total-key">Общая стоимость</span>
+        </div>
+        <div class="basket__total-values">
+          <div class="basket__total-value">0</div>
+          <div class="basket__total-value total-count">0</div>
+        </div>
+      </div>
+      <button class="basket__submit" type="submit">
+        Завершить покупку
+      </button>`)
+
+    Place.append(this.basket)
+    // Place.innerHTML += `<div class = "basket">
+    //                     <div class = "basket__close-btn-wrapper">
+    //                     <button class="close-btn close-btn--active">
+    //                       <div class="close-btn__decorate-block"></div>
+    //                       <div class="close-btn__decorate-block"></div>
+    //                     </button>
+    //                     </div>
+    //                       <h3 class="basket__title subtitle">Заказ #11</h3>
+    //                       <ul class="basket__status-bar">
+    //                         <li class="basket__status">Формируется</li>
+    //                       </ul>
+    //                       <div class="basket__column-names">
+    //                         <h4 class="basket__column-name">Позиция</h4>
+    //                         <h4 class="basket__column-name">Количество</h4>
+    //                         <h4 class="basket__column-name">Цена</h4>
+    //                       </div>
+    //                       <ul class="basket__item-list" data-simplebar>
+    //                       </ul>
+    //                       <div class="basket__total-info">
+    //                         <div class="basket__total-keys">
+    //                           <span class="basket__total-key">Скидка</span>
+    //                           <span class="basket__total-key">Общая стоимость</span>
+    //                         </div>
+    //                         <div class="basket__total-values">
+    //                           <div class="basket__total-value">0</div>
+    //                           <div class="basket__total-value total-count">0</div>
+    //                         </div>
+    //                       </div>
+    //                       <button class="basket__submit" type="submit">
+    //                         Завершить покупку
+    //                       </button>
+    //                     </div>`
   }
 
   getProductsFromLocalStorage() {

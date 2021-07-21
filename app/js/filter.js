@@ -129,7 +129,6 @@ class Filter {
         }
     }
 
-
     setStartParameters() {
         this.parameters.cousines = [];
         this.parameters.protein = ``;
@@ -230,7 +229,7 @@ class Filter {
                                  </div>
                                </li>
                              </ul>
-                             <button type="button" class="filters__activate-button">Применить</button>
+                             <button type="button" class="filters__activate-button btn">Применить</button>
                              <button type="button" class="filters__activate-reset">Сбросить</button>
                              </form>
                            </div> 
@@ -238,7 +237,7 @@ class Filter {
                              <form class="filters__search-form">
                                <span class="filters__search-form-title">Поиск</span>
                                <input class="filters__search-form-input input-text" type="text" placeholder="Введите название блюда...">
-                               <button type="button" class="filters__activate-button">Применить</button>
+                               <button type="button" class="filters__activate-button btn">Применить</button>
                                <button type="button" class="filters__activate-reset">Сбросить</button>
                              </form>
                            </div>

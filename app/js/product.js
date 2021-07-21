@@ -1,5 +1,5 @@
 class Product {
-    constructor({ id, type, name, price, weight, imgUrl, cousine, protein, count }, basketButton) {
+    constructor({ id, type, name, price, weight, imgUrl, cousine, protein, count }) {
 
         // global props
         this.id = id;
@@ -11,8 +11,6 @@ class Product {
         this.cousine = cousine;
         this.protein = protein;
         this.count = count;
-
-        this.basketButton = basketButton;
 
         this.basketPlace = `.basket__item-list`;
         this.catalogPlace = `.product-list`;
@@ -35,15 +33,15 @@ class Product {
 
     setEventsInCatalog() {
         this.buttonToOrder = this.catalogItem.querySelector('button');
-        
+
         this.buttonToOrder.addEventListener('click', () => {
 
-            let {ordered} = this.setProductsInLocaleStorage()
+            let { ordered } = this.setProductsInLocaleStorage()
             this.buttonToOrder.className = (ordered ? this.orderedClass : this.toOrderClass)
             this.buttonToOrder.innerText = (ordered ? this.orderedLabel : this.toOrderLabel)
-            this.basketButton.render()
+            new BasketButton();
 
-            if(ordered) {
+            if (ordered) {
                 this.renderToBasket()
             }
             else {
@@ -53,7 +51,7 @@ class Product {
 
             this.updateInfo();
             this.plug();
-        })    
+        })
     }
 
     setEventsInBasket() {
@@ -66,46 +64,48 @@ class Product {
 
             this.basketItem.remove();
             this.setProductsInLocaleStorage();
-            
+
             if (buttonToOrder) {
                 buttonToOrder.innerText = this.toOrderLabel;
                 buttonToOrder.className = this.toOrderClass;
             }
+
+            new BasketButton();
         })
         this.buttonToIncrease.addEventListener('click', () => {
             const Goods = JSON.parse(localStorage.getItem('products'));
 
-            this.count +=1;
+            this.count += 1;
             this.basketItem.querySelector('.basket__item-count-value').innerText = this.count;
             this.good = Goods[this.id];
             this.good.count = this.count;
 
-            
+
 
             Goods[this.id] = this.good;
             localStorage.setItem('products', JSON.stringify(Goods));
 
-            this.basketItem.querySelector('.basket__item-product-total-price').innerText = this.count*this.price;
+            this.basketItem.querySelector('.basket__item-product-total-price').innerText = this.count * this.price;
 
         })
         this.buttonToDecrease.addEventListener('click', () => {
 
-            if (this.count > 1) 
-            {
+            if (this.count > 1) {
                 const Goods = JSON.parse(localStorage.getItem('products'));
 
-                this.count -=1;
+                this.count -= 1;
                 this.basketItem.querySelector('.basket__item-count-value').innerText = this.count;
                 this.good = Goods[this.id];
                 this.good.count = this.count;
                 Goods[this.id] = this.good;
                 localStorage.setItem('products', JSON.stringify(Goods));
 
-                this.basketItem.querySelector('.basket__item-product-total-price').innerText = this.count*this.price;
-            }            
+                this.basketItem.querySelector('.basket__item-product-total-price').innerText = this.count * this.price;
+
+            }
         })
     }
-    
+
     renderToBasket() {
         const Place = document.querySelector('.basket .simplebar-content') ? document.querySelector('.basket .simplebar-content') : document.querySelector('.basket__item-list')
 
@@ -178,22 +178,22 @@ class Product {
         let listProductsFromLocalStorage = this.getProductsFromLocalStorage();
         let ordered = false;
         let availableInLocalStorage = this.id in listProductsFromLocalStorage;
-        
+
         if (availableInLocalStorage === true) {
 
             delete listProductsFromLocalStorage[this.id]
 
         } else if (availableInLocalStorage === false) {
 
-            listProductsFromLocalStorage[this.id] = { 
-                                                      id: this.id,
-                                                      type: this.type,
-                                                      price: this.price,
-                                                      name: this.name,
-                                                      weight: this.weight, 
-                                                      imgUrl: this.imgUrl, 
-                                                      count: 1 
-                                                    }
+            listProductsFromLocalStorage[this.id] = {
+                id: this.id,
+                type: this.type,
+                price: this.price,
+                name: this.name,
+                weight: this.weight,
+                imgUrl: this.imgUrl,
+                count: 1
+            }
             ordered = true;
         }
 
@@ -205,23 +205,23 @@ class Product {
         const ValuePlace = document.querySelector('.total-count')
         const OrderedGoods = this.getProductFromLocaleStorage();
         let totalPrice = 0;
-    
+
         for (let i in OrderedGoods) {
-            totalPrice+= OrderedGoods[i].count * OrderedGoods[i].price;
-          }
+            totalPrice += OrderedGoods[i].count * OrderedGoods[i].price;
+        }
         ValuePlace.innerHTML = totalPrice;
     }
 
     plug() {
         const Place = document.querySelector('.basket .simplebar-content') ? document.querySelector('.basket .simplebar-content') : document.querySelector('.basket__item-list')
-    
+
         if (Array.from(Place.children).length === 0) {
-          Place.innerHTML = `<li class="basket__plug">Корзина пуста</li>`;
+            Place.innerHTML = `<li class="basket__plug">Корзина пуста</li>`;
         }
         else {
-          if (document.querySelector(`.basket__plug`)) {
-            document.querySelector(`.basket__plug`).remove();
-          }
+            if (document.querySelector(`.basket__plug`)) {
+                document.querySelector(`.basket__plug`).remove();
+            }
         }
-      }
+    }
 }

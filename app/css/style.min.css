@@ -2370,23 +2370,7 @@ body {
   color: #fff;
 }
 
-.dark-theme .filters__search-form-input.input-text::-webkit-input-placeholder {
-  color: #fff;
-}
-
-.dark-theme .filters__search-form-input.input-text::-moz-placeholder {
-  color: #fff;
-}
-
-.dark-theme .filters__search-form-input.input-text:-ms-input-placeholder {
-  color: #fff;
-}
-
-.dark-theme .filters__search-form-input.input-text::-ms-input-placeholder {
-  color: #fff;
-}
-
-.dark-theme .filters__search-form-input.input-text::placeholder {
+.dark-theme .filters__search-form-input {
   color: #fff;
 }
 
@@ -2441,12 +2425,43 @@ body {
   border-color: #393C49;
 }
 
+.dark-theme .reviews__send-btn {
+  border-color: #EA9769;
+  color: #EA9769;
+}
+
 .dark-theme .reviews .form__send-btn {
   border: 1px solid #fff;
   color: #fff;
 }
 
 .dark-theme .reviews .jq-file__name {
+  color: #fff;
+}
+
+.dark-theme .reviews .form__input {
+  background-color: #252836;
+  border-color: #EA9769;
+  color: #fff;
+}
+
+.dark-theme .reviews .form__input::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.dark-theme .reviews .form__input::-moz-placeholder {
+  color: #fff;
+}
+
+.dark-theme .reviews .form__input:-ms-input-placeholder {
+  color: #fff;
+}
+
+.dark-theme .reviews .form__input::-ms-input-placeholder {
+  color: #fff;
+}
+
+.dark-theme .reviews .form__input::placeholder {
   color: #fff;
 }
 
@@ -2501,12 +2516,40 @@ body {
   background-color: rgba(37, 40, 54, 0.89);
 }
 
-.dark-theme .modal-window__photo {
+.dark-theme .modal-window__photo, .dark-theme .modal-window__content {
   background-color: #252836;
 }
 
 .dark-theme .modal-window__content {
   border: 1px solid #393C49;
+}
+
+.dark-theme .input-text::-webkit-input-placeholder {
+  color: #fff;
+}
+
+.dark-theme .input-text::-moz-placeholder {
+  color: #fff;
+}
+
+.dark-theme .input-text:-ms-input-placeholder {
+  color: #fff;
+}
+
+.dark-theme .input-text::-ms-input-placeholder {
+  color: #fff;
+}
+
+.dark-theme .input-text::placeholder {
+  color: #fff;
+}
+
+.dark-theme .footer {
+  color: #fff;
+}
+
+.dark-theme .footer__copyright {
+  border-top-color: #EA9769;
 }
 
 .animated-item {
@@ -2563,6 +2606,26 @@ body {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   color: rgba(37, 40, 54, 0.5);
+}
+
+.btn {
+  border-radius: 8px;
+  outline: none;
+  border: 1px solid #252836;
+  background: transparent;
+  margin-left: 84px;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+
+.btn:hover {
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+  background: #EA9769;
+  color: #fff;
+  border-color: #EA9769;
 }
 
 .header {
@@ -2625,6 +2688,7 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
+  cursor: pointer;
 }
 
 .logo__icon {
@@ -2728,9 +2792,9 @@ body {
   display: none;
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-78%);
-      -ms-transform: translateX(-78%);
-          transform: translateX(-78%);
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
   top: 4px;
 }
 
@@ -2740,11 +2804,17 @@ body {
   transition: all .5s;
 }
 
-.dark-theme-btn.active {
+.dark-theme-btn svg {
   -webkit-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
+}
+
+.dark-theme-btn.active svg {
   fill: #EA9769;
+  -webkit-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
 }
 
 .extra {
@@ -2943,17 +3013,15 @@ body {
 .user__link {
   border-bottom: 1px solid transparent;
   padding-bottom: 10px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-      -ms-flex-pack: justify;
-          justify-content: space-between;
   position: relative;
   margin-bottom: 10px;
   -webkit-transition: all .5s;
   -o-transition: all .5s;
   transition: all .5s;
+}
+
+.user__link:hover {
+  border-bottom: 1px solid #EA9769;
 }
 
 .user__item {
@@ -4383,22 +4451,6 @@ body {
   display: block;
   padding: 10px 5px;
   margin-bottom: 20px;
-  background: transparent;
-  border-radius: 8px;
-  outline: none;
-  border: 1px solid #252836;
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
-}
-
-.product-list__show-more:hover {
-  background: #EA9769;
-  border-color: #EA9769;
-  color: #fff;
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
 }
 
 .catalog {
@@ -4509,26 +4561,11 @@ body {
 }
 
 .filters__activate-button {
-  background: transparent;
-  outline: none;
   padding: 10px 25px;
   margin: 0 0 10px 0;
   border-radius: 8px;
-  border: 1px solid #252836;
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
   display: block;
   width: 100%;
-}
-
-.filters__activate-button:hover {
-  border-color: #EA9769;
-  background-color: #EA9769;
-  color: #fff;
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
 }
 
 .filters__activate-reset {
@@ -4974,7 +5011,6 @@ body {
   -o-transition: all .5s;
   transition: all .5s;
   text-align: center;
-  padding: 20px;
   position: relative;
   background: transparent;
   -webkit-box-orient: vertical;
@@ -4987,7 +5023,6 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding: 20px;
 }
 
 .vacancies__categories-item--not-active {
@@ -5022,7 +5057,10 @@ body {
   width: 100%;
   margin-bottom: 15px;
   border-radius: 8px 8px 0 0;
-  padding: 23px 0;
+}
+
+.vacancies__categories-item-all .vacancies__categories-button {
+  padding: 24px 0;
 }
 
 .vacancies__categories-item:nth-child(2) {
@@ -5050,6 +5088,7 @@ body {
   outline: none;
   height: 100%;
   width: 100%;
+  padding: 20px;
 }
 
 .vacancies__item {
@@ -5317,22 +5356,7 @@ body {
 .reviews__send-btn {
   padding: 10px 15px;
   min-width: 170px;
-  border-radius: 8px;
-  border: 1px solid #252836;
-  background: transparent;
   margin-left: 84px;
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
-}
-
-.reviews__send-btn:hover {
-  -webkit-transition: all .5s;
-  -o-transition: all .5s;
-  transition: all .5s;
-  background: #EA9769;
-  color: #fff;
-  border-color: #EA9769;
 }
 
 .modal-window {

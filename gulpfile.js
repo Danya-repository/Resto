@@ -56,6 +56,7 @@ function scripts() {
     'app/js/customCarousel.js',
     'app/js/modalWindow.js',
     'app/js/product.js',
+    'app/js/vacancy.js',
     'app/js/filter.js',
     'app/js/review.js',
     'app/js/pagination.js',
@@ -67,7 +68,9 @@ function scripts() {
     'app/js/basketButton.js',
     'app/js/vacanciesPage.js',
     'app/js/reviewsPage.js',
-    'app/js/main.js'
+    'app/js/header.js',
+    'app/js/main.js',
+    'app/js/footer.js'
   ])
     .pipe(concat('main.min.js'))
     // .pipe(uglify())
