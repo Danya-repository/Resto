@@ -2,34 +2,22 @@ class Header {
   constructor(simpleInstance) {
     this.place = `body`;
     this.simpleBar = simpleInstance;
-
-    // this.render();
-    // this.setEvents();
-
-    this.createHeader();
-    this.createContainer();
-    this.createTopInner();
-    this.createBottomInner();
-    this.createLogo();
-    this.createExtra();
-    this.createMenu();
-    this.createUserBar();
-    this.createMenuBtn();
-    this.createBasketBtn();
+    
+    this.render();
+    this.autorization = new Autorization();
 
     this.setEvents();
+    this.checkTheme();
   }
 
 
 
   setEvents() {
-    const DropDown = this.header.querySelector('.user__drop-down');
     const HeaderWrapperTop = this.header.querySelector('.header__inner-top')
     const HeaderWrapperBottom = this.header.querySelector('.header__inner-bottom')
 
     this.logoLink.addEventListener('click', () => {
-      let indexPage = new IndexPage(this.simpleBar);
-      indexPage.init();
+      new IndexPage(this.simpleBar);
     })
 
     this.extra.addEventListener('click', (event) => {
@@ -80,19 +68,43 @@ class Header {
     this.toggleThemeBtn.addEventListener('click', () => {
       this.toggleThemeBtn.classList.toggle('active');
       document.querySelector('html').classList.toggle('dark-theme')
+
+      const Theme = localStorage.getItem('theme');
+      if (Theme === 'dark-theme') {
+        localStorage.setItem('theme', 'light-theme');
+      }
+      else {
+        localStorage.setItem('theme', 'dark-theme');
+      }
       
     })
+    
+    this.dropDownIcon.onclick = () => {
+        $('.drop-down__list').slideToggle();
+        $('.drop-down__icon').toggleClass('icon-bar__icon--active');
 
-    this.userBar.addEventListener('click', () => {
-      $('.user__drop-down').slideToggle();
-      $('.user__icon').toggleClass('user__icon--active');
-      if (window.innerWidth < 1024 && window.innerWidth > 800) {
-        if (document.querySelector('.user__icon').classList.contains('user__icon--active')) {
-          DropDown.style.display = 'flex'
+        if (window.innerWidth < 1024 &&
+            window.innerWidth > 800 && 
+            document.querySelector('.drop-down__icon').classList.contains('icon-bar__icon--active')) 
+        {
+            $('.drop-down__list').css('display', 'flex')
         }
-      }
-    })
+    }
 
+    this.dropDownList.onclick = (event) => {
+      
+      if (event.target.classList.contains('login')) {
+        this.simpleBar.getScrollElement().scrollTop = 0;
+        $(this.autorization.loginForm).slideDown()
+        $(this.autorization.signinForm).slideUp();
+      }
+      if (event.target.classList.contains('signin')) {
+        this.simpleBar.getScrollElement().scrollTop = 0;
+        $(this.autorization.loginForm).slideUp()
+        $(this.autorization.signinForm).slideDown();
+      }
+    }
+    
     this.menuBtn.addEventListener('click', () => {
       document.querySelector('.menu').classList.toggle('open')
     })
@@ -113,14 +125,17 @@ class Header {
         HeaderWrapperTop.style.marginBottom = `0`
       }
     });
+  }
 
-    //   if (event.target.classList.contains('personal-btn') &&
-    //     HeaderWrapperBottom.getBoundingClientRect().top === 0) {
+  checkTheme() {
+    const nowTheme = localStorage.getItem('theme')
 
-    //     $('.autorization').slideToggle()
-    //     this.simpleBar.getScrollElement().scrollTop = distanceBetweenBegginingPageAndHeaderWrapperBottom;
-    //   }
-    // })
+    if (nowTheme === "dark-theme") {
+      document.querySelector('html').classList.add('dark-theme')
+    }
+    else {
+      localStorage.setItem('theme', 'light-theme');
+    }
   }
 
   createHeader() {
@@ -143,8 +158,6 @@ class Header {
     this.topInner.className = `header__inner-top`;
 
     this.container.append(this.topInner);
-
-    console.log(this.topInner)
   }
 
   createBottomInner() {
@@ -303,12 +316,12 @@ class Header {
     this.menuBtn.className = `menu__btn`;
     this.menuBtn.innerText = `Меню`;
 
-    this.user.append(this.menuBtn);
+    this.iconBar.append(this.menuBtn);
   }
 
   createBasketBtn() {
     this.basketBtn = document.createElement('button');
-    this.basketBtn.className = `user__btn basket-btn`;
+    this.basketBtn.className = `icon-bar__btn basket-btn`;
     this.basketBtn.insertAdjacentHTML('afterbegin', `<svg fill="black" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
                                                         xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
                                                         style="enable-background:new 0 0 512 512;" xml:space="preserve">
@@ -349,15 +362,15 @@ class Header {
                                                                <div class="basket-btn__counter">
                                                                </div>`)
     
-    this.user.append(this.basketBtn)                                                              
+    this.iconBar.append(this.basketBtn)                                                              
   }
 
-  createUserBar() {
-    this.user = document.createElement('div');
-    this.user.className=  `user`;
+  createIconBar() {
+    this.iconBar = document.createElement('div');
+    this.iconBar.className=  `icon-bar`;
 
     this.toggleThemeBtn = document.createElement('button');
-    this.toggleThemeBtn.className = `user__btn dark-theme-btn`;
+    this.toggleThemeBtn.className = `icon-bar__btn dark-theme-btn`;
     this.toggleThemeBtn.insertAdjacentHTML('afterbegin', `<svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                                                 viewBox="0 0 312.999 312.999" style="enable-background:new 0 0 312.999 312.999;" xml:space="preserve">
                                              <g>
@@ -373,163 +386,73 @@ class Header {
                                              </g>
                                             </svg>`)
 
-    this.userBar = document.createElement('div')
-    this.userBar.className = `user__bar`;
-    this.userBar.insertAdjacentHTML('afterbegin', `<div class="user__bar-inner">
-    <div class="user__icon">
-      <svg fill="black" width="20" height="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-        style="enable-background:new 0 0 512 512;" xml:space="preserve">
-        <g>
-          <g>
-            <path d="M256,288.389c-153.837,0-238.56,72.776-238.56,204.925c0,10.321,8.365,18.686,18.686,18.686h439.747
-        c10.321,0,18.686-8.365,18.686-18.686C494.56,361.172,409.837,288.389,256,288.389z M55.492,474.628
-        c7.35-98.806,74.713-148.866,200.508-148.866s193.159,50.06,200.515,148.866H55.492z" />
-          </g>
-        </g>
-        <g>
-          <g>
-            <path d="M256,0c-70.665,0-123.951,54.358-123.951,126.437c0,74.19,55.604,134.54,123.951,134.54s123.951-60.35,123.951-134.534
-        C379.951,54.358,326.665,0,256,0z M256,223.611c-47.743,0-86.579-43.589-86.579-97.168c0-51.611,36.413-89.071,86.579-89.071
-        c49.363,0,86.579,38.288,86.579,89.071C342.579,180.022,303.743,223.611,256,223.611z" />
-          </g>
-        </g>
-      </svg>
-    </div>
-    <div class="user__name"></div>
-  </div>
-  <ul class="user__drop-down">
-    <li class="user__item">
-      <a class="user__link personal-btn" href="#">
-        Войти
-      </a>
-    </li>
-    <li class="user__item scores">
-      <a class="user__link" href="#">
-        Зарегистрироваться
-      </a>
-    </li>
-  </ul>`)
+    this.dropDown = document.createElement('div');
+    this.dropDown.className = `icon-bar__btn drop-down`;
 
-    this.user.append(this.toggleThemeBtn)  
-    this.user.append(this.userBar)                                        
-    this.bottomInner.append(this.user);
+    this.dropDownIcon = document.createElement('div');
+    this.dropDownIcon.className = `drop-down__icon`;
+    this.dropDownIcon.insertAdjacentHTML('afterbegin', `<svg fill="black" width="20" height="20" version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg"
+    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
+    style="enable-background:new 0 0 512 512;" xml:space="preserve">
+    <g>
+      <g>
+        <path d="M256,288.389c-153.837,0-238.56,72.776-238.56,204.925c0,10.321,8.365,18.686,18.686,18.686h439.747
+    c10.321,0,18.686-8.365,18.686-18.686C494.56,361.172,409.837,288.389,256,288.389z M55.492,474.628
+    c7.35-98.806,74.713-148.866,200.508-148.866s193.159,50.06,200.515,148.866H55.492z" />
+      </g>
+    </g>
+    <g>
+      <g>
+        <path d="M256,0c-70.665,0-123.951,54.358-123.951,126.437c0,74.19,55.604,134.54,123.951,134.54s123.951-60.35,123.951-134.534
+    C379.951,54.358,326.665,0,256,0z M256,223.611c-47.743,0-86.579-43.589-86.579-97.168c0-51.611,36.413-89.071,86.579-89.071
+    c49.363,0,86.579,38.288,86.579,89.071C342.579,180.022,303.743,223.611,256,223.611z" />
+      </g>
+    </g>
+  </svg>`)
+
+    this.dropDownList = document.createElement('ul');
+    this.dropDownList.className = `drop-down__list`;
+    this.dropDownList.insertAdjacentHTML('afterbegin', `<li class="drop-down__item">
+        <a class="drop-down__link login" href="#">
+          Войти
+        </a>
+      </li>
+      <li class="drop-down__item">
+        <a class="drop-down__link signin" href="#">
+          Зарегистрироваться
+        </a>
+      </li>`)
+
+    this.dropDown.append(this.dropDownIcon, this.dropDownList)
+    this.iconBar.append(this.toggleThemeBtn, this.dropDown)  
+                                     
+    this.bottomInner.append(this.iconBar);
 
 
   }
 
   render() {
+    this.createHeader();
+    this.createContainer();
+    this.createTopInner();
+    this.createBottomInner();
+    this.createLogo();
+    this.createExtra();
+    this.createMenu();
+    this.createIconBar();
+    this.createMenuBtn();
+    this.createBasketBtn();
   }
 
 
+//   if (event.target.classList.contains('personal-btn') &&
+    //     HeaderWrapperBottom.getBoundingClientRect().top === 0) {
 
+    //     $('.autorization').slideToggle()
+    //     this.simpleBar.getScrollElement().scrollTop = distanceBetweenBegginingPageAndHeaderWrapperBottom;
+    //   }
+    // })
 
+      
 
-
-
-
-  // createDropDown() {
-
-  // }
-
-  // createBasketBtn() {
-
-  // }
-
-  // createMenu() {
-
-  // }
-
-  // createExtra() {
-
-  // }
-
-  // createDarkThemeToggler() {
-
-  // }
-
-  //     <div class="header__inner-bottom">
-
-  //       <div class="user">
-  //         <button class="menu__btn">Меню</button>   
-  //         <button class="user__btn basket-btn">
-  //           <svg fill="black" height="20px" width="20px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
-  //             xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 512 512"
-  //             style="enable-background:new 0 0 512 512;" xml:space="preserve">
-  //             <g>
-  //               <g>
-  //                 <path
-  //                   d="M473.043,164.174h-26.541c-0.203-0.226-0.393-0.459-0.61-0.675L301.197,18.803c-6.519-6.52-17.091-6.52-23.611,0
-  //                       s-6.52,17.091,0,23.611l121.759,121.759H112.654L234.414,42.414c6.52-6.52,6.52-17.091,0-23.611c-6.519-6.52-17.091-6.52-23.611,0
-  //                       L66.107,163.499c-0.217,0.217-0.407,0.45-0.61,0.675H38.957C17.476,164.174,0,181.65,0,203.13v22.261
-  //                       c0,20.461,15.855,37.287,35.924,38.84l32,192.003c4.043,24.251,24.82,41.853,49.406,41.853H399.56
-  //                       c24.765,0,46.081-18.488,49.584-43.004l27.268-190.88c19.91-1.714,35.587-18.467,35.587-38.812V203.13
-  //                       C512,181.65,494.524,164.174,473.043,164.174z M478.609,225.391c0,3.069-2.497,5.565-5.565,5.565c-5.126,0-159.642,0-166.956,0
-  //                       c-9.22,0-16.696,7.475-16.696,16.696c0,9.22,7.475,16.696,16.696,16.696h136.576L416.09,450.362
-  //                       c-1.168,8.172-8.273,14.334-16.529,14.334H117.33c-8.195,0-15.121-5.867-16.469-13.951L69.796,264.348h136.117
-  //                       c9.22,0,16.696-7.475,16.696-16.696c0-9.22-7.475-16.696-16.696-16.696c-7.325,0-161.852,0-166.956,0
-  //                       c-3.069,0-5.565-2.497-5.565-5.565V203.13c0-3.069,2.497-5.565,5.565-5.565h434.087c3.069,0,5.565,2.497,5.565,5.565V225.391z" />
-  //               </g>
-  // //             </g>
-  // //             <g>
-  // //               <g>
-  // //                 <path d="M155.826,297.739c-9.22,0-16.696,7.475-16.696,16.696v100.174c0,9.22,7.475,16.696,16.696,16.696
-  // //                       s16.696-7.475,16.696-16.696V314.434C172.522,305.214,165.047,297.739,155.826,297.739z" />
-  // //               </g>
-  // //             </g>
-  // //             <g>
-  // //               <g>
-  // //                 <path d="M256,297.739c-9.22,0-16.696,7.475-16.696,16.696v100.174c0,9.22,7.475,16.696,16.696,16.696
-  // //                       c9.22,0,16.696-7.475,16.696-16.696V314.434C272.696,305.214,265.22,297.739,256,297.739z" />
-  // //               </g>
-  // //             </g>
-  // //             <g>
-  // //               <g>
-  // //                 <path d="M356.174,297.739c-9.22,0-16.696,7.475-16.696,16.696v100.174c0,9.22,7.475,16.696,16.696,16.696
-  // //                       c9.22,0,16.696-7.475,16.696-16.696V314.434C372.87,305.214,365.394,297.739,356.174,297.739z" />
-  // //               </g>
-  // //             </g>
-  // //           </svg>
-  // //           <div class="basket-btn__counter">
-  // //           </div>
-  // //         </button>
-  //       </div>
-  //     </div>
-  //     <div class="autorization">
-  //       <div class="autorization__inner">
-  //         <div class="autorization__close-btn-wrapper">
-  //           <button class="close-btn close-btn--active">
-  //             <div class="close-btn__decorate-block"></div>
-  //             <div class="close-btn__decorate-block"></div>
-  //           </button>
-  //         </div>
-  //         <div class="autorization__choice-block">
-  //           <button class="choice-block__login">Войти</button>
-  //           <button class="choice-block__signin">Регистрация</button>
-  //         </div>
-  //         <form class="autorization__form-login" action="">
-  //           <span class="autorization__form-subtitle">Логин:</span>
-  //           <input class="form__input-tel input-text" type="tel" name="">
-  //           <span class="autorization__form-subtitle">Пароль:</span>
-  //           <input class="form__input-password input-text" type="password">
-  //           <button class="form__login-button" type="button">Войти</button>
-  //           <button class="form__to-back-button" type="button">Назад</button>
-  //         </form>
-  //         <form class="autorization__form-signin" action="">
-  //           <span class="autorization__form-subtitle">Логин:</span>
-  //           <input class="form__input-tel input-text" type="tel" name="">
-  //           <span class="autorization__form-subtitle">Пароль:</span>
-  //           <input class="form__input-tel input-text" type="tel" name="">
-  //           <span class="autorization__form-subtitle">Повторите пароль:</span>
-  //           <input class="form__input-password input-text" type="password">
-  //           <button class="form__signin-button" type="button">Зарегистрироваться</button>
-  //           <button class="form__to-back-button" type="button">Назад</button>
-  //         </form>
-  //       </div>
-  //     </div>
-  //     </div>`)
-
-  // Place.prepend(this.header)
-  // this.createLogoLink();
-  // }
 }

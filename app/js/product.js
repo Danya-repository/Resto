@@ -1,5 +1,5 @@
 class Product {
-    constructor({ id, type, name, price, weight, imgUrl, cousine, protein, count }) {
+    constructor({ id, type, name, price, weight, imgUrl, cousine, protein}) {
 
         // global props
         this.id = id;
@@ -10,7 +10,6 @@ class Product {
         this.imgUrl = imgUrl;
         this.cousine = cousine;
         this.protein = protein;
-        this.count = count;
 
         this.basketPlace = `.basket__item-list`;
         this.catalogPlace = `.product-list`;
@@ -75,39 +74,33 @@ class Product {
         this.buttonToIncrease.addEventListener('click', () => {
             const Goods = JSON.parse(localStorage.getItem('products'));
 
-            this.count += 1;
-            this.basketItem.querySelector('.basket__item-count-value').innerText = this.count;
-            this.good = Goods[this.id];
-            this.good.count = this.count;
-
-
-
-            Goods[this.id] = this.good;
+            Goods[this.id].count += 1;
+            
             localStorage.setItem('products', JSON.stringify(Goods));
-
-            this.basketItem.querySelector('.basket__item-product-total-price').innerText = this.count * this.price;
+            
+            this.basketItem.querySelector('.basket__item-count-value').innerText = Goods[this.id].count;
+            this.basketItem.querySelector('.basket__item-product-total-price').innerText = Goods[this.id].count * this.price;
 
         })
         this.buttonToDecrease.addEventListener('click', () => {
+            const Goods = JSON.parse(localStorage.getItem('products'));
 
-            if (this.count > 1) {
-                const Goods = JSON.parse(localStorage.getItem('products'));
+            if (Goods[this.id].count > 1) {
 
-                this.count -= 1;
-                this.basketItem.querySelector('.basket__item-count-value').innerText = this.count;
-                this.good = Goods[this.id];
-                this.good.count = this.count;
-                Goods[this.id] = this.good;
+                Goods[this.id].count -= 1;
+
                 localStorage.setItem('products', JSON.stringify(Goods));
-
-                this.basketItem.querySelector('.basket__item-product-total-price').innerText = this.count * this.price;
+                
+                this.basketItem.querySelector('.basket__item-count-value').innerText = Goods[this.id].count;
+                this.basketItem.querySelector('.basket__item-product-total-price').innerText = Goods[this.id].count * this.price;
 
             }
         })
     }
 
     renderToBasket() {
-        const Place = document.querySelector('.basket .simplebar-content') ? document.querySelector('.basket .simplebar-content') : document.querySelector('.basket__item-list')
+        const Place = document.querySelector('.basket .simplebar-content') ? document.querySelector('.basket .simplebar-content') : document.querySelector('.basket__item-list');
+        const Goods = JSON.parse(localStorage.getItem('products'));
 
         this.basketItem = document.createElement('li');
         this.basketItem.classList.add('basket__item');
@@ -121,7 +114,7 @@ class Product {
                                             </div>
                                             <div class="basket__item-count-block">
                                                 <button class="basket__item-minus-btn">-</button>
-                                                <p class="basket__item-count-value">${this.count}</p>
+                                                <p class="basket__item-count-value">${Goods[this.id].count}</p>
                                                 <button class="basket__item-plus-btn">+</button></div>
                                                 <p class="basket__item-product-total-price">${this.price}</p>
                                             </div>

@@ -8,8 +8,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "russian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 2,
@@ -19,8 +18,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "russian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 3,
@@ -30,8 +28,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "dutch",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 4,
@@ -41,8 +38,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "indonesian",
-                  "protein": "fish",
-                  "count": 1
+                  "protein": "fish"
             },
             {
                   "id": 5,
@@ -52,8 +48,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "russian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 6,
@@ -63,8 +58,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "russian",
-                  "protein": "vegetarian",
-                  "count": 1
+                  "protein": "vegetarian"
             },
             {
                   "id": 7,
@@ -74,8 +68,7 @@
                   "weight": 270,
                   "imgUrl": "images/content/hot-dishes-img.png",
                   "cousine": "indonesian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             }
       ]
 }

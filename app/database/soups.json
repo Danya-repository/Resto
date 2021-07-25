@@ -8,8 +8,7 @@
                   "weight": 220,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "dutch",
-                  "protein": "vegetarian",
-                  "count": 1
+                  "protein": "vegetarian"
             },
             {
                   "id": 16,
@@ -19,8 +18,7 @@
                   "weight": 230,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "dutch",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 17,
@@ -30,8 +28,7 @@
                   "weight": 200,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "dutch",
-                  "protein": "fish",
-                  "count": 1
+                  "protein": "fish"
             },
             {
                   "id": 18,
@@ -41,8 +38,7 @@
                   "weight": 550,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "indonesian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 19,
@@ -52,8 +48,7 @@
                   "weight": 210,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "indonesian",
-                  "protein": "fish",
-                  "count": 1
+                  "protein": "fish"
             },
             {
                   "id": 20,
@@ -63,8 +58,7 @@
                   "weight": 219,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "russian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             },
             {
                   "id": 21,
@@ -74,8 +68,7 @@
                   "weight": 370,
                   "imgUrl": "images/content/soup-2.png",
                   "cousine": "russian",
-                  "protein": "meat",
-                  "count": 1
+                  "protein": "meat"
             }
       ]
 }

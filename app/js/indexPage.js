@@ -4,6 +4,8 @@ class IndexPage {
     this.simpleBar = simpleInstance;
     this.__anim = this.__anim.bind(this);
     this.__offset = this.__offset.bind(this);
+
+    this.init();
   }
 
   getSimpleBarInstance() {
