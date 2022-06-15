@@ -1,0 +1,76 @@
+{"goods":
+    [{
+          "id": 8,   
+          "type" : "cold-dishes",
+          "price": 123.43,
+          "name": "Суп с мазиком",
+          "weight": 220,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "indonesian",
+          "protein" : "fish"
+          },
+      
+    {
+          "id": 9,      
+          "type" : "cold-dishes",
+          "price": 115.50,
+          "name": "Суп с морским огурцом",
+          "weight": 230,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "meat"
+          },
+    {
+          "id": 10,   
+          "type": "cold-dishes",
+          "price": 153.50,
+          "name": "Самый вкусный суп",
+          "weight": 200,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "indonesian",
+          "protein" : "meat"
+      },
+    
+    {
+          "id": 11,   
+          "type": "cold-dishes",
+          "price": 220.00,
+          "name": "Шаурма на труда",
+          "weight": 550,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "vegetarian"
+      } ,
+    {
+          "id": 12,   
+          "type": "cold-dishes",
+          "price": 551.50,
+          "name": "Шаурма с гордона",
+          "weight": 210,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "meat"
+      },
+    
+    {
+          "id": 13,   
+          "type": "cold-dishes",
+          "price": 333.00,
+          "name": "Дёнер",
+          "weight": 219,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "russian",
+          "protein" : "meat"
+      },
+    
+    {
+          "id": 14,   
+          "type": "cold-dishes",
+          "price": 323.23,
+          "name": "Бурум",
+          "weight": 370,
+          "imgUrl": "images/content/soup-1.png",
+          "cousine" : "dutch",
+          "protein" : "meat"
+    }]
+}

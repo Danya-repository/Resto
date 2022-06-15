@@ -1,6 +1,12 @@
 html,
 body {
 	height: 100%;
+	color: $dark-main;
+	@include MonNorm;
+	font-size: 14px;
+	line-height: 14px;
+	font-weight: 400;
+	transition: all .5s;
 }
 
 .wrapper {
@@ -20,6 +26,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 15px;
+  width: 100%;
+}
+
+.simplebar-content {
+	height: 100%;
 }
 
 
